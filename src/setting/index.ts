@@ -4,10 +4,10 @@ import type { ProjectConfig } from '@/setting';
 
 const setting: ProjectConfig = {
   theme: 'light',
-  name: '后台系统',
+  name: 'Vue Admin',
   logo: {
     src: '/assets/logo.png',
-    title: '后台系统'
+    title: 'Vue Admin'
   },
   errorHandle: {
     status: false,
