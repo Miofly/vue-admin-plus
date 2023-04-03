@@ -14,19 +14,21 @@
 
 ## 安装使用
 
-- 获取项目代码
+获取项目代码
 
-`github` 方式(保持最新代码)
+- `github` 方式(保持最新代码)
+
 ```bash
 git clone https://github.com/Miofly/vue-admin-plus.git
 ```
 
-`gitee` 方式(最新代码更新时间不定)
+- `gitee` 方式(最新代码更新时间不定)
+- 
 ```bash
 git clone https://gitee.com/miofly/vue-admin-plus.git
 ```
 
-- 安装依赖
+安装依赖
 
 ```bash
 cd vue-admin-plus
@@ -35,13 +37,13 @@ pnpm install
 
 ```
 
-- 运行
+运行
 
 ```bash
 pnpm serve
 ```
 
-- 打包
+打包
 
 ```bash
 pnpm build
