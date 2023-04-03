@@ -23,7 +23,7 @@ git clone https://github.com/Miofly/vue-admin-plus.git
 
 `gitee` 方式(最新代码更新时间不定)
 ```bash
-git clone https://gitee.com/miofly/vue-admin-plus
+git clone https://gitee.com/miofly/vue-admin-plus.git
 ```
 
 - 安装依赖

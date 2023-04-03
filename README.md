@@ -10,7 +10,7 @@ Vue Admin Plus uses the latest vue3, vite, TypeScript and other mainstream techn
 
 [https://demo.wflynn.cn/](https://demo.wflynn.cn/)
 
-Test account/password:18888888888/111111
+test account/password：18888888888/111111
 
 ## Install and use
 
@@ -25,7 +25,7 @@ git clone https://github.com/Miofly/vue-admin-plus.git
 gitee method(code maybe old)
 
 ```bash
-git clone https://gitee.com/miofly/vue-admin-plus
+git clone https://gitee.com/miofly/vue-admin-plus.git
 ```
 
 - install

@@ -1,6 +1,6 @@
 {
-  "name": "admin-demo",
-  "version": "0.0.2",
+  "name": "vue-admin-plus",
+  "version": "0.0.1",
   "scripts": {
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
@@ -27,7 +27,31 @@
     "vue-request": "2.0.0-rc.4",
     "vue-router": "^4.1.6",
     "vxe-table": "^4.3.6",
-    "xe-utils": "^3.5.7",
-    "husky": "8.0.3"
+    "xe-utils": "^3.5.7"
+  },
+  "devDependencies": {
+    "@types/node": "18.8.0",
+    "husky": "8.0.3",
+    "rimraf": "^4.4.1"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "vue",
+        "postcss",
+        "typescript",
+        "vite",
+        "terser",
+        "eslint",
+        "stylelint",
+        "rollup",
+        "@types/node",
+        "@types/markdown-it",
+        "pinia"
+      ]
+    }
   }
 }
