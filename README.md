@@ -2,33 +2,33 @@
 
 **English** | [中文](./README.zh-CN.md)
 
-## 简介
+## Introduction
 
-`Vue Admin Plus` 使用了最新的 `vue3`, `vite`, `TypeScript` 等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
+Vue Admin Plus uses the latest vue3, vite, TypeScript and other mainstream technologies to develop, out of the box middle and back office front-end solutions, can also be used for learning reference.
 
-## 预览
+## PREVIEW
 
 [https://demo.wflynn.cn/](https://demo.wflynn.cn/)
 
-账号/密码:18888888888/111111
+Test account/password:18888888888/111111
 
-## 安装使用
+## Install and use
 
-- 获取项目代码
+- get the project code
 
-`github` 方式(保持最新代码)
+github method(code latest)
 
 ```bash
 git clone https://github.com/Miofly/vue-admin-plus.git
 ```
 
-`gitee` 方式(最新代码更新时间不定)
+gitee method(code maybe old)
 
 ```bash
 git clone https://gitee.com/miofly/vue-admin-plus
 ```
 
-- 安装依赖
+- install
 
 ```bash
 cd vue-vben-admin
@@ -37,18 +37,18 @@ pnpm install
 
 ```
 
-- 运行
+- run
 
 ```bash
 pnpm serve
 ```
 
-- 打包
+- build
 
 ```bash
 pnpm build
 ```
 
-## 交流群
+## Discord
 
-`qq` 群: `466362940`
+qq group: `466362940`
