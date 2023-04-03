@@ -6,6 +6,7 @@ specifiers:
   '@vft/pkg': ^0.0.17
   '@vue/shared': ^3.2.47
   '@vueuse/core': ^9.13.0
+  husky: ^8.0.3
   jsencrypt: ^3.3.2
   lodash: ^4.17.21
   pinia: ^2.0.33
@@ -24,6 +25,7 @@ dependencies:
   '@vft/pkg': 0.0.17_bprbadvg3qdu6r654aspkxyole
   '@vue/shared': 3.2.47
   '@vueuse/core': 9.13.0_vue@3.2.47
+  husky: 8.0.3
   jsencrypt: 3.3.2
   lodash: 4.17.21
   pinia: 2.0.33_vue@3.2.47
@@ -6216,6 +6218,12 @@ packages:
   /human-signals/2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+    dev: false
+
+  /husky/8.0.3:
+    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: false
 
   /iconv-lite/0.4.24:

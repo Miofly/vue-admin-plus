@@ -24,9 +24,7 @@
     ]
   },
   "include": [
-    "../../typings",
     "src",
-    "plugin",
     "types",
     "vite.config.ts"
   ]
