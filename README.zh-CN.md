@@ -15,15 +15,20 @@
 
 [https://demo.wflynn.cn/](https://demo.wflynn.cn/)
 
-- 账号：18888888888
-- 密码: 111111
+账号/密码:18888888888/111111
 
 ## 安装使用
 
 - 获取项目代码
 
+`github` 方式(保持最新代码)
 ```bash
 git clone https://github.com/Miofly/vue-admin-plus.git
+```
+
+`gitee` 方式(最新代码更新时间不定)
+```bash
+git clone https://gitee.com/miofly/vue-admin-plus
 ```
 
 - 安装依赖
