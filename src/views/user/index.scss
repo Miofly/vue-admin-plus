@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  background-color: #eef0f3;
+  padding-top: 80px;
+  min-width: 1280px;
+  background-image: url("@/assets/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .content {
+    text-align: center;
+
+    .title {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 33px;
+      color: #111;
+    }
+
+    .desc {
+      padding-top: 27px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      color: #8B8C8C;
+    }
+
+    // 登录表单内容区域
+    .form-container {
+      width: 400px;
+      margin: 45px auto 0;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 25px;
+      border-radius: 20px;
+    }
+  }
+}

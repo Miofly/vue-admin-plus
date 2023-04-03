@@ -1,0 +1,31 @@
+{
+  "name": "admin-demo",
+  "version": "0.0.2",
+  "type": "commonjs",
+  "scripts": {
+    "clean": "pnpm /^clean:/",
+    "clean:dist": "rimraf dist",
+    "clean:node_modules": "rimraf node_modules",
+    "dev": "vite",
+    "build": "vite build",
+    "build:vercel": "pnpm -w build && pnpm build && cp -r ../../other/res ./dist && cp -r vercel.json ./dist"
+  },
+  "dependencies": {
+    "@iconify/json": "2.2.35",
+    "@types/lodash": "^4.14.191",
+    "@vft/pkg": "^0.0.17",
+    "@vue/shared": "^3.2.47",
+    "@vueuse/core": "^9.13.0",
+    "jsencrypt": "^3.3.2",
+    "lodash": "^4.17.21",
+    "pinia": "^2.0.33",
+    "sass": "^1.59.3",
+    "unocss": "^0.50.6",
+    "vue": "^3.2.47",
+    "vue-demi": "^0.13.11",
+    "vue-request": "2.0.0-rc.4",
+    "vue-router": "^4.1.6",
+    "vxe-table": "^4.3.6",
+    "xe-utils": "^3.5.7"
+  }
+}

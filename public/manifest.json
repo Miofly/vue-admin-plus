@@ -1,0 +1,26 @@
+{
+  "short_name": "企业预警通",
+  "name": "企业预警通专业版",
+  "description": "企业预警通，百万金融专业人士都在用的工具平台",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "pwa-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "pwa-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "orientation": "portrait"
+}

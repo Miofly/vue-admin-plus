@@ -1,0 +1,30 @@
+@forward 'vft/theme-style/src/common/var.scss' with (
+  $header-layout: (
+    'height': 70px,
+    'color': white
+  ),
+  $side-menu: (
+    "width": 260px,
+    'collapse-width': 55px,
+  ),
+
+  $footer-layout: (
+    'right-min-width': '200px',
+    'left-min-width': '600px',
+  ),
+
+  $logo: (
+    'img-width': 28px,
+    'img-height': 28px,
+    'title-color': 'white',
+    'title-font-size': 16px,
+  ),
+);
+
+@forward 'vft/theme-style/src/mixins/mixins.scss';
+
+@forward '@vft/style/vars.scss';
+
+@forward "./z-index-vars.scss";
+
+$header-left-min-width: 800px;

@@ -1,0 +1,50 @@
+html {
+  font-family: Arial, sans-serif !important;
+  overflow-x: hidden;
+}
+
+body,
+#app {
+  overflow: hidden;
+}
+
+body {
+  color: getCssVar('text-primary-color');
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+// scrollbar
+@include scroll-bar($color: $primary-color, $isRoot: true);
+
+.vft-loading-spinner {
+  .circular-img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+.hover-text-cursor {
+  @include hover-text-cursor()
+}
+
+.hover-text-cursor-underline {
+  @include hover-text-cursor(true)
+}
+
+.primary-color {
+  color: $primary-color
+}
+
+.danger-color {
+  color: $danger-color
+}
+
+// search-popover
+.app-search-popover {
+  padding: 10px 0 10px 15px !important;
+}
+
