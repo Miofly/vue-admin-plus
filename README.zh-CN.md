@@ -29,7 +29,7 @@ git clone https://gitee.com/miofly/vue-admin-plus
 - 安装依赖
 
 ```bash
-cd vue-vben-admin
+cd vue-admin-plus
 
 pnpm install
 

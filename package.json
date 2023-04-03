@@ -3,6 +3,9 @@
   "version": "0.0.2",
   "type": "commonjs",
   "scripts": {
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm",
+    "bootstrap": "pnpm install",
     "clean": "pnpm /^clean:/",
     "clean:dist": "rimraf dist",
     "clean:node_modules": "rimraf node_modules",
