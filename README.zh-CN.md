@@ -4,7 +4,7 @@
 
 ## 简介
 
-Vue Admin Plus 是一个免费开源的中后台模版。使用了最新的`vue4`, `vite`, `TypeScript` 等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
+`Vue Admin Plus` 是一个免费开源的中后台模版。使用了最新的`vue4`, `vite`, `TypeScript` 等主流技术开发，开箱即用的中后台前端解决方案，也可用于学习参考。
 
 ## 特性
 
@@ -13,3 +13,40 @@ Vue Admin Plus 是一个免费开源的中后台模版。使用了最新的`vue4
 
 ## 预览
 
+[https://demo.wflynn.cn/](https://demo.wflynn.cn/)
+
+- 账号：18888888888
+- 密码: 111111
+
+## 安装使用
+
+- 获取项目代码
+
+```bash
+git clone https://github.com/Miofly/vue-admin-plus.git
+```
+
+- 安装依赖
+
+```bash
+cd vue-vben-admin
+
+pnpm install
+
+```
+
+- 运行
+
+```bash
+pnpm serve
+```
+
+- 打包
+
+```bash
+pnpm build
+```
+
+## 交流群
+
+`qq` 群: `466362940`
