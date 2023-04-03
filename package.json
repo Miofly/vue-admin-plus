@@ -7,8 +7,7 @@
     "clean:dist": "rimraf dist",
     "clean:node_modules": "rimraf node_modules",
     "dev": "vite",
-    "build": "vite build",
-    "build:vercel": "pnpm -w build && pnpm build && cp -r ../../other/res ./dist && cp -r vercel.json ./dist"
+    "build": "vite build"
   },
   "dependencies": {
     "@iconify/json": "2.2.35",
