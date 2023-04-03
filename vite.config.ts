@@ -5,7 +5,6 @@ import { CompResolver } from 'vft';
 export default createViteConfig({
 	customConfig: {
 		optimizeDeps: [
-			// vft
 			'vft/es/components/iframe-layout/style/index',
 			'vft/es/components/router-view-content/style/index',
 			'vft/es/components/side-menu/style/index',

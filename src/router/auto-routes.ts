@@ -12,7 +12,7 @@ const ROUTER_PAGES = [
     // levelRouterDirList: [
     //   { path: 'axios', title: '请求库' },
     // ]
-  },
+  }
 ];
 
 export {
