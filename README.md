@@ -6,17 +6,17 @@
 
 Vue Admin Plus uses the latest vue3, vite, TypeScript and other mainstream technologies to develop, out of the box middle and back office front-end solutions, can also be used for learning reference.
 
-## PREVIEW
+## Preview
 
 [https://demo.wflynn.cn/](https://demo.wflynn.cn/)
 
-test account/password：18888888888/111111
+test account：18888888888/111111
 
 ## Install and use
 
 get the project code
 
-- github method(code latest)
+- github method
 
 ```bash
 git clone https://github.com/Miofly/vue-admin-plus.git
