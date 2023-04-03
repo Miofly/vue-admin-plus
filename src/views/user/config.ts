@@ -106,7 +106,7 @@ export const rules = {
   ],
   verifyCode: [
     { required: true, message: '您还没有填写验证码', trigger: 'blur' },
-    { pattern: checkCodeFour, message: '验证码格式不正确', trigger: 'blur' },
+    { pattern: checkCodeFour, message: '验证码格式不正确', trigger: 'blur' }
   ],
   privacy: [
     {

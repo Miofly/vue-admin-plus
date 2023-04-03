@@ -8,7 +8,7 @@ const ROUTER_PAGES = [
   {
     dir: 'business/demo',
     baseRoute: 'demo',
-    title: '相关 demo 功能',
+    title: '相关 demo 功能'
     // levelRouterDirList: [
     //   { path: 'axios', title: '请求库' },
     // ]
