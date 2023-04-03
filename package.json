@@ -28,6 +28,6 @@
     "vue-router": "^4.1.6",
     "vxe-table": "^4.3.6",
     "xe-utils": "^3.5.7",
-    "husky": "^8.0.3"
+    "husky": "8.0.3"
   }
 }
