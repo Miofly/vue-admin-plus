@@ -4,4 +4,4 @@ export * from './form-item';
 
 export {
   MainContainer
-};
+}

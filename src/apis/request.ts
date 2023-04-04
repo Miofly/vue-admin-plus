@@ -36,7 +36,7 @@ export const request = createAxios({
       if (err?.response?.status === 401) {
         if ([100002, 100000].includes(code)) {
           // 到登录页面
-          userStore.resetGoLogin();
+          // userStore.resetGoLogin();
         } else {
           await userStore.logout();
         }

@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { LINK_PROFILE_ACCOUNT } from '@/router/routes/user';
 import { useUserStore } from '@/store/modules/user';
-import { useUserInfo } from '@/use/use-user-info';
 import { generateCssVars } from 'vft';
+import UserInfo from '@/components/user-info.vue';
 
 const userStore = useUserStore();
 
@@ -12,13 +12,10 @@ const style = generateCssVars({
   'text-color': '#111'
 }, 'menu');
 
-const { getUserName, getUserAvatar } = useUserInfo();
-
-console.log(getUserAvatar, '===');
-
 const { go } = useRouterHelper();
 
 const loading = ref(false);
+
 function logout () {
   loading.value = true;
   userStore.logout().finally(() => loading.value = false);
@@ -34,25 +31,14 @@ function logout () {
     transition="vft-zoom-in-top"
     placement="bottom-start">
     <template #reference>
-      <div class="flex justify-start align-center user-info">
-        <vft-avatar :src="getUserAvatar"
-          :icon="{icon: 'ico-carbon:user-avatar-filled', color: 'white'}" :size="30" />
-        <span class="name">{{ getUserName }}</span>
-      </div>
+      <user-info text-color="white" @click="go(LINK_PROFILE_ACCOUNT)"/>
     </template>
     <div class="content" :style="style">
       <div class="header">
-        <div class="flex justify-between align-center header-top">
-          <div class="flex justify-start">
-            <vft-avatar :src="getUserAvatar"
-              :icon="{icon: 'ico-carbon:user-avatar-filled', color: '#2196f3'}" :size="50" />
-            <div class="ml-8px flex flex-col justify-center">
-              <div class="flex align-center cursor-pointer" :title="getUserName" @click="go(LINK_PROFILE_ACCOUNT)">
-                <span class="name">{{ getUserName }}</span>
-                <vft-icon icon="ico-ep:arrow-right" />
-              </div>
-            </div>
-          </div>
+        <div class="flex justify-start">
+          <user-info :max-width="200" @click="go(LINK_PROFILE_ACCOUNT)">
+            <vft-icon icon="ico-ep:arrow-right" />
+          </user-info>
         </div>
         <div class="w-full">
           <div class="h-60px w-full flex-center">
@@ -122,25 +108,6 @@ function logout () {
         background-color: #e8f3fe;
       }
     }
-  }
-}
-
-.user-info {
-  width: 111px;
-  height: 40px;
-  padding: 8px 12px;
-  color: white;
-
-  .name {
-    font-weight: 400;
-    font-size: 13px;
-    margin-left: 6px;
-    word-break: break-all;
-    @include line-clamp
-  }
-
-  .vft-avatar {
-    flex: none;
   }
 }
 

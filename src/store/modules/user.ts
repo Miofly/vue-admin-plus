@@ -6,6 +6,7 @@ import { getUserInfo, loginByPw, loginBySms, logout, register } from '@/views/us
 import { defineStore } from 'pinia';
 import { type RouteRecordRaw } from 'vue-router';
 import pinia from '../';
+import { cloneDeep } from 'lodash';
 
 /** 登录注册类型 */
 export type LoginOrRegType = 'login' | 'loginPhone' | 'reg';
@@ -123,16 +124,15 @@ export const useUserStore = defineStore({
       this.setUserInfo(userInfo);
       return userInfo;
     },
-    async logout() {
-      await logout(this.getToken).finally(async () => {
-        Message.success('退出成功');
-        await this.resetGoLogin();
-      });
-    },
-    /** 清空token到登录页面 */
-    async resetGoLogin() {
+    async logout () {
+      const user_token = cloneDeep(this.token);
       this.token = '';
-      await router.push(LINK_LOGIN).finally(() => cleanPiniaStorage());
+      await router.push(LINK_LOGIN).finally(() => {
+        Message.success('退出成功');
+        cleanPiniaStorage();
+      });
+    
+      await logout(user_token!);
     }
   }
 });

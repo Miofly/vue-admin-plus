@@ -53,9 +53,6 @@ export const usePermissionStore = defineStore({
       const asyncRoutes: RouteRecordItem[] = filterHasRoleRoutes(ASYNC_ROUTES, userStore.getRoleList);
       this.generateMenuList([...asyncRoutes, ...routes]);
       asyncRoutes.push(ERROR_LOG_ROUTE);
-  
-      console.log(asyncRoutes, 1);
-  
       return asyncRoutes;
     },
     generateMenuList(routes) {
