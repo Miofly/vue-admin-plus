@@ -34,8 +34,8 @@ export default createViteConfig({
 		],
 		pwaCfg: {
 			manifest: {
-				name: '待替换的系统名称文字',
-				short_name: 'hb'
+				name: 'Vue Admin Plus',
+				short_name: 'vue admin plus'
 			},
 			devOptions: {
 				enabled: false
