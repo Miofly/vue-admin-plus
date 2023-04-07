@@ -71,9 +71,9 @@ const list: RouteItemExtendMeta[] = [
     hideSide: true,
     sideWidth: 210,
     // redirect: LINK_PROFILE_ACCOUNT,
-    children: PROFILE_LIST
+    children: PROFILE_LIST,
     // hideScroll: true,
-    // scrollDom: '.profile-con'
+    scrollDom: '.profile-con'
   }
 ];
 

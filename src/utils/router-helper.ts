@@ -1,8 +1,8 @@
 import { router } from '@/router';
-import { generateRoutes as _generateRoutes } from './route-helpers';
+import { generateRoutes as _generateRoutes, type RouteItemExtendMeta } from '@vft/router';
 import { encryptByBase64 } from '@vft/utils';
 
-export function generateRoutes (path, title, children, attrs?) {
+export function generateRoutes (path, title, children, attrs?: Partial<RouteItemExtendMeta>) {
   return _generateRoutes(path, title, children, {
     component: () => import('@/layouts/index.vue'),
     ...attrs,

@@ -21,7 +21,7 @@ export function setupRouterGuard(router: Router) {
   createPageGuard(router, defaultScrollDom, openPageLoading, tabStore, refreshPage);
   openNProgress && createProgressGuard(router, openNProgress, tabStore);
   createPermissionGuard({
-    router: router,
+    router,
     userStore,
     permissionStore,
     homePath: LINK_HOME,

@@ -89,8 +89,6 @@ routeAddName(autoGenerateRoutes);
 const modules: ModulesDefaultType = import.meta.glob('./routes/**/*.ts', { eager: true });
 export const modulesRoutes = [...generateRouteModuleList(modules)];
 
-console.log(modulesRoutes, 7777);
-
 export const ASYNC_ROUTES = [...autoGenerateRoutes, ...modulesRoutes];
 
 const IGNORE_AUTH_ROUTES: RouteRecordItem[] = [PAGE_NOT_FOUND_ROUTE, ...USERS_ROUTES];

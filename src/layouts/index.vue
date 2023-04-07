@@ -37,9 +37,9 @@ const getSideMenuList = computed(() => {
     const blogList = permissionStore.getMenuList.filter((item) => {
       return item.meta.isBlog;
     })?.[0];
-    
+
     return blogList.children!.filter((item) => {
-      return item.title === route.meta?.category?.[0];
+      return item.title === route.meta?.category?.[1];
     })?.[0]?.children || [];
   } else {
     return permissionStore.getMenuList;
@@ -65,14 +65,15 @@ const iframePages = computed(() => tabStore.getTabList.filter((item) => item.met
     <div class="header-hidden-dom" />
     <layout-header />
     <div :class="['layout-container', overflowClass]" :style="{marginLeft: layoutSideWidth}">
-      <vft-side-menu
-        v-show="showSide"
-        :width="sideWidth"
-        :collapseWidth="sideCollapseWidth"
-        v-model:collapse="collapse"
-        :menus="getSideMenuList"
-        showCollapse
-      />
+      <div v-if="showSide">
+        <vft-side-menu
+          :width="sideWidth"
+          :collapseWidth="sideCollapseWidth"
+          v-model:collapse="collapse"
+          :menus="getSideMenuList"
+          showCollapse
+        />
+      </div>
       <div v-spin="openPageLoading && tabStore.getPageLoading"
         :class="['layout-content', overflowClass]">
         <!--Todo :cacheList="tabStore.getCachedTabList" 热更新有问题-->

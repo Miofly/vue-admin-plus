@@ -12,7 +12,7 @@ interface UserAvatarProps {
 
 const {
   color = 'white',
-  textColor = 'black',
+  textColor,
   size = 30,
   maxWidth = 150,
   cursor = true

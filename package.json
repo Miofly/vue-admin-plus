@@ -15,7 +15,8 @@
   "dependencies": {
     "@iconify/json": "2.2.35",
     "@types/lodash": "^4.14.191",
-    "@vft/pkg": "0.0.22",
+    "@vft/pkg": "0.0.23",
+    "vft": "0.0.61",
     "@vue/shared": "^3.2.47",
     "@vueuse/core": "^9.13.0",
     "jsencrypt": "^3.3.2",
@@ -23,7 +24,6 @@
     "pinia": "^2.0.33",
     "sass": "^1.59.3",
     "unocss": "^0.50.6",
-    "vft": "^0.0.59",
     "vue": "^3.2.47",
     "vue-demi": "^0.13.11",
     "vue-request": "2.0.0-rc.4",

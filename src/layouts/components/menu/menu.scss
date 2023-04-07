@@ -12,23 +12,20 @@
     padding-bottom: 10px;
 
     .item {
-      color: #282828;
       padding: 0 20px;
       margin-top: 5px;
 
       &:hover {
-        color: #1382EF
+        color: $primary-color
       }
     }
   }
 }
 
 .unique-menu-popover-dir {
-  background-color: white !important;
   width: 1218px;
 
   .vft-menu {
-    background-color: white !important;
     box-sizing: border-box;
     height: 494px;
     flex: 1 1 0;
@@ -61,7 +58,6 @@
       .title {
         font-weight: bold;
         font-size: 14px;
-        color: #000;
         line-height: 14px;
       }
 

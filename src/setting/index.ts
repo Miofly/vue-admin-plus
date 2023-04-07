@@ -4,10 +4,10 @@ import type { ProjectConfig } from '@/setting';
 
 const setting: ProjectConfig = {
   theme: 'light',
-  name: 'Vue Admin',
+  name: 'Vft',
   logo: {
     src: '/assets/logo.png',
-    title: 'Vue Admin'
+    title: 'Vft'
   },
   errorHandle: {
     status: false,

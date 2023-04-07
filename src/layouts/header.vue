@@ -1,8 +1,13 @@
 <script lang="ts" setup>
-import { LINK_HOME } from '@/router/constants';
+import SearchContent from '@/components/search/search-content.vue';
+import { LINK_HOME, LINK_LOGIN } from '@/router/constants';
 import setting from '@/setting';
 import { useUserStore } from '@/store/modules/user';
+import { useSetting } from '@/use';
+import { useUserInfo } from '@/use/use-user-info';
+import { setRootCssVar } from 'vft';
 import { isNumber } from '@vft/utils';
+import HeaderMenu from './components/menu/index.vue';
 import UserInfo from './components/user-info.vue';
 
 const userStore = useUserStore();
@@ -22,12 +27,123 @@ const headerProps = computed(() => {
 const showMask = computed(() => {
   return isNumber(menuRef.value?.activeIndex);
 });
+const { toggleThemeMode } = useSetting();
+
+const searchValue = ref('');
+const visible = ref(false);
+
+const headerList = [
+  {
+    title: '前端',
+    children: [
+      { title: 'JavaScript', path: '/pages/e73371' },
+      { title: 'HTML', path: '/pages/a590ef' },
+      { title: 'CSS', path: '/pages/68df9f' },
+      { title: 'Vue', path: '/pages/35cea8' },
+      { title: 'Vite', path: '/pages/62d680' },
+      { title: 'Uniapp', path: '/pages/d32c2a' },
+      { title: 'Node', path: '/pages/77cd19' },
+      { title: '小程序', path: '/pages/8b11c4' },
+      { title: 'TypeScript', path: '/pages/b08520' },
+      { title: 'Git', path: '/pages/4d49c0' },
+      { title: '打包工具', path: '/pages/4d49c0' },
+      { title: 'windiCss', path: '/pages/312c48' },
+      { title: '其他', path: '/pages/0ad63e' }
+    ]
+  },
+  {
+    title: '技术工具',
+    children: [
+      { title: '开发工具', path: '/pages/3568fb' },
+      { title: '实用技巧', path: '/pages/20bced' },
+      { title: 'MAC 相关', path: '/pages/fd06b6' },
+      { title: 'LINUX 相关', path: '/pages/d1f07c' },
+      { title: 'windows相关', path: '/pages/679724' },
+      { title: 'chrome 相关', path: '/pages/3c6e64' },
+      { title: '博客相关', path: '/pages/6221cb ' },
+      { title: '资源管理', path: '/pages/ee80ca' }
+    ]
+  },
+  {
+    title: '数据结构与算法',
+    children: [
+      { title: '算法基础', path: '/pages/28cd14' },
+      { title: 'leetCode题目示例', path: '/pages/944228' }
+    ]
+  },
+  {
+    title: '面试',
+    children: [
+      { title: 'js基础', path: '/pages/6ac22c' },
+      { title: 'css基础', path: '/pages/770db6' }
+    ]
+  },
+  {
+    title: '数据库',
+    path: '/database',
+    children: [
+      { title: 'mongoDB', path: '/pages/893f93' }
+    ]
+  },
+  {
+    title: '索引',
+    children: [
+      { title: '分类', path: '/category' },
+      { title: '标签', path: '/tags' },
+      { title: '归档', path: '/archives' }
+    ]
+  },
+  {
+    title: '网站',
+    path: '/pages/website/'
+  },
+  {
+    title: '留言板',
+    path: '/blog/message-boards'
+  },
+  {
+    title: '关于',
+    path: '/pages/about/'
+  }
+];
+
+const searchContentRef = ref();
+
+function handleChangeTab (e) {
+  searchContentRef.value.changeTab(e);
+}
+
+const { go } = useRouterHelper();
+const test = ref(false);
+
+function toggleColor () {
+  test.value = !test.value;
+  
+  test.value ? setRootCssVar('primary-color', 'red') : setRootCssVar('primary-color', '#2196f3');
+}
 </script>
 
 <template>
   <vft-overlay :mask="showMask" onlyNode class="fixed left-0 right-0 z-12 overflow-hidden">
     <vft-header-layout v-bind="headerProps" :showMask="showMask">
+      <template #left>
+        <header-menu class="!ml-10px" :list="headerList" />
+      </template>
       <div class="flex align-center h-40px">
+        <vft-button @click="toggleColor()">切换颜色</vft-button>
+        <div class="search-content" @keydown="handleChangeTab">
+          <vft-search
+            v-model:model-value="searchValue"
+            v-model:visible="visible"
+            :popoverCfg="{'popper-class': 'app-search-popover'}"
+            :width="200"
+            :focusWidth="300"
+            placeholder="请输入关键字"
+          >
+            <search-content ref="searchContentRef" v-model:visible="visible"
+              :search-value="searchValue" />
+          </vft-search>
+        </div>
         <user-info />
       </div>
       <template #bottom v-if="setting.multiTabsSetting.show">

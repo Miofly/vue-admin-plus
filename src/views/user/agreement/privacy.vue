@@ -28,7 +28,7 @@ const headerProps = computed(() => {
       <slide-left-bar v-if="!isInnerPage" :tabindex="2"/>
       <div class="rightWrapper">
         <div class="headBg">
-          <div><span class="icon vicon vi-copy"/>Vue Admin Plus隐私政策</div>
+          <div><span class="icon vicon vi-copy"/>待替换的系统名称文字隐私政策</div>
         </div>
         <div class="mainWrapper">
           <div>
@@ -83,15 +83,15 @@ const headerProps = computed(() => {
               style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >当您注册</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >或登录使用</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >时，您需要提供您的手机号码，以创建您在</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >的账户和密码；</span
             ><br/><br/><span
@@ -106,7 +106,7 @@ const headerProps = computed(() => {
               style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >当您开启设备定位功能，并使用</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >提供的相关企业信息等服务时，我们会收集您的位置信息，以便为您提供精准区域的相关信息服务。</span
             ><br/><br/><span
@@ -154,7 +154,7 @@ const headerProps = computed(() => {
               style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >您可以登录您的个人账户删除信息、关闭有关设备功能、在</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >通过权限设置变更您授权我们收集和使用的您的个人信息范围。</span
             ><br/><br/><span
@@ -164,7 +164,7 @@ const headerProps = computed(() => {
               style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >1.共享：除以下情况外，我们不会与</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >平台服务以外的组织、公司和个人共享您的个人信息：</span
             ><br/><span
@@ -180,11 +180,11 @@ const headerProps = computed(() => {
               style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >d)</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >含有到其它网站的链接。除法律另有规定外，</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >对其它网站的隐私保护措施不负任何责任。我们可能在任何需要的时候增加商业伙伴或共用品牌的网站，但是提供给他们的将仅是综合信息，我们将不会公开您的身份。</span
             ><br/><br/><span
@@ -206,7 +206,7 @@ const headerProps = computed(() => {
               style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >b)如果确定您出现违反法律法规或严重违反本政策的情况，为保护</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >的权利或财产，以及在紧急情况下保护</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
@@ -263,7 +263,7 @@ const headerProps = computed(() => {
               font-size: 12pt;
               font-weight: normal;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               color: #808080;
@@ -287,7 +287,7 @@ const headerProps = computed(() => {
               font-size: 12pt;
               font-weight: normal;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               color: #808080;
@@ -303,7 +303,7 @@ const headerProps = computed(() => {
               font-size: 12pt;
               font-weight: normal;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               color: #808080;
@@ -327,7 +327,7 @@ const headerProps = computed(() => {
               font-size: 12pt;
               font-weight: normal;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               color: #808080;
@@ -359,7 +359,7 @@ const headerProps = computed(() => {
               font-size: 12pt;
               font-weight: normal;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               color: #808080;
@@ -372,7 +372,7 @@ const headerProps = computed(() => {
               style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >本条款最终解释权归</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span style="font-family: 宋体; font-size: 12pt; font-weight: normal"
             >有限公司。</span
             ><br/><br/><span

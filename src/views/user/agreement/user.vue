@@ -28,7 +28,7 @@ const headerProps = computed(() => {
       <slide-left-bar v-if="!isInnerPage"  :tabindex="1"/>
       <div class="rightWrapper">
         <div class="headBg">
-          <div><span class="icon vicon vi-copy"/>Vue Admin Plus用户协议</div>
+          <div><span class="icon vicon vi-copy"/>待替换的系统名称文字用户协议</div>
         </div>
         <div class="mainWrapper">
           <div>
@@ -67,7 +67,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >来到Vue Admin Plus</span
+            >来到待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -83,7 +83,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -115,7 +115,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: 宋体;
@@ -151,7 +151,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -184,7 +184,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -220,7 +220,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -238,7 +238,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -283,7 +283,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -301,7 +301,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -319,7 +319,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -337,7 +337,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -388,7 +388,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -406,7 +406,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -425,7 +425,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -443,7 +443,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -479,7 +479,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -524,7 +524,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -554,7 +554,7 @@ const headerProps = computed(() => {
               font-weight: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -637,7 +637,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -690,7 +690,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -706,7 +706,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -780,7 +780,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -835,7 +835,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -851,7 +851,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -960,7 +960,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -976,7 +976,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1006,7 +1006,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1036,7 +1036,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1066,7 +1066,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1082,7 +1082,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1112,7 +1112,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1236,7 +1236,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1417,7 +1417,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1444,7 +1444,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1471,7 +1471,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1568,7 +1568,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1595,7 +1595,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1633,7 +1633,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -1649,7 +1649,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -2114,7 +2114,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -2130,7 +2130,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -2146,7 +2146,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -2265,7 +2265,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -2281,7 +2281,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -2297,7 +2297,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -2352,7 +2352,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;
@@ -2407,7 +2407,7 @@ const headerProps = computed(() => {
               font-style: normal;
               vertical-align: baseline;
             "
-            >Vue Admin Plus</span
+            >待替换的系统名称文字</span
             ><span
               style="
               font-family: Helvetica;

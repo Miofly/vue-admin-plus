@@ -24,14 +24,10 @@ const {
 } = defineProps<MenuHorizontalProps>();
 
 const menuStyle = generateCssVars({
-  bgColor: 'transparent',
+  'bgColor': 'transparent',
   'sub-menu-bg-color': 'transparent',
-  textColor: 'white',
-  activeColor: 'white',
   'border-bottom': 'none',
-  'hover-bg-color': 'white',
-  'focus-bg-color': 'transparent',
-  'focus-text-color': 'white'
+  'focus-bg-color': 'transparent'
 }, 'menu');
 
 const gridStyle = computed(() => {

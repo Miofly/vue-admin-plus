@@ -3,6 +3,7 @@ import { LINK_PROFILE_ACCOUNT } from '@/router/routes/user';
 import { useUserStore } from '@/store/modules/user';
 import { generateCssVars } from 'vft';
 import UserInfo from '@/components/user-info.vue';
+import ThemeChange from '@/components/theme-change.vue';
 
 const userStore = useUserStore();
 
@@ -31,14 +32,15 @@ function logout () {
     transition="vft-zoom-in-top"
     placement="bottom-start">
     <template #reference>
-      <user-info text-color="white" @click="go(LINK_PROFILE_ACCOUNT)"/>
+      <user-info @click="go(LINK_PROFILE_ACCOUNT)"/>
     </template>
     <div class="content" :style="style">
       <div class="header">
-        <div class="flex justify-start">
+        <div class="flex justify-between">
           <user-info :max-width="200" @click="go(LINK_PROFILE_ACCOUNT)">
             <vft-icon icon="ico-ep:arrow-right" />
           </user-info>
+          <theme-change/>
         </div>
         <div class="w-full">
           <div class="h-60px w-full flex-center">

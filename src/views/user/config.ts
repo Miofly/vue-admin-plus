@@ -16,7 +16,7 @@ export const tabStyle = {
 
 export const pageCfg = {
   title: '管理系统',
-  desc: 'Vue Admin Plus专业智能数据，绿色地球 蔚蓝数据小字小字绿色地球 蔚蓝数据小字',
+  desc: '待替换的系统名称文字专业智能数据，绿色地球 蔚蓝数据小字小字绿色地球 蔚蓝数据小字',
   loginText: '用户名登录',
   phoneText: '手机登录/注册',
   forgotText: '忘记密码',
@@ -106,7 +106,7 @@ export const rules = {
   ],
   verifyCode: [
     { required: true, message: '您还没有填写验证码', trigger: 'blur' },
-    { pattern: checkCodeFour, message: '验证码格式不正确', trigger: 'blur' },
+    { pattern: checkCodeFour, message: '验证码格式不正确', trigger: 'blur' }
   ],
   privacy: [
     {
