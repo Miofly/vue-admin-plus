@@ -4,13 +4,10 @@ import { LINK_HOME, LINK_LOGIN } from '@/router/constants';
 import setting from '@/setting';
 import { useUserStore } from '@/store/modules/user';
 import { useSetting } from '@/use';
-import { useUserInfo } from '@/use/use-user-info';
-import { setRootCssVar } from 'vft';
+import { setCssVar } from 'vft';
 import { isNumber } from '@vft/utils';
 import HeaderMenu from './components/menu/index.vue';
-import UserInfo from './components/user-info.vue';
-
-const userStore = useUserStore();
+import User from './components/user.vue';
 
 let menuRef = ref();
 
@@ -27,7 +24,6 @@ const headerProps = computed(() => {
 const showMask = computed(() => {
   return isNumber(menuRef.value?.activeIndex);
 });
-const { toggleThemeMode } = useSetting();
 
 const searchValue = ref('');
 const visible = ref(false);
@@ -112,25 +108,15 @@ const searchContentRef = ref();
 function handleChangeTab (e) {
   searchContentRef.value.changeTab(e);
 }
-
-const { go } = useRouterHelper();
-const test = ref(false);
-
-function toggleColor () {
-  test.value = !test.value;
-  
-  test.value ? setRootCssVar('primary-color', 'red') : setRootCssVar('primary-color', '#2196f3');
-}
 </script>
 
 <template>
-  <vft-overlay :mask="showMask" onlyNode class="fixed left-0 right-0 z-12 overflow-hidden">
+  <vft-overlay :mask="showMask" onlyNode class="fixed left-0 right-0 z-12">
     <vft-header-layout v-bind="headerProps" :showMask="showMask">
       <template #left>
         <header-menu class="!ml-10px" :list="headerList" />
       </template>
       <div class="flex align-center h-40px">
-        <vft-button @click="toggleColor()">切换颜色</vft-button>
         <div class="search-content" @keydown="handleChangeTab">
           <vft-search
             v-model:model-value="searchValue"
@@ -144,7 +130,7 @@ function toggleColor () {
               :search-value="searchValue" />
           </vft-search>
         </div>
-        <user-info />
+        <user class="user" />
       </div>
       <template #bottom v-if="setting.multiTabsSetting.show">
         <vft-multiple-tabs :canDrag="setting.multiTabsSetting.canDrag" />

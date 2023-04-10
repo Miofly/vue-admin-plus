@@ -48,6 +48,8 @@ const getSideMenuList = computed(() => {
 
 const showSide = computed(() => !route.meta.hideSide && getSideMenuList.value?.length);
 
+const sideMenuRef = ref();
+
 const {
   collapse,
   sideWidth,
@@ -55,26 +57,28 @@ const {
   defaultScrollDom,
   overflowClass,
   layoutSideWidth
-} = useLayout(showSide);
+} = useLayout(showSide, sideMenuRef);
 
 const iframePages = computed(() => tabStore.getTabList.filter((item) => item.meta.isIframe || item.meta.frameSrc));
 </script>
 
 <template>
   <div class="layout-main" v-if="!route.meta?.isAlonePage">
-    <div class="header-hidden-dom" />
-    <layout-header />
-    <div :class="['layout-container', overflowClass]" :style="{marginLeft: layoutSideWidth}">
-      <div v-if="showSide">
-        <vft-side-menu
-          :width="sideWidth"
-          :collapseWidth="sideCollapseWidth"
-          v-model:collapse="collapse"
-          :menus="getSideMenuList"
-          showCollapse
-        />
-      </div>
-      <div v-spin="openPageLoading && tabStore.getPageLoading"
+    <div class="header-hidden-dom"/>
+    <layout-header/>
+    <div
+      v-spin="openPageLoading && tabStore.getPageLoading"
+      :class="['layout-container', overflowClass]" :style="{marginLeft: layoutSideWidth}">
+      <vft-side-menu
+        v-show="showSide"
+        ref="sideMenuRef"
+        :width="sideWidth"
+        :collapseWidth="sideCollapseWidth"
+        v-model:collapse="collapse"
+        :menus="getSideMenuList"
+        showCollapse
+      />
+      <div
         :class="['layout-content', overflowClass]">
         <!--Todo :cacheList="tabStore.getCachedTabList" 热更新有问题-->
         <vft-router-view-content
@@ -86,14 +90,14 @@ const iframePages = computed(() => tabStore.getTabList.filter((item) => item.met
           :openKeepAlive="openKeepAlive && multiTabsSetting.show"
         />
         <vft-iframe-layout v-if="canEmbedIFramePage && tabStore.reloadFlag && iframePages?.length"
-          :iframePages="iframePages" />
+                           :iframePages="iframePages"/>
       </div>
     </div>
     <vft-footer-layout class="layout-footer" :leftDistance="0">
       <template #right>
         <div class="footer-right">
-          <pwa-install />
-          <vft-full-screen />
+          <pwa-install/>
+          <vft-full-screen/>
         </div>
       </template>
     </vft-footer-layout>
@@ -102,9 +106,9 @@ const iframePages = computed(() => tabStore.getTabList.filter((item) => item.met
     -->
     <vft-back-top
       :scrollTargetKey="route.meta?.isMoreTabPage && route.meta?.scrollDom ? getRouterKeyPath(route) : undefined"
-      class="z-10" :target="route.meta?.scrollDom || defaultScrollDom" :right="30" :bottom="100" />
+      class="z-10" :target="route.meta?.scrollDom || defaultScrollDom" :right="30" :bottom="100"/>
   </div>
-  <router-view v-else />
+  <router-view v-else/>
 </template>
 
 <style lang="scss" scoped>
