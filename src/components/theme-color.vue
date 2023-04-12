@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import setting from '@/setting';
 import { useSetting } from '@/use';
-import { setCssVar } from '@vft-ui/utils';
+import { setCssVar } from 'vft';
 import { isNumber } from '@vft/utils';
 
 const emit = defineEmits(['click-outside', 'color-change']);

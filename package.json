@@ -15,8 +15,8 @@
   "dependencies": {
     "@iconify/json": "2.2.35",
     "@types/lodash": "^4.14.191",
-    "@vft/pkg": "0.0.23",
-    "vft": "0.0.61",
+    "@vft/pkg": "0.0.24",
+    "vft": "0.0.63",
     "@vue/shared": "^3.2.47",
     "@vueuse/core": "^9.13.0",
     "jsencrypt": "^3.3.2",
