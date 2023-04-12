@@ -44,11 +44,15 @@ const { themeDark, themeLight, getIsDark } = useSetting();
       color: white!important;
       &:hover {
         color: white !important;
+        i {
+          color: white !important;
+        }
       }
     }
 
     background: rgb(1, 113, 246);
   }
+
 
   .text {
     font-size: 12px;

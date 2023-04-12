@@ -30,6 +30,9 @@ export default createViteConfig({
 			'vft/es/components/menu/style/index',
 			'vft/es/components/menu-item/style/index',
 			'vft/es/components/sub-menu/style/index',
+			'vft/es/components/color-picker/style/index',
+			'vft/es/components/list-cell/style/index',
+			'vft/es/components/dialog/style/index',
 			'vft/es/components/md-code-demo/style/index'
 		],
 		pwaCfg: {
