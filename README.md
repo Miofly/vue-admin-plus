@@ -40,7 +40,7 @@ pnpm install
 run
 
 ```bash
-pnpm serve
+pnpm dev
 ```
 
 build
