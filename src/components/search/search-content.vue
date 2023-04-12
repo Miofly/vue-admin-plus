@@ -128,7 +128,7 @@ defineExpose({
 </script>
 
 <template>
-  <div @keydown="changeTab" @click="test" class="test">
+  <div @keydown="changeTab">
     <template v-if="searchList?.length">
       <div class="search-content-container" v-spin="loading">
         <div :class="['search-item', {'active': activeIndex === index}]"
@@ -191,7 +191,7 @@ defineExpose({
 
     .url {
       color: getCssVar('text-secondary-color');
-      @include line-clamp(1);
+      @include line-clamp;
       margin-bottom: 10px;
 
       &:hover {

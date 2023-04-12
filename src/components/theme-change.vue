@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import { useSetting } from '@/use';
 
-const { toggleThemeMode, getIsDark } = useSetting();
+const { themeDark, themeLight, getIsDark } = useSetting();
 </script>
 
 <template>
-  <div class="theme-container" @click="toggleThemeMode">
-    <div :class="[{'active': !getIsDark}, 'light item']">
-      <vft-icon icon="ico-ep:sunny"/>
-      <div class="text">浅色</div>
+  <div class="theme-container">
+    <div :class="[{'active': !getIsDark}, 'item']" @click="themeLight">
+      <vft-icon-text :size="10" text="浅色" direction="col" icon="ico-ep:sunny" />
     </div>
-    <div :class="[{'active': getIsDark}, 'dark item']">
-      <vft-icon icon="ico-ph:moon-light"/>
-      <div class="text">深色</div>
+    <div :class="[{'active': getIsDark}, 'item']" @click="themeDark">
+      <vft-icon-text :size="10" text="深色" direction="col" icon="ico-ph:moon-light" />
     </div>
   </div>
 </template>
@@ -20,27 +18,38 @@ const { toggleThemeMode, getIsDark } = useSetting();
 <style scoped lang="scss">
 .theme-container {
   display: flex;
-  border: 0.5px solid $primary-color;
+  border: 0.5px solid #2196f3;
   width: 60px;
   min-width: 60px;
   height: 26px;
   border-radius: 7px;
   overflow: hidden;
   align-items: center;
+
   .item {
     text-align: center;
-    flex: 1 1 0%;
+    flex: 1 1 0;
     height: inherit;
     padding-top: 2px;
     position: relative;
     cursor: pointer;
+
+    .#{$namespace}-icon-text {
+      width: auto;
+    }
   }
 
   .active {
-    color: white;
+    .#{$namespace}-icon-text {
+      color: white!important;
+      &:hover {
+        color: white !important;
+      }
+    }
+
     background: rgb(1, 113, 246);
   }
-  
+
   .text {
     font-size: 12px;
     transform: scale(0.8);

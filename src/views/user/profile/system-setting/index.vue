@@ -7,7 +7,3 @@
     <span>message</span>
   </div>
 </template>
-
-<style scoped lang="scss">
-
-</style>

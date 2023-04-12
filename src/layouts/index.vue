@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { useLayout } from '@/layouts/useLayout';
+import { createLayoutContext } from '@/layouts/use/use-context';
+import { useLayout } from '@/layouts/use/use-layout';
 import { routes } from '@/router/constants';
 import setting from '@/setting';
 import { usePermissionStore } from '@/store/modules/permission';
@@ -60,6 +61,16 @@ const {
 } = useLayout(showSide, sideMenuRef);
 
 const iframePages = computed(() => tabStore.getTabList.filter((item) => item.meta.isIframe || item.meta.frameSrc));
+
+
+// 存储 layout 信息
+const layoutContainerRef = ref();
+const layoutContentRef = ref();
+
+createLayoutContext({
+  layoutContentRef,
+  layoutContainerRef
+});
 </script>
 
 <template>
@@ -67,6 +78,7 @@ const iframePages = computed(() => tabStore.getTabList.filter((item) => item.met
     <div class="header-hidden-dom"/>
     <layout-header/>
     <div
+      ref="layoutContainerRef"
       v-spin="openPageLoading && tabStore.getPageLoading"
       :class="['layout-container', overflowClass]" :style="{marginLeft: layoutSideWidth}">
       <vft-side-menu
@@ -78,7 +90,7 @@ const iframePages = computed(() => tabStore.getTabList.filter((item) => item.met
         :menus="getSideMenuList"
         showCollapse
       />
-      <div
+      <div ref="layoutContentRef"
         :class="['layout-content', overflowClass]">
         <!--Todo :cacheList="tabStore.getCachedTabList" 热更新有问题-->
         <vft-router-view-content

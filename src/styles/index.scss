@@ -8,10 +8,6 @@ body,
   overflow: hidden;
 }
 
-body {
-  color: getCssVar('text-primary-color');
-}
-
 #root {
   height: 100%;
   width: 100%;
@@ -48,3 +44,11 @@ body {
   padding: 10px 0 10px 15px !important;
 }
 
+.common-link {
+  color: $primary-color;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

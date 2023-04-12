@@ -16,7 +16,7 @@ const formData = reactive({
   verifyCode: ''
 });
 
-const ruleFormRef = ref<FormInstance>();
+const formRef = ref<FormInstance>();
 const phoneCodeRef = ref();
 
 const { loading, errMess, handleClick } = useSubmit();
@@ -24,7 +24,7 @@ const { loading, errMess, handleClick } = useSubmit();
 /** 提交 */
 const handleSubmit = async() => {
   return await handleClick({
-    formEl: ruleFormRef.value,
+    formEl: formRef.value,
     params: {
       password: encryptByMd5(formData.password),
       phone: trimBlank(formData.account, 'all'),
@@ -47,12 +47,12 @@ const handleSubmit = async() => {
 <template>
   <main-container>
     <p class="mb-22px text-left">忘记密码</p>
-    <vft-form ref="ruleFormRef" :model="formData" @keypress.enter="handleSubmit(ruleFormRef)">
+    <vft-form ref="formRef" :model="formData" @keypress.enter="handleSubmit(formRef)">
       <!--account-->
       <user-form-item v-model:account="formData.account" v-model:errorMess="errMess.account" />
       <!--code-->
       <phone-code-form-item
-        :form="ruleFormRef"
+        :form="formRef"
         ref="phoneCodeRef"
         v-model:verifyCode="formData.verifyCode"
         :phone="formData.account"
@@ -66,7 +66,7 @@ const handleSubmit = async() => {
       <!--submit-->
       <vft-form-item>
         <div class="w-full flex justify-between">
-          <vft-button :loading="loading" class="w-[80%]" type="primary" @click="handleSubmit(ruleFormRef)">修改密码</vft-button>
+          <vft-button :loading="loading" class="w-[80%]" type="primary" @click="handleSubmit(formRef)">修改密码</vft-button>
           <vft-link type="primary" :route="LINK_LOGIN" :underline="false">返回登录</vft-link>
         </div>
       </vft-form-item>

@@ -1,12 +1,12 @@
 import { ACCOUNT_MESS } from '@/constants';
 import { ls } from '@/utils';
 
-export function useLoginCommon (activeName, ruleFormRef, loginType, isSaveAccount) {
+export function useLoginCommon (activeName, formRef, loginType, isSaveAccount) {
   watch(
     () => activeName.value,
     (val) => {
       if (val === loginType) {
-        ruleFormRef.value?.clearValidate();
+        formRef.value?.clearValidate();
       }
     }
   );

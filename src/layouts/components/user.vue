@@ -1,8 +1,8 @@
-<script setup lang="ts">
+<script setup lang="tsx">
 import ThemeChange from '@/components/theme-change.vue';
 import ThemeColor from '@/components/theme-color.vue';
 import UserInfo from '@/components/user-info.vue';
-import { LINK_PROFILE_ACCOUNT } from '@/router/routes/user';
+import { LINK_PROFILE_ACCOUNT, LINK_PROFILE_SYSTEM_SETTING } from '@/router/routes/user';
 import { useUserStore } from '@/store/modules/user';
 import { useEventListener } from '@vft/use';
 
@@ -40,7 +40,6 @@ nextTick(() => {
   });
 });
 
-
 const onMouseLeave = useDebounceFn((e) => {
   const targetEleClassList = Array.from((e?.toElement || e?.relatedTarget)?.classList || []);
   if (!popoverRef.value?.popperRef?.contentRef.contains(currentMouseRef.value) && (!(targetEleClassList?.includes('vft-tabs') || targetEleClassList.includes('user-popover')))) {
@@ -49,17 +48,45 @@ const onMouseLeave = useDebounceFn((e) => {
   currentMouseRef.value = null;
 }, 100);
 
-function onMouseEnter (e) {
+function onMouseEnter(e) {
   currentMouseRef.value = e.target;
   visible.value = true;
 }
 
 // color picker is show and click outside
 function onClickOutside(e) {
-  if (!popoverRef.value?.popperRef?.contentRef?.contains(e?.target)) {
+  if (!popoverRef.value?.popperRef?.contentRef?.contains(e?.target) && !popoverReferenceRef.value.contains(e?.target)) {
     hide();
   }
 }
+
+function onClickUserInfo() {
+  visible.value = !visible.value;
+  go(LINK_PROFILE_ACCOUNT);
+}
+
+const list = reactive([
+  {
+    leftIcon: 'ico-fa6-solid:user-pen',
+    text: '账号信息',
+    path: LINK_PROFILE_ACCOUNT
+  },
+  {
+    leftIcon: 'ico-uiw:setting',
+    text: '系统设置',
+    path: LINK_PROFILE_SYSTEM_SETTING
+  }
+]);
+
+const route = useRoute();
+
+const activeIndex = computed(() => list.findIndex(item => item.path === route.path));
+
+function handleItemClick(data) {
+  hide();
+  go(data.path);
+}
+
 
 function hide() {
   useTimeoutFn(() => {
@@ -70,6 +97,7 @@ function hide() {
 
 <template>
   <vft-popover
+    :style="{'--vft-popover-padding': 0}"
     ref="popoverRef"
     :width="380"
     v-model:visible="visible"
@@ -80,25 +108,24 @@ function hide() {
     placement="bottom-start">
     <template #reference>
       <div ref="popoverReferenceRef" @mouseleave="onMouseLeave" @mouseenter="onMouseEnter">
-        <user-info @click="go(LINK_PROFILE_ACCOUNT)"/>
+        <user-info @click.stop="onClickUserInfo"/>
       </div>
     </template>
     <div class="content">
       <div class="header">
-        <div class="flex justify-between">
-          <user-info :max-width="200" @click="go(LINK_PROFILE_ACCOUNT)">
-            <vft-icon icon="ico-ep:arrow-right"/>
-          </user-info>
-          <div class="flex flex-col align-center">
-            <theme-change/>
-            <theme-color @color-change="hide" @click-outside="onClickOutside" ref="themeColorRef"
-                         class="mt-5px" v-model:visible="visible"/>
-          </div>
+        <user-info :max-width="200" @click="go(LINK_PROFILE_ACCOUNT)">
+          <vft-icon icon="ico-ep:arrow-right"/>
+        </user-info>
+        <div class="theme">
+          <theme-change/>
+          <theme-color @color-change="hide" @click-outside="onClickOutside" ref="themeColorRef"
+                       class="mt-5px" v-model:visible="visible"/>
         </div>
-        <div class="w-full">
-          <div class="h-60px w-full flex-center">
-            <vft-button @click="logout" :loading="loading" class="mt-10px">退出登录</vft-button>
-          </div>
+      </div>
+      <div class="w-full">
+        <vft-list-cell :activeIndex="activeIndex" :list="list" @item-click="handleItemClick"/>
+        <div class="h-60px w-full flex-center">
+          <vft-button @click="logout" :loading="loading" class="mt-10px">退出登录</vft-button>
         </div>
       </div>
     </div>
@@ -111,6 +138,23 @@ function hide() {
 
   .content {
     padding: 10px !important;
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: getCssVar('border');
+      padding-bottom: 10px;
+
+      .user-info {
+        padding-left: 0;
+      }
+
+      .theme {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+    }
   }
 }
 </style>

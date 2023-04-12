@@ -2,6 +2,8 @@ import { type Component } from 'vue';
 
 export interface ProjectConfig {
   theme: string;
+  themeColor: string;
+  themeColorPalette: string[];
   name: string;
   logo: {
     src: string;

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { listenerRouteChange } from '@vft/router';
-import { getRouterKeyPath } from '@vft/router';
+import { getRouterKeyPath, listenerRouteChange } from '@vft/router';
 import { useMultipleTabStore } from '@vft/store';
 import { computed } from 'vue';
 import { type RouteLocationNormalizedLoaded } from 'vue-router';
 import ProfileSide from './components/profile-side.vue';
+import HeaderTitle from './components/header-title.vue';
 
 const routeName = ref();
 const tabStore = useMultipleTabStore();
@@ -20,14 +20,16 @@ const excludeNames = computed(() => {
     return tabStore.reloadFlag ? undefined : (route.name as string);
   };
 });
+
+const route = useRoute();
 </script>
 
 <template>
   <div class="profile">
     <ProfileSide />
-    
+    <header-title :title="route.meta.title"/>
     <div class="profile-con">
-      <router-view v-slot="{ route, Component }">
+      <router-view v-slot="{ Component }">
         <keep-alive :include="[routeName]" :exclude="excludeNames(route)">
           <component v-if="tabStore.reloadFlag" :is="Component" :key="getRouterKeyPath(route)" />
         </keep-alive>
@@ -38,13 +40,13 @@ const excludeNames = computed(() => {
 
 <style lang="scss" scoped>
 .profile {
-  background-color: #f8f8f8;
+  background-color: getCssVar('bg-color');
   width: 100%;
   height: 100%;
 
   .profile-con {
-    margin-left: 14px;
-    background-color: white;
+    margin-left: 15px;
+    background-color: getCssVar('bg-color');
     height: 100%;
   }
 }

@@ -23,16 +23,16 @@ const formData = reactive({
   checked: true
 });
 
-const ruleFormRef = ref<FormInstance>();
+const formRef = ref<FormInstance>();
 const phoneCodeRef = ref();
 
 const { loading, errMess, handleClick } = useSubmit();
 
-const { saveAccount } = useLoginCommon(computed(() => activeName), ruleFormRef, LoginTabEnum.TAB_PHONE, isSaveAccount);
+const { saveAccount } = useLoginCommon(computed(() => activeName), formRef, LoginTabEnum.TAB_PHONE, isSaveAccount);
 
 const handleSubmit = async() => {
   return await handleClick({
-    formEl: ruleFormRef.value,
+    formEl: formRef.value,
     params: {
       smsVerifyCode: formData.verifyCode,
       phone: trimBlank(formData.account, 'all')
@@ -56,13 +56,13 @@ const handleSubmit = async() => {
 </script>
 
 <template>
-  <vft-form ref="ruleFormRef" :model="formData" @keypress.enter="handleSubmit">
+  <vft-form ref="formRef" :model="formData" @keypress.enter="handleSubmit">
     <!--account-->
     <user-form-item v-model:account="formData.account" :placeholder="pageCfg.phonePlaceholder"
       v-model:errorMess="errMess.account" />
     <!--code-->
     <phone-code-form-item
-      ref="phoneCodeRef" :phone="formData.account" :form="ruleFormRef" v-model:verifyCode="formData.verifyCode"
+      ref="phoneCodeRef" :phone="formData.account" :form="formRef" v-model:verifyCode="formData.verifyCode"
       v-model:errorMess="errMess.code" v-model:errorAccountMess="errMess.account" smsType="login" />
     <!--submit-->
     <vft-form-item>

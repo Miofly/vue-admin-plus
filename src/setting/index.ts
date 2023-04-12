@@ -4,6 +4,8 @@ import type { ProjectConfig } from '@/setting';
 
 const setting: ProjectConfig = {
   theme: 'light',
+  themeColor: '#2196f3',
+  themeColorPalette: ['#2196f3', '#3eaf7c', '#fb9b5f', '#f26d6d'],
   name: 'Vft',
   logo: {
     src: '/assets/logo.png',

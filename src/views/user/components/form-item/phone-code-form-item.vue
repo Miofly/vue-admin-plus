@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { useUserInfo } from '@/use/use-user-info';
 import { sendSms, type SmsType } from '@/views/user/apis';
-import { isAccountErrCode, isMsgErrCode, pageCfg, rules } from '@/views/user/config';
+import { isMsgErrCode, pageCfg, rules } from '@/views/user/config';
 import { useVerifyCode } from '@/views/user/use';
 import { trimBlank } from '@vft/utils';
-import type { FormInstance, FormItemProps } from 'vft';
+import type { FormInstance } from 'vft';
 
 interface Props {
   form?: FormInstance;
@@ -19,11 +20,13 @@ interface Props {
   showText?: boolean
 }
 
-const { form, showText, verifyCode, errorMess, phone, smsType = 'register', formValidateField = ['account', 'checked'] } = defineProps<Props>();
+const { form, showText, verifyCode, errorMess, phone, smsType = 'register', formValidateField } = defineProps<Props>();
 
 const emit = defineEmits(['update:verifyCode', 'update:errorAccountMess', 'update:errorMess', 'getSms']);
 
 const { isDisabled, text } = useVerifyCode();
+
+const { getUserPhone } = useUserInfo();
 
 const isClickSend = ref(false);
 
@@ -42,6 +45,14 @@ const handleGetSms = async() => {
 };
 
 const sendRequest = async () => {
+  if (smsType === 'updatePhone' && getUserPhone.value === trimBlank(phone, 'all')) {
+    emit('update:errorAccountMess', '');
+    useTimeoutFn(() => {
+      emit('update:errorAccountMess', '当前手机号与原手机号码一致');
+    }, 0);
+    return;
+  }
+
   await sendSms({
       phone: trimBlank(phone, 'all'),
       smsType
@@ -80,7 +91,7 @@ defineExpose({
   <vft-form-item prop="verifyCode"
     :error="errorMess" :rules="rules.phoneCode">
     <div class="w-full flex justify-between align-center">
-      <span v-if="showText" class="text-[#666666] text-14px w-100px flex-none">验证码</span>
+      <span v-if="showText" class="text-14px w-100px flex-none">验证码</span>
       <vft-input
         prefix-icon="ico-ant-design:safety-outlined"
         type="number"

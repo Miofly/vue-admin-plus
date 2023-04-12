@@ -22,7 +22,7 @@ const formData = reactive({
   verifyCode: ''
 });
 
-const ruleFormRef = ref<FormInstance>();
+const formRef = ref<FormInstance>();
 
 const isSaveAccount = ref(true);
 
@@ -30,12 +30,12 @@ const verifyCodeRef = ref();
 
 const { loading, errMess, handleClick } = useSubmit();
 
-const { saveAccount } = useLoginCommon(computed(() => activeName), ruleFormRef, LoginTabEnum.TAB_USER, isSaveAccount);
+const { saveAccount } = useLoginCommon(computed(() => activeName), formRef, LoginTabEnum.TAB_USER, isSaveAccount);
 
 /** 提交 */
 const handleSubmit = async() => {
   return await handleClick({
-    formEl: ruleFormRef.value,
+    formEl: formRef.value,
     params: {
       verifyCode: formData.verifyCode,
       password: encryptByMd5(formData.password),
@@ -54,7 +54,7 @@ const handleSubmit = async() => {
 </script>
 
 <template>
-  <vft-form ref="ruleFormRef" :model="formData" @keypress.enter="handleSubmit">
+  <vft-form ref="formRef" :model="formData" @keypress.enter="handleSubmit">
     <!--account-->
     <user-form-item v-model:account="formData.account" :errorMess="errMess.account" />
     <!--pwd-->
@@ -62,12 +62,11 @@ const handleSubmit = async() => {
       :placeholder="pageCfg.pwaPlaceholder" :errorMess="errMess.pwd" />
     <!--code-->
     <verify-code-form-item ref="verifyCodeRef" v-model:verify-code="formData.verifyCode"
-      :ruleFormRef="ruleFormRef" />
+      :formRef="formRef" />
     <vft-form-item>
       <div class="flex justify-between w-full">
         <vft-checkbox v-model="isSaveAccount" label="记住账号" />
-        <vft-link type="primary" :route="LINK_FORGOT" :underline="false">{{ pageCfg.forgotText }}
-        </vft-link>
+        <vft-link type="primary" :route="LINK_FORGOT" :underline="false">{{ pageCfg.forgotText }}</vft-link>
       </div>
     </vft-form-item>
     <!--submit-->

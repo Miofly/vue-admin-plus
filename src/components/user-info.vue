@@ -25,11 +25,11 @@ const _maxWidth = computed(() => addUnit(maxWidth));
 
 <template>
   <div :class="['user-info', {'cursor-pointer': cursor}]">
-    <vft-avatar :src="getUserAvatar"
+    <vft-avatar class="user-info-avatar" :src="getUserAvatar"
       :icon="{icon: 'ico-carbon:user-avatar-filled', color}"
       :size="size"
     />
-    <span class="name" :style="{color: textColor}">{{ getUserName }}</span>
+    <span class="user-info-name" :style="{color: textColor}">{{ getUserName }}</span>
     <slot/>
   </div>
 </template>
@@ -44,7 +44,7 @@ const _maxWidth = computed(() => addUnit(maxWidth));
   height: 40px;
   padding: 8px 12px;
 
-  .name {
+  &-name {
     font-weight: 400;
     font-size: 13px;
     margin-left: 6px;

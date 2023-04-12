@@ -4,3 +4,7 @@ export const PWA_INSTALL = 'pwa_install';
 export const APP_SEARCH_HISTORY = 'app_search_history';
 /** Account */
 export const ACCOUNT_MESS = 'account_mess';
+/** theme */
+export const THEME = 'theme';
+/** theme_color */
+export const THEME_COLOR = 'theme_color';

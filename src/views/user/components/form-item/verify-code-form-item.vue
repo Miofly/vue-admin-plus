@@ -5,10 +5,10 @@ import { pageCfg, rules, checkVerifyCode } from '@/views/user/config';
 interface Props {
   verifyCode: string;
   placeholder?: string;
-  ruleFormRef?: FormInstance
+  formRef?: FormInstance
 }
 
-const { verifyCode, placeholder = pageCfg.codePlaceholder, ruleFormRef } = defineProps<Props>();
+const { verifyCode, placeholder = pageCfg.codePlaceholder, formRef } = defineProps<Props>();
 
 const verifyCodeRef = ref();
 
@@ -19,8 +19,8 @@ const onInput = (value) => {
 };
 
 watch(() => verifyCodeRef.value?.code, () => {
-  if (ruleFormRef) {
-    ruleFormRef?.clearValidate();
+  if (formRef) {
+    formRef?.clearValidate();
     emit('update:verifyCode', '');
   }
 });

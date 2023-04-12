@@ -10,6 +10,9 @@ interface AppState {
 
 export const useAppStore = defineStore({
   id: 'app',
+  persist: {
+    paths: ['projectConfig']
+  },
   state: (): AppState => ({
     projectConfig: setting
   }),
