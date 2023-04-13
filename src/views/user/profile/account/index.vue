@@ -14,7 +14,6 @@ import PasswordInfo from './modules/password-info.vue';
 
 <style lang="scss">
 .profile-account-container {
-  margin-top: 15px;
   padding: 30px 0 0 50px;
   width: 700px;
 

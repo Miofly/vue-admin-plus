@@ -2,6 +2,8 @@
 import UserInfo from '@/components/user-info.vue';
 import { useLayoutContext } from '@/layouts/use/use-context';
 import { LINK_PROFILE_ACCOUNT, LINK_PROFILE_SYSTEM_SETTING } from '@/router/routes/user';
+import { useTabs } from '@vft/store';
+import { addUnit } from '@vft/utils';
 import { cssVarValue } from 'vft';
 
 const PROFILE_LIST = [
@@ -19,16 +21,28 @@ const sideMenuRef = ref();
 
 const layoutContext = useLayoutContext();
 
-function handleDragWidthEnd () {
-  layoutContext.layoutContainerRef.value.style.marginLeft = cssVarValue('side-menu-width', sideMenuRef.value.sideRef).value;
+const sideWidth = ref(200);
+
+onMounted(() => {
+  handleDragWidthEnd();
+});
+
+onActivated(() => {
+  handleDragWidthEnd();
+})
+
+function handleDragWidthEnd() {
+  layoutContext.layoutContainerRef.value.style.marginLeft = addUnit(sideWidth.value);
 }
 </script>
 
 <template>
-  <vft-side-menu ref="sideMenuRef" @dragWidthEnd="handleDragWidthEnd" openListenRoute :width="210" :menus="PROFILE_LIST" :menuTopBottomHeight="70">
+  <vft-side-menu ref="sideMenuRef" :menuTopBottomHeight="70" openListenRoute dragWidth
+                 v-model:sideWidth="sideWidth" :menus="PROFILE_LIST"
+                 @dragWidthEnd="handleDragWidthEnd" @select="handleDragWidthEnd">
     <template #top>
-      <div class="h-70px flex align-center ml-12px">
-        <user-info :size="35" :cursor="false" />
+      <div class="h-70px flex align-center ml-12px overflow-x-hidden">
+        <user-info :size="35" :cursor="false"/>
       </div>
     </template>
   </vft-side-menu>

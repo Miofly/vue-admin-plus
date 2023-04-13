@@ -29,4 +29,6 @@ export interface ProjectConfig {
   defaultScrollDom: string;
   pageLoadingIcon: string;
   contentMinWidth: number;
+  sideMenuWidth: number;
+  sideMenuCollapseWidth: number;
 }

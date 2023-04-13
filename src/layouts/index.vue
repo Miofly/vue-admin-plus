@@ -39,17 +39,18 @@ const getSideMenuList = computed(() => {
       return item.meta.isBlog;
     })?.[0];
 
+    console.log(blogList.children, 888);
+
     return blogList.children!.filter((item) => {
-      return item.title === route.meta?.category?.[1];
+      return item.title === route.meta?.category?.[0];
     })?.[0]?.children || [];
   } else {
     return permissionStore.getMenuList;
   }
 });
 
-const showSide = computed(() => !route.meta.hideSide && getSideMenuList.value?.length);
 
-const sideMenuRef = ref();
+const showSide = computed(() => !route.meta.hideSide && getSideMenuList.value?.length);
 
 const {
   collapse,
@@ -58,7 +59,7 @@ const {
   defaultScrollDom,
   overflowClass,
   layoutSideWidth
-} = useLayout(showSide, sideMenuRef);
+} = useLayout(showSide);
 
 const iframePages = computed(() => tabStore.getTabList.filter((item) => item.meta.isIframe || item.meta.frameSrc));
 
@@ -80,11 +81,11 @@ createLayoutContext({
     <div
       ref="layoutContainerRef"
       v-spin="openPageLoading && tabStore.getPageLoading"
-      :class="['layout-container', overflowClass]" :style="{marginLeft: layoutSideWidth}">
+      :class="['layout-container', overflowClass]" :style="route.meta?.currentActivePath ? {} : {marginLeft: layoutSideWidth}">
       <vft-side-menu
+        dragWidth
         v-show="showSide"
-        ref="sideMenuRef"
-        :width="sideWidth"
+        v-model:sideWidth="sideWidth"
         :collapseWidth="sideCollapseWidth"
         v-model:collapse="collapse"
         :menus="getSideMenuList"

@@ -26,7 +26,7 @@ const route = useRoute();
 
 <template>
   <div class="profile">
-    <ProfileSide />
+    <profile-side />
     <header-title :title="route.meta.title"/>
     <div class="profile-con">
       <router-view v-slot="{ Component }">
@@ -40,12 +40,12 @@ const route = useRoute();
 
 <style lang="scss" scoped>
 .profile {
-  background-color: getCssVar('bg-color');
+  background-color: getCssVar('fill-color');
   width: 100%;
   height: 100%;
 
   .profile-con {
-    margin-left: 15px;
+    margin: 13px 0 0 13px;
     background-color: getCssVar('bg-color');
     height: 100%;
   }
