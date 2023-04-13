@@ -1,7 +1,7 @@
 {
-  "short_name": "企业预警通",
-  "name": "企业预警通专业版",
-  "description": "企业预警通，百万金融专业人士都在用的工具平台",
+  "short_name": "vtf admin",
+  "name": "Vtf Admin",
+  "description": "Vtf Admin System",
   "icons": [
     {
       "src": "favicon.ico",
