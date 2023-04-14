@@ -39,8 +39,6 @@ const getSideMenuList = computed(() => {
       return item.meta.isBlog;
     })?.[0];
 
-    console.log(blogList.children, 888);
-
     return blogList.children!.filter((item) => {
       return item.title === route.meta?.category?.[0];
     })?.[0]?.children || [];
@@ -48,7 +46,6 @@ const getSideMenuList = computed(() => {
     return permissionStore.getMenuList;
   }
 });
-
 
 const showSide = computed(() => !route.meta.hideSide && getSideMenuList.value?.length);
 
@@ -63,8 +60,7 @@ const {
 
 const iframePages = computed(() => tabStore.getTabList.filter((item) => item.meta.isIframe || item.meta.frameSrc));
 
-
-// 存储 layout 信息
+// save layoutRef info
 const layoutContainerRef = ref();
 const layoutContentRef = ref();
 

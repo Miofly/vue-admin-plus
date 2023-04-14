@@ -87,7 +87,6 @@ function handleItemClick(data) {
   go(data.path);
 }
 
-
 function hide() {
   useTimeoutFn(() => {
     visible.value = false;
@@ -97,7 +96,6 @@ function hide() {
 
 <template>
   <vft-popover
-    :style="{'--vft-popover-padding': 0}"
     ref="popoverRef"
     :width="380"
     v-model:visible="visible"
@@ -137,7 +135,7 @@ function hide() {
   padding: 0 !important;
 
   .content {
-    padding: 10px !important;
+    padding: 15px !important;
 
     .header {
       display: flex;

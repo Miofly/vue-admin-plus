@@ -140,16 +140,14 @@ function handleChangeTab (e) {
 </template>
 
 <style lang="scss">
-.vft-layout-header__left {
+.vft-header-layout__left {
   min-width: $header-left-min-width;
 }
 </style>
 
 <style lang="scss" scoped>
-:deep(.vft-layout-header__right) {
-  margin-right: 20px;
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+:deep(.vft-header-layout__right) {
+  //align-items: center;
+  //flex-shrink: 0;
 }
 </style>
