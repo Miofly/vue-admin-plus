@@ -1,4 +1,4 @@
-import { mobile, password, checkCodeFour, checkCodeSix, emailRegExp } from '@vft/constants';
+import { mobile, password, checkCodeFour, emailRegExp } from '@vft/constants';
 
 export const tabStyle = {
   'item-bg-color': 'transparent',
