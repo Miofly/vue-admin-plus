@@ -37,8 +37,7 @@
     "vue-demi": "^0.13.11"
   },
   "engines": {
-    "node": ">=16",
-    "pnpm": ">=8.1.0"
+    "node": ">=16"
   },
   "pnpm": {
     "peerDependencyRules": {
