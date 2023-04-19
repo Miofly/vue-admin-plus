@@ -49,6 +49,18 @@ build
 pnpm build
 ```
 
-## Discord
+## List Of Features
 
-qq group: `466362940`
+- [x] multiTab and keepAlive
+- [x] pwa desktop shortcut
+- [x] dark mode
+- [x] accent color switch
+- [x] user information page
+- [ ] system setting
+- [ ] route meta usage example
+- [ ] request library usage example
+- [ ] public utils and use usage example
+- [ ] iframe keepalive usage example
+- [ ] markdown rendering usage example
+- [ ] component docs
+- [ ] project docs
