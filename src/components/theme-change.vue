@@ -7,10 +7,10 @@ const { themeDark, themeLight, getIsDark } = useSetting();
 <template>
   <div class="theme-container">
     <div :class="[{'active': !getIsDark}, 'item']" @click="themeLight">
-      <vft-icon-text :size="10" text="浅色" direction="col" icon="ico-ep:sunny" />
+      <vft-icon-text :adjustOrigin="false" :size="10" text="浅色" direction="col" icon="ico-ep:sunny" />
     </div>
     <div :class="[{'active': getIsDark}, 'item']" @click="themeDark">
-      <vft-icon-text :size="10" text="深色" direction="col" icon="ico-ph:moon-light" />
+      <vft-icon-text :adjustOrigin="false" :size="10" text="深色" direction="col" icon="ico-ph:moon-light" />
     </div>
   </div>
 </template>
@@ -42,18 +42,10 @@ const { themeDark, themeLight, getIsDark } = useSetting();
 
   .active {
     .#{$namespace}-icon-text {
-      color: white!important;
-      &:hover {
-        color: white !important;
-      }
+      color: white;
     }
 
     background: rgb(1, 113, 246);
-  }
-
-  .text {
-    font-size: 12px;
-    transform: scale(0.8);
   }
 }
 </style>

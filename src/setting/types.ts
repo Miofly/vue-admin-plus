@@ -1,5 +1,6 @@
 import { type Component } from 'vue';
 
+// Todo add docs
 export interface ProjectConfig {
   theme: string;
   themeColor: string;
