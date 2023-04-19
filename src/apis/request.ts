@@ -1,6 +1,5 @@
 import { useUserStoreWithOut } from '@/store/modules/user';
 import { createAxios, RequestCanceler } from '@vft/request';
-import { cloneDeep } from '@vft/utils';
 
 /** 默认 Pc header */
 const CLIENT_PARAM = { client: 'PC' };
@@ -56,7 +55,7 @@ export const request = createAxios({
     unauthorizedFunction: async(msg) => {
       Message.error(msg);
       const cancelRequest = new RequestCanceler();
-      const pendMap = cloneDeep(cancelRequest.getAllPending());
+      // const pendMap = cloneDeep(cancelRequest.getAllPending());
       cancelRequest.removeAllPending();
       // await userStore.resetGoLogin();
       // pendMap.forEach(item => {

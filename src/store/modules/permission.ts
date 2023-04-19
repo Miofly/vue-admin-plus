@@ -1,4 +1,3 @@
-import { NAVIGATION_URLS } from '@/constants';
 import { ASYNC_ROUTES, ERROR_LOG_ROUTE, routes } from '@/router/constants';
 import { useUserStore } from '@/store/modules/user';
 import type { MenuType, RouteRecordItem } from '@vft/router';

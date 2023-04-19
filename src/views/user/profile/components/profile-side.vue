@@ -2,9 +2,7 @@
 import UserInfo from '@/components/user-info.vue';
 import { useLayoutContext } from '@/layouts/use/use-context';
 import { LINK_PROFILE_ACCOUNT, LINK_PROFILE_SYSTEM_SETTING } from '@/router/routes/user';
-import { useTabs } from '@vft/store';
 import { addUnit } from '@vft/utils';
-import { cssVarValue } from 'vft';
 
 const PROFILE_LIST = [
   {
@@ -29,7 +27,7 @@ onMounted(() => {
 
 onActivated(() => {
   handleDragWidthEnd();
-})
+});
 
 function handleDragWidthEnd() {
   layoutContext.layoutContainerRef.value.style.marginLeft = addUnit(sideWidth.value);

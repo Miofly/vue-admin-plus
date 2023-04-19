@@ -1,10 +1,6 @@
 <script lang="ts" setup>
-import SearchContent from '@/components/search/search-content.vue';
-import { LINK_HOME, LINK_LOGIN } from '@/router/constants';
+import { LINK_HOME } from '@/router/constants';
 import setting from '@/setting';
-import { useUserStore } from '@/store/modules/user';
-import { useSetting } from '@/use';
-import { setCssVar } from 'vft';
 import { isNumber } from '@vft/utils';
 import HeaderMenu from './components/menu/index.vue';
 import User from './components/user.vue';
@@ -24,9 +20,6 @@ const headerProps = computed(() => {
 const showMask = computed(() => {
   return isNumber(menuRef.value?.activeIndex);
 });
-
-const searchValue = ref('');
-const visible = ref(false);
 
 const headerList = [
   {
@@ -118,17 +111,7 @@ function handleChangeTab (e) {
       </template>
       <div class="flex align-center h-40px">
         <div class="search-content" @keydown="handleChangeTab">
-          <vft-search
-            v-model:model-value="searchValue"
-            v-model:visible="visible"
-            :popoverCfg="{'popper-class': 'app-search-popover'}"
-            :width="200"
-            :focusWidth="300"
-            placeholder="请输入关键字"
-          >
-            <search-content ref="searchContentRef" v-model:visible="visible"
-              :search-value="searchValue" />
-          </vft-search>
+          Todo
         </div>
         <user class="user" />
       </div>

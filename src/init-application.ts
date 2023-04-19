@@ -1,16 +1,14 @@
-import { PWA_INSTALL, THEME_COLOR } from '@/constants';
-import { router } from '@/router';
-import { ERROR_WHITE_ROUTE_NAME_LIST } from '@/router/constants';
+import { PWA_INSTALL } from '@/constants';
+// import { router } from '@/router';
+// import { ERROR_WHITE_ROUTE_NAME_LIST } from '@/router/constants';
 import setting from '@/setting';
 import pinia from '@/store';
 import { useUserStore } from '@/store/modules/user';
 import { useSetting } from '@/use';
-import { ls } from '@/utils';
-import { setCssVar, addLight } from '@vft/utils';
+import { setCssVar } from '@vft/utils';
 import { primaryColor, setPrimaryColorCssvars } from 'vft';
 import { registerClickOut, setupPermissionDirective } from '@vft/directives';
-import { initPwa, setupErrorHandle } from '@vft/store';
-import type { LoadingBinding, VftLoading } from 'vft';
+import { initPwa } from '@vft/store';
 import { createLoadingDirective, VftMdContainer } from 'vft';
 import type { App, Directive } from 'vue';
 // table
@@ -46,7 +44,7 @@ export function initTable(app) {
 function initDirective(app) {
   const userStore = useUserStore();
 
-  const vSpin: Directive<VftLoading, LoadingBinding> = createLoadingDirective({
+  const vSpin: Directive = createLoadingDirective({
     text: '加载中...',
     icon: { icon: setting.pageLoadingIcon, size: 26, color: primaryColor().value, rotate: true },
     rotate: true
