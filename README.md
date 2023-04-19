@@ -49,12 +49,13 @@ build
 pnpm build
 ```
 
-## List Of Features
+## Features
 
 - [x] multiTab and keepAlive
 - [x] pwa desktop shortcut
 - [x] dark mode
 - [x] accent color switch
+- [x] login reg forgot page
 - [x] user information page
 - [ ] system setting
 - [ ] route meta usage example
