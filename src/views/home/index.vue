@@ -1,53 +1,33 @@
+<script setup lang="ts">
+import { useTabs } from '@vft/store';
+
+const {
+  refreshPage,
+  closeAll,
+  closeLeft,
+  closeRight,
+  closeOther,
+  closeCurrent,
+  // close,
+  setTitle
+} = useTabs();
+
+function handleClose() {
+  // close({ fullPath: '/style/scss/mixinInclude' } as RouteLocationNormalized);
+}
+</script>
+
 <template>
-  主页
+  <vft-button @click="refreshPage()">refreshPage</vft-button>
+  <vft-button @click="closeAll()">closeAll</vft-button>
+  <vft-button @click="closeLeft()">closeLeft</vft-button>
+  <vft-button @click="closeRight()">closeRight</vft-button>
+  <vft-button @click="closeOther()">closeOther</vft-button>
+  <vft-button @click="closeCurrent()">closeCurrent</vft-button>
+  <vft-button @click="handleClose">close</vft-button>
+  <vft-button @click="setTitle('自定义title')">setTitle</vft-button>
 </template>
 
-<style lang="scss" scoped>
-.container {
-  .tabs {
-    margin: 7px 0 9px 0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 22px;
+<style scoped lang="scss">
 
-    .text {
-      font-size: 12px;
-      margin-right: 15px;
-      line-height: 22px;
-      font-weight: 500;
-    }
-
-    .date {
-      margin-left: 36px;
-    }
-  }
-
-  :deep(.enterprise-dynamics-menu) {
-    border-bottom: none;
-    margin-top: -2px;
-
-    .vc-menu-item, .vc-sub-menu__title {
-      font-size: 12px;
-      border-bottom: none;
-      //height: 20px;
-    }
-  }
-
-  :deep(.tabs) {
-    .vc-datepicker__title {
-      color: black;
-      margin-left: 36px;
-      font-size: 12px;
-      margin-right: 8px;
-      line-height: 22px;
-      font-weight: 500;
-    }
-
-    .vc-datepicker__title.is-hasValue {
-      color: #409eff
-    }
-  }
-}
 </style>
-
