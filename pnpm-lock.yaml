@@ -8,8 +8,8 @@ dependencies:
     specifier: ^4.14.191
     version: 4.14.191
   '@vft/pkg':
-    specifier: 0.0.28
-    version: 0.0.28(@types/node@18.8.0)(@vueuse/core@9.13.0)(esbuild@0.17.16)(lodash@4.17.21)(pinia@2.0.33)(typescript@5.0.4)(vue-router@4.1.6)(vue@3.2.47)(workbox-build@6.5.4)(workbox-window@6.5.4)
+    specifier: 0.0.29
+    version: 0.0.29(@types/node@18.8.0)(@vueuse/core@9.13.0)(esbuild@0.17.16)(lodash@4.17.21)(pinia@2.0.33)(typescript@5.0.4)(vue-router@4.1.6)(vue@3.2.47)(workbox-build@6.5.4)(workbox-window@6.5.4)
   '@vue/shared':
     specifier: ^3.2.47
     version: 3.2.47
@@ -35,8 +35,8 @@ dependencies:
     specifier: ^0.50.6
     version: 0.50.6
   vft:
-    specifier: 0.0.70
-    version: 0.0.70(pinia@2.0.33)(vue-router@4.1.6)(vue@3.2.47)
+    specifier: 0.0.71
+    version: 0.0.71(pinia@2.0.33)(vue-router@4.1.6)(vue@3.2.47)
   vue:
     specifier: ^3.2.47
     version: 3.2.47
@@ -2985,8 +2985,23 @@ packages:
     resolution: {integrity: sha512-KGU2C9hWx8Sf8Du4vJacuPI8AZCMrI/5/Ial9PDc8IQ9GXyathGFHxTluVn5P2C/4sPxqenlIXeoYRjftTTzkg==}
     dev: false
 
+  /@vft/constants@0.0.46:
+    resolution: {integrity: sha512-KrxD1j9IkD+QO5eq+nXsVxA4fam3JhvwEIeHXASfyCsS69GfmJtQ73fMVGC2DAwfdaQebCgMZ/Lp+L6cohB51A==}
+    dev: false
+
   /@vft/directives@0.0.13(vue@3.2.47):
     resolution: {integrity: sha512-/IVRbrDMxpAhksAG27RRPnQyl5zyZozvgXW6kbUm9cNNGOW+8qSD0NzdWGluKBvsK8+xzh7E8Wdq0w2MjgOvQQ==}
+    peerDependencies:
+      vue: '>=3.2.0'
+    peerDependenciesMeta:
+      vue:
+        optional: true
+    dependencies:
+      vue: 3.2.47
+    dev: false
+
+  /@vft/directives@0.0.14(vue@3.2.47):
+    resolution: {integrity: sha512-0JwB70Dptk++hX7g4G9/1857Q+X8dcHOLonXa3osifqUUX+a3L32Mrwc6taVpqQRv+8U3xd2FQL7l0OxyAB65g==}
     peerDependencies:
       vue: '>=3.2.0'
     peerDependenciesMeta:
@@ -3031,19 +3046,19 @@ packages:
       - zenObservable
     dev: false
 
-  /@vft/pkg@0.0.28(@types/node@18.8.0)(@vueuse/core@9.13.0)(esbuild@0.17.16)(lodash@4.17.21)(pinia@2.0.33)(typescript@5.0.4)(vue-router@4.1.6)(vue@3.2.47)(workbox-build@6.5.4)(workbox-window@6.5.4):
-    resolution: {integrity: sha512-BTP2etTQDp+ewTNaksyCysXIQRVMBsgnezFid9mp80lPlpJCbwEPm5gx3tQe/Go2v4uA8mwa/lepGl530ysQng==}
+  /@vft/pkg@0.0.29(@types/node@18.8.0)(@vueuse/core@9.13.0)(esbuild@0.17.16)(lodash@4.17.21)(pinia@2.0.33)(typescript@5.0.4)(vue-router@4.1.6)(vue@3.2.47)(workbox-build@6.5.4)(workbox-window@6.5.4):
+    resolution: {integrity: sha512-BeFi6LzxEqutiXtcPoBrkL5vRg2CqtCgCNgADxwdf573ExjjKjyQVBFrQmJoHFDooSml7kmvQJezCTLk1Pmpdg==}
     dependencies:
-      '@vft/constants': 0.0.45
-      '@vft/directives': 0.0.13(vue@3.2.47)
+      '@vft/constants': 0.0.46
+      '@vft/directives': 0.0.14(vue@3.2.47)
       '@vft/lint': 0.0.7(typescript@5.0.4)
-      '@vft/request': 0.0.13
-      '@vft/router': 0.0.16(vue-router@4.1.6)(vue@3.2.47)
-      '@vft/store': 0.0.17(lodash@4.17.21)(pinia@2.0.33)(vue-router@4.1.6)(vue@3.2.47)
-      '@vft/style': 0.0.6
+      '@vft/request': 0.0.14
+      '@vft/router': 0.0.17(vue-router@4.1.6)(vue@3.2.47)
+      '@vft/store': 0.0.18(lodash@4.17.21)(pinia@2.0.33)(vue-router@4.1.6)(vue@3.2.47)
+      '@vft/style': 0.0.7
       '@vft/tsconfig': 0.0.9(@types/node@18.8.0)
-      '@vft/use': 0.0.19(vue@3.2.47)
-      '@vft/utils': 0.0.29(@vft/constants@0.0.45)(lodash@4.17.21)(vue@3.2.47)
+      '@vft/use': 0.0.20(vue@3.2.47)
+      '@vft/utils': 0.0.30(@vft/constants@0.0.46)(lodash@4.17.21)(vue@3.2.47)
       vite-config-common: 0.0.14(@types/node@18.8.0)(@vueuse/core@9.13.0)(esbuild@0.17.16)(typescript@5.0.4)(vue@3.2.47)(workbox-build@6.5.4)(workbox-window@6.5.4)
       vite-plugin-md-plus: 0.0.14
       vite-plugin-router-pages: 0.0.7(vue@3.2.47)
@@ -3087,8 +3102,8 @@ packages:
       - zenObservable
     dev: false
 
-  /@vft/request@0.0.13:
-    resolution: {integrity: sha512-qnM8dyCldP2CJ7j6OKcGS60gUFyts2ftY5GAT+g3+O2MWoYq+uGqZ9aLLr0QtEEEvqYUR0Yz78NA+87ORgmBOw==}
+  /@vft/request@0.0.14:
+    resolution: {integrity: sha512-sObHQgw/0D3vmtxbNgr5X1qTjF/pma1jZu059Hd67cH309UlxjElbLznASYn6PsnrKS3+UgzH7573SONDV0kdQ==}
     dependencies:
       axios: 1.3.4(debug@4.3.4)
       qs: 6.11.1
@@ -3098,6 +3113,23 @@ packages:
 
   /@vft/router@0.0.16(vue-router@4.1.6)(vue@3.2.47):
     resolution: {integrity: sha512-3PhTNhu8xME2wMQysbkUcCDA4k8IMXE4B/CkwAf6Zpg9I0jDSJEmecVqIR64aMe4+oh4Rp3hstTCGRs3NQxSug==}
+    peerDependencies:
+      vue: '>=3.2.0'
+      vue-router: '>=4.0.0'
+    peerDependenciesMeta:
+      vue:
+        optional: true
+    dependencies:
+      '@vueuse/core': 10.0.0-beta.0(vue@3.2.47)
+      nprogress: 0.2.0
+      vue: 3.2.47
+      vue-router: 4.1.6(vue@3.2.47)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
+
+  /@vft/router@0.0.17(vue-router@4.1.6)(vue@3.2.47):
+    resolution: {integrity: sha512-olLrqzikVXz1h6iwnqu7GvoS1Xd7RSMkA2kw6VOpb6g5cNjlEFjPo+OQONS8MyE9GMQCyE6qM0dZ7Wm02c92Bg==}
     peerDependencies:
       vue: '>=3.2.0'
       vue-router: '>=4.0.0'
@@ -3134,8 +3166,29 @@ packages:
       vue-router: 4.1.6(vue@3.2.47)
     dev: false
 
-  /@vft/style@0.0.6:
-    resolution: {integrity: sha512-h6J4GBQF6G746EnalAMoLRB+D2B0c41MB6unlGOaxs7IUfiVazKfBglI1h6PvJ4NQ30q5kOkVU8YlKff2J3YSQ==}
+  /@vft/store@0.0.18(lodash@4.17.21)(pinia@2.0.33)(vue-router@4.1.6)(vue@3.2.47):
+    resolution: {integrity: sha512-yFGLGuGVlthjH+pAnyk5ttwVNrF6H0vQBwBGlzBVzm5vfRNj4rgHJFjSwVEJ/EhkmYdcFJ7EOdYb08U4vk/3JA==}
+    peerDependencies:
+      lodash: '>=4.17.0'
+      pinia: '>=2.0.0'
+      vue: '>=3.2.0'
+      vue-router: '>=4.0.0'
+    peerDependenciesMeta:
+      pinia:
+        optional: true
+      vue:
+        optional: true
+    dependencies:
+      lodash: 4.17.21
+      pinia: 2.0.33(typescript@5.0.4)(vue@3.2.47)
+      pinia-plugin-persistedstate: 3.1.0(pinia@2.0.33)
+      pubsub-js: 1.9.4
+      vue: 3.2.47
+      vue-router: 4.1.6(vue@3.2.47)
+    dev: false
+
+  /@vft/style@0.0.7:
+    resolution: {integrity: sha512-GgKRKjqRN3D7RwoWcnR16ZpIFBzosuVlWHcQFUz1O1ClLNekJfn3zOgwYoSKAfRru+1eAKjdosiazten/YNMFQ==}
     dev: false
 
   /@vft/tsconfig@0.0.9(@types/node@18.8.0):
@@ -3151,6 +3204,23 @@ packages:
 
   /@vft/use@0.0.19(vue@3.2.47):
     resolution: {integrity: sha512-0PM3XZxjvPpxmmf5QyM3Bum7zwrlWLXU0zWPCTI3zX39qMgfOyNp8z9v8AA5aUB5aWDU9qltYkznmX++kh/eVA==}
+    peerDependencies:
+      vue: '>=3.2.0'
+    peerDependenciesMeta:
+      vue:
+        optional: true
+    dependencies:
+      '@vueuse/core': 10.0.0-beta.0(vue@3.2.47)
+      echarts: 5.4.1
+      photoswipe: 5.3.6
+      sortablejs: 1.15.0
+      vue: 3.2.47
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
+
+  /@vft/use@0.0.20(vue@3.2.47):
+    resolution: {integrity: sha512-un2TTv+y5BcNYi5TF7yOvaoZq+OzOYB8oKV9U6+xgwe6O6+q4A8fwfubQe+J8Hm6ors3aRQa7C82f9ysozxEMw==}
     peerDependencies:
       vue: '>=3.2.0'
     peerDependenciesMeta:
@@ -3197,6 +3267,26 @@ packages:
         optional: true
     dependencies:
       '@vft/constants': 0.0.45
+      '@vueuse/core': 10.0.0-beta.0(vue@3.2.47)
+      crypto-js: 4.1.1
+      dayjs: 1.11.7
+      lodash: 4.17.21
+      vue: 3.2.47
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+    dev: false
+
+  /@vft/utils@0.0.30(@vft/constants@0.0.46)(lodash@4.17.21)(vue@3.2.47):
+    resolution: {integrity: sha512-VaFljGk342CshdCdkk0eBwtxeVL19h99qzns4De7R8UDesG41tMW2T71UiTeOeIJbjNTo1ZfM6DeRx0ysgUyJw==}
+    peerDependencies:
+      '@vft/constants': '*'
+      lodash: '>=4.17.0'
+      vue: '>=3.2.0'
+    peerDependenciesMeta:
+      vue:
+        optional: true
+    dependencies:
+      '@vft/constants': 0.0.46
       '@vueuse/core': 10.0.0-beta.0(vue@3.2.47)
       crypto-js: 4.1.1
       dayjs: 1.11.7
@@ -10102,8 +10192,8 @@ packages:
       mutation-observer: 1.0.3
     dev: false
 
-  /vft@0.0.70(pinia@2.0.33)(vue-router@4.1.6)(vue@3.2.47):
-    resolution: {integrity: sha512-zgJXKDNnZlz056Nzd3JlZiZyhvp5gnvtNNuE3ZI3c1NtEcUxL5SQD8vq8TXCzUtjjpEmLdEt2edlq+QOuvKLXQ==}
+  /vft@0.0.71(pinia@2.0.33)(vue-router@4.1.6)(vue@3.2.47):
+    resolution: {integrity: sha512-r4CyPsKukdbt1gBsUOxYpKsTwjfe+2hubI0wV9omE/OFnGQAars6FVdgXfmyAC6zDcjQDo4AfQjf68HBQ9Jy8Q==}
     peerDependencies:
       vue: '>=3.2.0'
       vue-router: '>=4.0.16'
