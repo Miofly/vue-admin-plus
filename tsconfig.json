@@ -1,31 +1,6 @@
 {
-  "extends": "@vft/tsconfig/tsconfig.web.json",
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "#/*": [
-        "types/*"
-      ]
-    },
-    "lib": [
-      "ES2021",
-      "DOM",
-      "DOM.Iterable",
-      "WebWorker"
-    ],
-    "types": [
-      "vite/client",
-      "node",
-      "unplugin-vue-macros/macros-global"
-    ]
-  },
-  "include": [
-    "src",
-    "types",
-    "vite.config.ts"
+  "references": [
+    { "path": "./tsconfig.web.json" },
+    { "path": "./tsconfig.vite.json" },
   ]
 }

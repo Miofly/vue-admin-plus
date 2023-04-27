@@ -1,0 +1,11 @@
+{
+	"extends": "@vft/tsconfig/tsconfig.vite.json",
+	"compilerOptions": {
+		"composite": true
+	},
+	"include": [
+		"**/vite.config.*",
+		"**/vitest.config.*",
+		"**/vite.init.*"
+	]
+}

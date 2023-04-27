@@ -65,6 +65,6 @@ export default createViteConfig({
 			dirs: ROUTER_PAGES,
 			extensions: ['vue', 'md']
 		},
-		scssVarsData: '@use "src/styles/vars.scss" as *;',
+		scssVarsData: '@use "src/styles/vars.scss" as *;'
 	}
 });

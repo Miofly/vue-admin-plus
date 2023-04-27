@@ -1,0 +1,16 @@
+{
+  "extends": "@vft/tsconfig/tsconfig.web.json",
+  "compilerOptions": {
+    "composite": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "types": [
+      "node",
+      "unplugin-vue-macros/macros-global"
+    ],
+  },
+  "include": [
+    "admin",
+    "compontent"
+  ]
+}

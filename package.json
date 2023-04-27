@@ -1,6 +1,4 @@
 {
-  "name": "vue-admin-plus",
-  "version": "0.0.2",
   "scripts": {
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm",
@@ -8,33 +6,18 @@
     "clean": "pnpm /^clean:/",
     "clean:dist": "rimraf dist",
     "clean:node_modules": "rimraf node_modules",
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "cd admin && vite",
+    "build": "cd admin && vite build",
     "log": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
-  "dependencies": {
-    "@iconify/json": "2.2.35",
-    "@types/lodash": "^4.14.191",
-    "@vft/pkg": "0.0.29",
-    "@vue/shared": "^3.2.47",
-    "@vueuse/core": "^9.13.0",
-    "jsencrypt": "^3.3.2",
-    "lodash": "^4.17.21",
-    "pinia": "^2.0.33",
-    "sass": "^1.59.3",
-    "typescript": "^5.0.4",
-    "unocss": "^0.50.6",
-    "vft": "0.0.71",
-    "vue": "^3.2.47",
-    "vue-request": "2.0.0-rc.4",
-    "vue-router": "^4.1.6"
-  },
+	"dependencies": {
+		"unplugin-vue-macros": "^2.0.0"
+	},
   "devDependencies": {
     "@types/node": "18.8.0",
     "conventional-changelog-cli": "^2.2.2",
     "husky": "8.0.3",
-    "rimraf": "^4.4.1",
-    "vue-demi": "^0.13.11"
+    "rimraf": "^4.4.1"
   },
   "engines": {
     "node": ">=16"
