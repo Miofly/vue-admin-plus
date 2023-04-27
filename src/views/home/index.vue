@@ -5,34 +5,24 @@ import { isNullOrUndefined } from '@vft/utils';
 const containerRef = ref();
 
 const initArr = reactive([
+  { car: '', bit: [0] },
   { car: 'active bg-blue-100', bit: [5] },
   { car: 'active bg-pink-100', bit: [61] },
   { car: 'active bg-green-100', bit: [47, 48, 49] },
   { car: 'active bg-red-100', bit: [10, 11, 12, 13, 14] }
 ]);
 
+const startIndex = ref();
+const endIndex = ref();
+
+
 const { initSortable } = useSortable(containerRef, {
   draggable: '.item',
   handle: '.active',
-  fallbackTolerance: 3,
-  selectedClass: 'selected',
   onChange: (evt) => {
     const { oldIndex, newIndex } = evt;
-
-    console.log('这里执行了吗');
-    for (let i = 0; i < initArr?.length; i++) {
-      const _index = initArr[i].bit.findIndex((item) => item === oldIndex + 1);
-
-      if (_index >= 0) {
-        console.log(11233);
-
-        initArr[i].bit = initArr[i].bit.map(item => {
-          item = item + newIndex - oldIndex;
-          return item;
-        });
-        return;
-      }
-    }
+    startIndex.value = oldIndex;
+    endIndex.value = newIndex;
   },
   onEnd: (evt) => {
     const { oldIndex, newIndex } = evt;
@@ -45,6 +35,25 @@ const { initSortable } = useSortable(containerRef, {
 nextTick(() => {
   initSortable();
 });
+
+watch(()=> endIndex.value, (val) => {
+  changeArr(startIndex.value, endIndex.value);
+  console.log(initArr, '==');
+});
+
+function changeArr (oldIndex, newIndex) {
+  for (let i = 0; i < initArr?.length; i++) {
+    const _index = initArr[i].bit.findIndex((item) => item === oldIndex + 1);
+
+    if (_index >= 0) {
+      initArr[i].bit = initArr[i].bit.map(item => {
+        item = item + newIndex - oldIndex;
+        return item;
+      });
+      return;
+    }
+  }
+}
 
 const classes = computed(() => {
   const colorStr = (index, num) => initArr[num].bit.filter((i) => i === index)?.length ? initArr[num].car : '';
