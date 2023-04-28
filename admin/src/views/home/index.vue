@@ -34,59 +34,66 @@ function differenceArr(arr1: any[], arr2: any[]): any {
   return arr1.filter((item) => !arr2.includes(item));
 }
 
-const canDrag = ref(true);
-
 const maxLength = 64;
 
+const whetherToCross = ref();
+const result_arr = ref<number[]>([]);
+const isDrag = ref(false);
+
 function handleDragEnter(data) {
-  if (canDrag.value) {
-    const startIndex = Number(data.fromElement?.innerText || data.target?.innerText);
-    const endIndex = Number(data.toElement.innerText);
+  isDrag.value = true;
+  const startIndex = Number(data.fromElement?.innerText || data.target?.innerText);
+  const endIndex = Number(data.toElement.innerText);
 
-    if (startIndex !== endIndex) {
-      let otherBits: number[] = [];
+  if (startIndex !== endIndex) {
+    let otherBits: number[] = [];
 
-      for (const item of initArr) {
-        for (const subitem of item.bit) {
-          otherBits.push(subitem);
-        }
+    for (const item of initArr) {
+      for (const subitem of item.bit) {
+        otherBits.push(subitem);
       }
+    }
 
-      for (let i = 0; i < initArr?.length; i++) {
+    for (let i = 0; i < initArr?.length; i++) {
 
-        const _index = initArr[i].bit.findIndex((item) => item === startIndex);
-        if (_index >= 0) {
-          const result = differenceArr(otherBits, initArr[i].bit);
+      const _index = initArr[i].bit.findIndex((item) => item === startIndex);
+      if (_index >= 0) {
+        const result = differenceArr(otherBits, initArr[i].bit);
 
-          console.log(result, endIndex, result.includes(endIndex));
-          if (result.includes(endIndex)) {
-            canDrag.value = false;
-            return;
-          }
+        const new_arr = initArr[i].bit.map((item) => {
+          item = item + endIndex - startIndex;
+          return item;
+        });
 
-          const new_arr = initArr[i].bit.map((item) => {
-            item = item + endIndex - startIndex;
-            return item;
-          });
+        console.log(new_arr);
 
-          const whetherToCross = new_arr.some(item => {
-            return result.includes(item) || item < 1 || item > maxLength;
-          });
-
-          if (!whetherToCross) {
-            initArr[i].bit = new_arr;
-          }
-          return;
+        if (!result_arr.value?.[0]) {
+          result_arr.value[0] = new_arr;
         }
+        result_arr.value[1] = result_arr.value[0];
+        result_arr.value[0] = new_arr;
+
+        initArr[i].bit = new_arr;
+
+        whetherToCross.value = new_arr.some(item => {
+          return result.includes(item) || item < 1 || item > maxLength;
+        });
+        return;
       }
     }
   }
-
 }
 
-function handleDragEnd () {
-  canDrag.value = true;
-}
+watch(() => result_arr.value, (val, oldValue) => {
+  console.log(val, oldValue);
+}, {
+  deep: true
+});
+
+const handleDragEnd = () => {
+  isDrag.value = false;
+};
+
 </script>
 
 <template>
