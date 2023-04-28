@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-const containerRef = ref();
-
 const initArr = reactive([
   { car: 'active bg-blue-100', bit: [5, 6, 7, 8] },
   { car: 'active bg-pink-100', bit: [61] },
@@ -8,34 +6,10 @@ const initArr = reactive([
   { car: 'active bg-red-100', bit: [20, 21, 22, 23, 24] }
 ]);
 
-const startIndex = ref();
-const endIndex = ref();
-
-watch(()=> endIndex.value, () => {
-  changeArr(startIndex.value, endIndex.value);
-});
-
-function changeArr (oldIndex, newIndex) {
-  for (let i = 0; i < initArr?.length; i++) {
-    const _index = initArr[i].bit.findIndex((item) => Number(item) === Number(oldIndex));
-
-    console.log(_index, '===', newIndex, oldIndex);
-
-    if (_index >= 0) {
-      initArr[i].bit = initArr[i].bit.map((item) => {
-        item = item + newIndex - oldIndex;
-        return item;
-      });
-      console.log(initArr);
-      return;
-    }
-  }
-}
-
 const classes = computed(() => {
   const colorStr = (index, num) => initArr[num].bit.filter((i) => i === index)?.length ? initArr[num].car : '';
 
-	return (index) => {
+  return (index) => {
     return [
       'item',
       colorStr(index, 0),
@@ -46,21 +20,29 @@ const classes = computed(() => {
   };
 });
 
+function handleDargEnter(data) {
+  const startIndex = Number(data.fromElement?.innerText || data.target?.innerText);
+  const endIndex = Number(data.toElement.innerText);
+  if (startIndex !== endIndex) {
+    for (let i = 0; i < initArr?.length; i++) {
+      const _index = initArr[i].bit.findIndex((item) => item === startIndex);
 
-function handleDargEnter (data) {
-
-  if (data.fromElement?.innerText || data.target?.innerText !== data.toElement.innerText) {
-    startIndex.value = Number(data.fromElement?.innerText || data.target?.innerText);
-    endIndex.value = Number(data.toElement?.innerText);
+      if (_index >= 0) {
+        initArr[i].bit = initArr[i].bit.map((item) => {
+          item = item + endIndex - startIndex;
+          return item;
+        });
+        return;
+      }
+    }
   }
-
 }
 </script>
 
 <template>
-  <div class="container" ref="containerRef">
-    <div :class="classes(item)"  draggable="true" @dragenter="handleDargEnter"
-         v-for="(item, index) in 64" :key="index">
+  <div class="container">
+    <div :class="classes(item)" draggable="true" @dragenter="handleDargEnter"
+      v-for="(item, index) in 64" :key="index">
       {{ item }}
     </div>
   </div>
