@@ -11,12 +11,14 @@ const classes = computed(() => {
   const colorStr = (index, num) => initArr[num].bit.filter((i) => i === index)?.length ? initArr[num].car : '';
 
   return (index) => {
+    const arr: any[] = [];
+    for (let i = 0; i < initArr?.length; i++) {
+      arr.push(colorStr(index, i));
+    }
+
     return [
       'item',
-      colorStr(index, 0),
-      colorStr(index, 1),
-      colorStr(index, 2),
-      colorStr(index, 3)
+      ...arr
     ];
   };
 });
@@ -68,7 +70,7 @@ function handleDragEnter(data) {
           });
 
           const whetherToCross = new_arr.some(item => {
-            return result.includes(item) || item < 1 || item >= maxLength;
+            return result.includes(item) || item < 1 || item > maxLength;
           });
 
           if (!whetherToCross) {
