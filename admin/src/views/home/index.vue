@@ -55,6 +55,7 @@ function handleDargEnter(data) {
   grid-auto-rows: 50px;
 
   .item {
+    cursor: move;
     border: 1px solid black;
     display: flex;
     align-items: center;
