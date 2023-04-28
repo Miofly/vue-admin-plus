@@ -1,55 +1,32 @@
 <script lang="ts" setup>
-import { useSortable } from '@vft/use';
-import { isNullOrUndefined } from '@vft/utils';
-
 const containerRef = ref();
 
 const initArr = reactive([
-  { car: '', bit: [0] },
-  { car: 'active bg-blue-100', bit: [5] },
+  { car: 'active bg-blue-100', bit: [5, 6, 7, 8] },
   { car: 'active bg-pink-100', bit: [61] },
   { car: 'active bg-green-100', bit: [47, 48, 49] },
-  { car: 'active bg-red-100', bit: [10, 11, 12, 13, 14] }
+  { car: 'active bg-red-100', bit: [20, 21, 22, 23, 24] }
 ]);
 
 const startIndex = ref();
 const endIndex = ref();
 
-
-const { initSortable } = useSortable(containerRef, {
-  draggable: '.item',
-  handle: '.active',
-  onChange: (evt) => {
-    const { oldIndex, newIndex } = evt;
-    startIndex.value = oldIndex;
-    endIndex.value = newIndex;
-  },
-  onEnd: (evt) => {
-    const { oldIndex, newIndex } = evt;
-    if (isNullOrUndefined(oldIndex) || isNullOrUndefined(newIndex) || oldIndex === newIndex) {
-      return;
-    }
-  }
-});
-
-nextTick(() => {
-  initSortable();
-});
-
-watch(()=> endIndex.value, (val) => {
+watch(()=> endIndex.value, () => {
   changeArr(startIndex.value, endIndex.value);
-  console.log(initArr, '==');
 });
 
 function changeArr (oldIndex, newIndex) {
   for (let i = 0; i < initArr?.length; i++) {
-    const _index = initArr[i].bit.findIndex((item) => item === oldIndex + 1);
+    const _index = initArr[i].bit.findIndex((item) => Number(item) === Number(oldIndex));
+
+    console.log(_index, '===', newIndex, oldIndex);
 
     if (_index >= 0) {
-      initArr[i].bit = initArr[i].bit.map(item => {
+      initArr[i].bit = initArr[i].bit.map((item) => {
         item = item + newIndex - oldIndex;
         return item;
       });
+      console.log(initArr);
       return;
     }
   }
@@ -68,12 +45,21 @@ const classes = computed(() => {
     ];
   };
 });
+
+
+function handleDargEnter (data) {
+
+  if (data.fromElement?.innerText || data.target?.innerText !== data.toElement.innerText) {
+    startIndex.value = Number(data.fromElement?.innerText || data.target?.innerText);
+    endIndex.value = Number(data.toElement?.innerText);
+  }
+
+}
 </script>
 
 <template>
   <div class="container" ref="containerRef">
-
-    <div :class="classes(item)"
+    <div :class="classes(item)"  draggable="true" @dragenter="handleDargEnter"
          v-for="(item, index) in 64" :key="index">
       {{ item }}
     </div>
