@@ -25,7 +25,9 @@
     "vft": "0.0.71",
     "vue": "^3.2.47",
     "vue-request": "2.0.0-rc.4",
-    "vue-router": "^4.1.6"
+    "vue-router": "^4.1.6",
+    "@logicflow/core": "^1.2.1",
+    "@logicflow/extension": "^1.2.1"
   },
   "devDependencies": {
     "vue-demi": "^0.13.11"
