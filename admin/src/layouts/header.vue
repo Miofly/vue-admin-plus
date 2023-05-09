@@ -8,7 +8,6 @@ import PhoneLeftImg from './assets/phone-left.png';
 import PhoneRightImg from './assets/phone-right.png';
 import LogoImg from './assets/logo.png';
 import { generateCssVars, MenuTypeEnum } from 'vft';
-import LinkStatus from '@/views/comp/demo/extend/horizontal-menu/status.vue';
 import { useSetting } from '@/use';
 
 let menuRef = ref();
@@ -2459,12 +2458,6 @@ const { getIsDark } = useSetting();
           <template #menuItem="{item}">
             <div :class="['item-con']">
               <span class="">{{ item.fullName || item.name }}</span>
-                <link-status
-                  v-if="item?.functionLabel"
-                  :color="item?.functionLabel?.color"
-                  :bgColor="item?.functionLabel?.bgColor"
-                  :name="item?.functionLabel?.name"
-                />
             </div>
           </template>
         </vft-horizontal-menu>

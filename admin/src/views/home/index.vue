@@ -1,9 +1,6 @@
 <template>
-    <FlowChart :data="demoData" />
+    1
 </template>
 
 <script lang="ts" setup>
-import FlowChart from '@/components/FlowChart/src/FlowChart.vue';
-
-import demoData from './dataTurbo.json';
 </script>
