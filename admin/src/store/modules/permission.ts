@@ -1,9 +1,10 @@
 import { ASYNC_ROUTES, ERROR_LOG_ROUTE, routes } from '@/router/constants';
 import { useUserStore } from '@/store/modules/user';
-import type { MenuType, RouteRecordItem } from '@vft/router';
+import type { MenuType } from '@vft/router';
 import { filterHasRoleRoutes, joinParentPath } from '@vft/router';
 import { arrSort, cloneDeep, recursion, recursionFilterTree, treeMap } from '@vft/utils';
 import { defineStore } from 'pinia';
+import type { RouteLocationNormalized } from 'vue-router';
 import pinia from '../';
 import setting from '../../setting';
 
@@ -47,15 +48,15 @@ export const usePermissionStore = defineStore({
       this.isDynamicAddedRoute = false;
       this.menuList = [];
     },
-    async buildRoutesAction(): Promise<RouteRecordItem[]> {
+    async buildRoutesAction(): Promise<RouteLocationNormalized[]> {
       const userStore = useUserStore();
-      const asyncRoutes: RouteRecordItem[] = filterHasRoleRoutes(ASYNC_ROUTES, userStore.getRoleList);
+      const asyncRoutes: RouteLocationNormalized[] = filterHasRoleRoutes(ASYNC_ROUTES, userStore.getRoleList);
       this.generateMenuList([...asyncRoutes, ...routes]);
       asyncRoutes.push(ERROR_LOG_ROUTE);
       return asyncRoutes;
     },
     generateMenuList(routes) {
-      function transformRouteToMenu(routes: RouteRecordItem[]) {
+      function transformRouteToMenu(routes: RouteLocationNormalized[]) {
         // 借助 lodash 深拷贝
         const cloneRouteList = cloneDeep(routes);
 
@@ -63,7 +64,7 @@ export const usePermissionStore = defineStore({
           return !item.meta?.hideInMenu;
         });
 
-        recursion(routeList, (item: RouteRecordItem) => {
+        recursion(routeList, (item: RouteLocationNormalized) => {
           if (item.meta?.hideChildrenInMenu && item.children?.length) {
             item.children = undefined;
             if (item.redirect) {
@@ -76,7 +77,7 @@ export const usePermissionStore = defineStore({
 
         // 提取树指定结构
         const list: MenuType[] = treeMap(routeList, {
-          conversion: (node: RouteRecordItem) => {
+          conversion: (node: RouteLocationNormalized) => {
             return {
               ...(node.meta || {}),
               meta: node.meta,

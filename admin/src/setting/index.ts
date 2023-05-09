@@ -29,7 +29,7 @@ const setting: ProjectConfig = {
     showChildIcon: false
   },
   defaultScrollDom: '.layout-content',
-  contentMinWidth: 1080,
+  contentMinWidth: 1280,
   sideMenuWidth: 260,
   sideMenuCollapseWidth: 55,
   pageLoadingIcon: 'ico-icomoon-free:spinner2'

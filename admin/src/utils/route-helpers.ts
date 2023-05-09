@@ -11,9 +11,9 @@ import {
   upperFirst
 } from '@vft/utils';
 import { type Component } from 'vue';
-import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router';
-import { createRouter, createWebHashHistory, type Router } from 'vue-router';
-import type { AsyncComponent, RouteItemExtendMeta, RouteRecordItem } from './types';
+import { createRouter, createWebHashHistory, type RouteLocationNormalizedLoaded } from 'vue-router';
+import type { RouteLocationNormalized, Router, RouterOptions } from 'vue-router';
+import type { AsyncComponent, RouteItemExtendMeta } from './types';
 
 /**
  * @description 对传入的某个路由进行处理，主要是对路由的 matched 参数进行了一遍处理
@@ -31,12 +31,12 @@ export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormal
     ...opt,
     matched: (matched
       ? matched.map((item) => ({
-          meta: item.meta,
-          name: item.name,
-          path: item.path
-        }))
-      : undefined) as RouteRecordNormalized[]
-  };
+        meta: item.meta,
+        name: item.name,
+        path: item.path
+      }))
+      : undefined)
+  } as RouteLocationNormalized;
 }
 
 export function getRouteKeyAttrs(route: RouteLocationNormalized) {
@@ -48,7 +48,7 @@ export function getRouteKeyAttrs(route: RouteLocationNormalized) {
  * @description import.meta.glob 获取的路由组装
  */
 export const generateRouteModuleList = (modules: ModulesDefaultType) => {
-  const _routeModuleList: RouteRecordItem[] = [];
+  const _routeModuleList: RouteLocationNormalized[] = [];
   /** 获取 modules 目录下文件中定义的路由 */
   Object.keys(modules).forEach((key) => {
     const mod = modules[key]?.default || {};
@@ -67,7 +67,7 @@ export const generateRouteModuleList = (modules: ModulesDefaultType) => {
  * @param name
  * @param isChildren
  */
-export function routeAddName(route: RouteRecordItem[], name = '', isChildren = false) {
+export function routeAddName(route: RouteLocationNormalized[], name = '', isChildren = false) {
   route.forEach((item) => {
     if (!item.name) {
       if (item.path.startsWith('/')) {
@@ -84,26 +84,26 @@ export function routeAddName(route: RouteRecordItem[], name = '', isChildren = f
     }
 
     if (isChildren && item.component) {
-      item.component = getViewComponent(item.name!, item.component as AsyncComponent);
+      item.component = getViewComponent(item.name, item.component as AsyncComponent);
     }
     if (item.children?.length) {
-      routeAddName(item.children, item.name, true);
+      routeAddName(item.children, item.name as string, true);
     }
   });
 }
 
-export function getViewComponent(name: string, asyncComponent: AsyncComponent) {
+export function getViewComponent(name: RouteLocationNormalized['name'], asyncComponent: RouteLocationNormalized['component']) {
   return () => setViewComponentName(name, asyncComponent);
 }
 
-export async function setViewComponentName(name: string, asyncComponent: AsyncComponent) {
-  const component = (await asyncComponent()) as { default: Component };
-  Object.assign(component.default, { name });
+export async function setViewComponentName(name: RouteLocationNormalized['name'], asyncComponent: RouteLocationNormalized['component']) {
+  const component = await (asyncComponent as AsyncComponent)?.() as { default: Component };
+  Object.assign(component?.default, { name });
   return component;
 }
 
 /** 路由 children path 路径拼接 */
-export function joinParentPath(routes: RouteRecordItem[], parentPath = '') {
+export function joinParentPath(routes: RouteLocationNormalized[], parentPath = '') {
   for (let index = 0; index < routes.length; index++) {
     const route = routes[index];
     if (!(route.path.startsWith('/') || isUrl(route.path))) {
@@ -116,7 +116,7 @@ export function joinParentPath(routes: RouteRecordItem[], parentPath = '') {
 }
 
 /** 根据数组第一项生成 redirect */
-export function generateRouteRedirect(route: RouteRecordItem) {
+export function generateRouteRedirect(route: RouteLocationNormalized) {
   if (route?.children?.length) {
     if (!route.component && !route.redirect) {
       route.redirect = route?.children[0].path;
@@ -146,7 +146,7 @@ export function generateRoutes(path, title, children, attrs?: Partial<RouteItemE
     }
   };
 
-  generateRouteRedirect(_routes as RouteRecordItem);
+  generateRouteRedirect(_routes as RouteLocationNormalized);
 
   return _routes;
 }
@@ -179,8 +179,8 @@ export function generateChildRoutes(routes, dirName, isIndex) {
     const comp = item.component
       ? item.component
       : (!item.generateComp && item.children?.length) || isUrl(item.path)
-      ? null
-      : () => import(`@/${dirName}${item?.isIndex || (!isBoolean(item?.isIndex) && isIndex) ? compPath + '/index' : compPath}.vue`);
+        ? null
+        : () => import(`@/${dirName}${item?.isIndex || (!isBoolean(item?.isIndex) && isIndex) ? compPath + '/index' : compPath}.vue`);
 
     const route_item = {
       ...pick(item, ['path', 'redirect']),
@@ -204,7 +204,7 @@ export function generateChildRoutes(routes, dirName, isIndex) {
  * @date 2023/1/31 08:52
  * @param {RouteLocationNormalized} routeRecord
  */
-export function getRouterKeyPath(routeRecord: RouteLocationNormalized): string {
+export function getRouterKeyPath(routeRecord: RouteLocationNormalizedLoaded | RouteLocationNormalized): string {
   if (routeRecord.meta?.currentActivePath) {
     return routeRecord.meta.currentActivePath as string;
   }
@@ -215,22 +215,22 @@ export function getRouterKeyPath(routeRecord: RouteLocationNormalized): string {
   }
 }
 
-export function filterHasRoleRoutes(routes: RouteRecordItem[], roleList?) {
+export function filterHasRoleRoutes(routes: RouteLocationNormalized[], roleList?) {
   return roleList?.length
     ? recursionFilterTree(routes, (route) => {
-        const { meta } = route;
-        const { roles } = meta || {};
-        if (!roles) return true;
-        return roleList.some((role) => roles.includes(role));
-      })
+      const { meta } = route;
+      const { roles } = meta || {};
+      if (!roles) return true;
+      return roleList.some((role) => roles.includes(role));
+    })
     : routes;
 }
 
 // --------- not use ---------- //
 
-export function flatMultiLevelRoutes(routeModules: RouteRecordItem[]) {
+export function flatMultiLevelRoutes(routeModules: RouteLocationNormalized[]) {
   /** 对当前传入的路由先进行深拷贝 */
-  const modules: RouteRecordItem[] = cloneDeep(routeModules);
+  const modules: RouteLocationNormalized[] = cloneDeep(routeModules);
   for (let index = 0; index < modules.length; index++) {
     /** 获取每一个路由元素 */
     const routeModule = modules[index];
@@ -253,7 +253,7 @@ export function flatMultiLevelRoutes(routeModules: RouteRecordItem[]) {
  * @date 2021/9/11
  * @param routeModule 传入的路由元素
  */
-function isMultipleRoute(routeModule: RouteRecordItem) {
+function isMultipleRoute(routeModule: RouteLocationNormalized) {
   /**
    * 判断传入的路由元素是否存在 或者 是否有 children 属性 或者 children 属性的 长度 > 0
    * 如果上述有任何一个条件满足则直接返回 false
@@ -279,10 +279,10 @@ function isMultipleRoute(routeModule: RouteRecordItem) {
 }
 
 /** 路由提升函数 */
-function promoteRouteLevel(routeModule: RouteRecordItem) {
+function promoteRouteLevel(routeModule: RouteLocationNormalized) {
   /** 使用 vue-router 来拼接路由菜单，临时创建一个路由，主要是为了使用其中的 router.getRoutes() 方法 */
   let router: Router | null = createRouter({
-    routes: [routeModule as unknown as RouteRecordNormalized],
+    routes: [routeModule] as unknown as RouterOptions['routes'],
     history: createWebHashHistory()
   });
 
@@ -290,7 +290,7 @@ function promoteRouteLevel(routeModule: RouteRecordItem) {
    * 通过 路由的 getRoutes 方法获取每一级路由
    * 会得到当前路由的所有路由路径拼接的一个数组，
    */
-  const routes = router.getRoutes();
+  const routes = router.getRoutes() as unknown as RouteLocationNormalized[];
 
   addToChildren(routes, routeModule.children || [], routeModule);
   /** 路由转换结束后将 router 置位 null 释放内存，因为用不到了 */
@@ -308,7 +308,7 @@ function promoteRouteLevel(routeModule: RouteRecordItem) {
  * @param children
  * @param routeModule
  */
-function addToChildren(routes: RouteRecordNormalized[], children: RouteRecordItem[], routeModule: RouteRecordItem) {
+function addToChildren(routes: RouteLocationNormalized[], children: RouteLocationNormalized[], routeModule: RouteLocationNormalized) {
   for (let index = 0; index < children.length; index++) {
     /** children 下的每一个路由元素 */
     const child = children[index];
@@ -331,7 +331,7 @@ function addToChildren(routes: RouteRecordNormalized[], children: RouteRecordIte
      * 二级路由的 children 去匹配 三级路由的 name 肯定会匹配不上，所以这时会把三级路由中的 route 通过 push 到 二级路由的 children 中
      */
     if (!routeModule.children.find((item) => item.name === route.name)) {
-      routeModule.children?.push(route as unknown as RouteRecordItem);
+      routeModule.children?.push(route);
     }
     /** 如果当前的子路由也就是 child 下面还有 子路由也就是还有 children，则再次执行一遍此函数 */
     if (child.children?.length) {

@@ -1,8 +1,9 @@
-import { basicRoutes, getViewComponent, routeAddName, type RouteRecordItem } from '@vft/router';
+import { basicRoutes, getViewComponent, routeAddName } from '@vft/router';
 import { generateRouteModuleList } from '@vft/router';
 import { recursion } from '@vft/utils';
 import autoGenerateRoutes from '~pages';
 import LOGIN_PAGE from '@/views/user/login/index.vue';
+import type { RouteLocationNormalized } from 'vue-router';
 
 /** 404 具体页面标题 */
 export const PAGE_NOT_FOUND_NAME = 'PageNotFound';
@@ -74,9 +75,9 @@ const AGREEMENT_PRIVACY_ROUTE = {
   }
 };
 
-const USERS_ROUTES: RouteRecordItem[] = [LOGIN_ROUTE, REG_ROUTE, FORGOT_ROUTE, AGREEMENT_USER_ROUTE, AGREEMENT_PRIVACY_ROUTE];
+const USERS_ROUTES: RouteLocationNormalized[] = [LOGIN_ROUTE, REG_ROUTE, FORGOT_ROUTE, AGREEMENT_USER_ROUTE, AGREEMENT_PRIVACY_ROUTE];
 
-recursion(USERS_ROUTES, (item: RouteRecordItem) => {
+recursion(USERS_ROUTES, (item: RouteLocationNormalized) => {
   item.meta.hideTab = true;
   item.meta.hideInMenu = true;
   item.meta.hasTokenToRoot = true;
@@ -91,7 +92,7 @@ export const modulesRoutes = [...generateRouteModuleList(modules)];
 
 export const ASYNC_ROUTES = [...autoGenerateRoutes, ...modulesRoutes];
 
-const IGNORE_AUTH_ROUTES: RouteRecordItem[] = [PAGE_NOT_FOUND_ROUTE, ...USERS_ROUTES];
+const IGNORE_AUTH_ROUTES: RouteLocationNormalized[] = [PAGE_NOT_FOUND_ROUTE, ...USERS_ROUTES];
 
 IGNORE_AUTH_ROUTES.forEach((item => {
   item.meta.ignoreAuth = true;
