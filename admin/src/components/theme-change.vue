@@ -5,6 +5,7 @@ const { themeDark, themeLight, getIsDark } = useSetting();
 </script>
 
 <template>
+
   <div class="theme-container">
     <div :class="[{'active': !getIsDark}, 'item']" @click="themeLight">
       <vft-icon-text :adjustOrigin="false" :size="10" text="浅色" direction="col" icon="ico-ep:sunny" />

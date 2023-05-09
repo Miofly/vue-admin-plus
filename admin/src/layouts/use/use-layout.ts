@@ -22,8 +22,8 @@ export function useLayout(showSide) {
 
 
   const mediaWidthText = computed(() => {
-    const textStr = (route.meta?.contentMinWidth ||
-      (route.meta.hideSide ? contentMinWidth : contentMinWidth - sideWidth.value)) + 'px';
+    const textStr = addUnit(route.meta?.contentMinWidth || contentMinWidth);
+      // (route.meta.hideSide ? contentMinWidth :  - sideWidth.value)) + 'px';
 
     return `@media (max-width: ${textStr}) {.layout-main .layout-container ${defaultScrollDom} {min-width: ${textStr};}}`;
   });

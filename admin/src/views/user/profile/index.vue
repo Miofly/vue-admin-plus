@@ -51,19 +51,24 @@ const excludeNames = computed(() => {
 </script>
 
 <template>
-  <div class="profile">
-    <profile-side />
-    <header-title :title="route.meta.title"/>
+  <vft-container class="profile">
+    <vft-aside :width="200">
+      <profile-side />
+    </vft-aside>
+    <vft-main>
+      <header-title :title="route.meta.title"/>
 
-    <div class="profile-con">
-      <!-- Todo Three Route Render -->
-      <router-view v-slot="{ Component }">
-        <keep-alive :include="[routeName]" :exclude="excludeNames(route)">
-          <component v-if="tabStore.reloadFlag" :is="Component" :key="getRouterKeyPath(route)" />
-        </keep-alive>
-      </router-view>
-    </div>
-  </div>
+      <div class="profile-con">
+        <!-- Todo Three Route Render -->
+        <router-view v-slot="{ Component }">
+          <keep-alive :include="[routeName]" :exclude="excludeNames(route)">
+            <component v-if="tabStore.reloadFlag" :is="Component" :key="getRouterKeyPath(route)" />
+          </keep-alive>
+        </router-view>
+      </div>
+    </vft-main>
+
+  </vft-container>
 </template>
 
 <style lang="scss" scoped>

@@ -29,7 +29,10 @@ const _maxWidth = computed(() => addUnit(maxWidth));
       :icon="{icon: 'ico-carbon:user-avatar-filled', color}"
       :size="size"
     />
-    <span class="user-info-name" :style="{color: textColor}">{{ getUserName }}</span>
+
+    <span class="user-info-name" :title="getUserName" :style="{color: textColor}">
+      {{ getUserName }}
+    </span>
     <slot/>
   </div>
 </template>

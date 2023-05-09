@@ -64,7 +64,7 @@ const handleSubmit = async() => {
     <verify-code-form-item ref="verifyCodeRef" v-model:verify-code="formData.verifyCode"
       :formRef="formRef" />
     <vft-form-item>
-      <div class="action-item">
+      <div class="flex justify-between w-full">
         <vft-checkbox v-model="isSaveAccount" label="记住账号" />
         <vft-link type="primary" :route="LINK_FORGOT" :underline="false">{{ pageCfg.forgotText }}</vft-link>
       </div>
@@ -79,11 +79,3 @@ const handleSubmit = async() => {
     </div>
   </vft-form>
 </template>
-
-<style lang="scss" scoped>
-.action-item {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-</style>

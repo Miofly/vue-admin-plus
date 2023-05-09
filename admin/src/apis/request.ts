@@ -40,6 +40,7 @@ export const request = createAxios({
           await userStore.logout();
         }
 
+        // VriMessage.error(msg);
         // const cancelRequest = new RequestCanceler();
         // const pendMap = cloneDeep(cancelRequest.getAllPending());
         // cancelRequest.removeAllPending();

@@ -2,7 +2,9 @@
 import UserInfo from '@/components/user-info.vue';
 import { useLayoutContext } from '@/layouts/use/use-context';
 import { LINK_PROFILE_ACCOUNT, LINK_PROFILE_SYSTEM_SETTING } from '@/router/routes/user';
+import { useTabs } from '@vft/store';
 import { addUnit } from '@vft/utils';
+import { cssVarValue } from 'vft';
 
 const PROFILE_LIST = [
   {
@@ -30,14 +32,15 @@ onActivated(() => {
 });
 
 function handleDragWidthEnd() {
-  layoutContext.layoutContainerRef.value.style.marginLeft = addUnit(sideWidth.value);
+  // layoutContext.layoutContainerRef.value.style.marginLeft = addUnit(sideWidth.value);
 }
 </script>
 
 <template>
-  <vft-side-menu ref="sideMenuRef" :menuTopBottomHeight="70" openListenRoute dragWidth
-                 v-model:sideWidth="sideWidth" :menus="PROFILE_LIST"
-                 @dragWidthEnd="handleDragWidthEnd" @select="handleDragWidthEnd">
+  <vft-side-menu ref="sideMenuRef"
+    :menuTopBottomHeight="70" height="calc(100% - 100px)"
+    v-model:width="sideWidth" :menus="PROFILE_LIST" use-router-jump
+    @dragWidthEnd="handleDragWidthEnd" @select="handleDragWidthEnd">
     <template #top>
       <div class="h-70px flex align-center ml-12px overflow-x-hidden">
         <user-info :size="35" :cursor="false"/>

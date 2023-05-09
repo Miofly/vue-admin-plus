@@ -54,11 +54,11 @@ function onMouseEnter(e) {
 }
 
 // color picker is show and click outside
-function onClickOutside(e) {
-  if (!popoverRef.value?.popperRef?.contentRef?.contains(e?.target) && !popoverReferenceRef.value.contains(e?.target)) {
-    hide();
-  }
-}
+// function onClickOutside(e) {
+//   if (!popoverRef.value?.popperRef?.contentRef?.contains(e?.target) && !popoverReferenceRef.value.contains(e?.target)) {
+//     hide();
+//   }
+// }
 
 function onClickUserInfo() {
   visible.value = !visible.value;
@@ -116,8 +116,7 @@ function hide() {
         </user-info>
         <div class="theme">
           <theme-change/>
-          <theme-color @color-change="hide" @click-outside="onClickOutside" ref="themeColorRef"
-                       class="mt-5px" v-model:visible="visible"/>
+          <theme-color ref="themeColorRef" class="mt-5px" v-model:visible="visible"/>
         </div>
       </div>
       <div class="w-full">
