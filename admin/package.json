@@ -11,25 +11,25 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@iconify/json": "2.2.35",
-    "@types/lodash": "^4.14.191",
-    "@vft/pkg": "0.0.36",
-    "@vue/shared": "^3.2.47",
-    "@vueuse/core": "^9.13.0",
+    "@iconify/json": "2.2.64",
+    "@types/lodash": "^4.14.194",
+    "@vft/pkg": "0.0.38",
+    "@vue/shared": "^3.3.2",
+    "@vueuse/core": "^10.1.2",
     "jsencrypt": "^3.3.2",
     "lodash": "^4.17.21",
-    "pinia": "^2.0.33",
-    "sass": "^1.59.3",
+    "pinia": "^2.0.36",
+    "sass": "^1.62.1",
     "typescript": "^5.0.4",
-    "unocss": "^0.50.6",
-    "vft": "0.0.83",
-    "vue": "^3.2.47",
+    "unocss": "^0.51.12",
+    "vft": "0.0.91",
+    "vue": "^3.3.2",
     "vue-request": "2.0.0-rc.4",
-    "vue-router": "^4.1.6",
-    "@logicflow/core": "^1.2.1",
-    "@logicflow/extension": "^1.2.1"
+    "vue-router": "^4.2.0",
+    "@logicflow/core": "^1.2.5",
+    "@logicflow/extension": "^1.2.5"
   },
   "devDependencies": {
-    "vue-demi": "^0.13.11"
+    "vue-demi": "^0.14.1"
   }
 }

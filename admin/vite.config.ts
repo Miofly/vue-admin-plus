@@ -17,7 +17,7 @@ export default createViteConfig({
 			'vft/es/components/pagination/style/index',
 			'vft/es/components/icon/style/index',
 			'vft/es/components/search/style/index',
-			'vft/es/components/back-top/style/index',
+			'vft/es/components/backtop/style/index',
 			'vft/es/components/footer-layout/style/index',
 			'vft/es/components/full-screen/style/index',
 			'vft/es/components/overlay/style/index',

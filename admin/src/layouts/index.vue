@@ -121,7 +121,7 @@ const menuStyle = generateCssVars({
     </vft-footer-layout>
   </vft-container>
   <router-view v-else/>
-  <vft-back-top
+  <vft-backtop
     :scrollTargetKey="route.meta?.isMoreTabPage && route.meta?.scrollDom ? getRouterKeyPath(route) : undefined"
     class="z-10" :target="route.meta?.scrollDom || defaultScrollDom" :right="30" :bottom="100"/>
 </template>
