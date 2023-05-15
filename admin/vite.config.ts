@@ -47,7 +47,8 @@ export default createViteConfig({
       'vft/es/components/tabs/style/index',
       'vft/es/components/table/style/index',
       'vft/es/components/tab-pane/style/index',
-      'vft/es/components/horizontal-menu/style/index'
+      'vft/es/components/horizontal-menu/style/index',
+      'vft/es/components/date-picker/style/index'
 		],
 		pwaCfg: {
 			manifest: {
