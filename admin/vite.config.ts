@@ -6,6 +6,7 @@ import dynamicImport from 'vite-plugin-dynamic-import';
 export default createViteConfig({
 	customConfig: {
 		optimizeDeps: [
+      '@vft/use',
       'vft/es/components/iframe-layout/style/index',
       'vft/es/components/router-view-content/style/index',
       'vft/es/components/side-menu/style/index',
