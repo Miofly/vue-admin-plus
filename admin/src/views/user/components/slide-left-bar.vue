@@ -14,7 +14,6 @@
 </template>
 
 <script lang="ts" setup>
-import { useRouterHelper } from '@vft/router';
 import { router } from '@/router';
 import { LINK_AGREEMENT_USER, LINK_AGREEMENT_PRIVACY } from '@/router/constants';
 interface Props {
@@ -22,7 +21,7 @@ interface Props {
 }
 
 const { tabindex } = defineProps<Props>();
-const { go } = useRouterHelper(router);
+const { go } = useRouterHelper();
 const goUser = () => {
   // location.href = '/agreement/user'
   go(LINK_AGREEMENT_USER);

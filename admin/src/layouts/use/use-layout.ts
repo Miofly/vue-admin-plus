@@ -7,8 +7,6 @@ export function useLayout(showSide) {
   const { contentMinWidth, defaultScrollDom, sideMenuWidth, sideMenuCollapseWidth } = setting;
 
   const route = useRoute();
-  
-  console.log(route, 'routerouterouterouterouteroute');
 
   const collapse = ref(false);
   const overflowClass = computed(() => route.meta.scrollDom || route.meta.hideScroll ? '' : 'overflow-auto overflow-overlay');

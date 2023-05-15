@@ -5,19 +5,19 @@ import { pageCfg, rules } from '@/views/user/config';
 interface Props {
   account: string;
   placeholder?: string;
-  errorMess?: string;
 }
 
-const { account, placeholder = pageCfg.phonePlaceholder, errorMess } = defineProps<Props>();
+const { placeholder = pageCfg.phonePlaceholder } = defineProps<Props>();
 
-const emit = defineEmits(['update:account', 'update:errorMess']);
+const account = defineModel('account');
+const errorMess = defineModel('errorMess');
 
 const handleInput = (value) => {
-  emit('update:account', phoneAddBlank(value));
+  account.value = phoneAddBlank(value);
 };
 
 const handleKeyUp = (e) => {
-  emit('update:account', formatPhoneBlack(e));
+  account.value = formatPhoneBlack(e);
 };
 </script>
 

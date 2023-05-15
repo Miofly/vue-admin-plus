@@ -24,8 +24,8 @@ const {
   openKeepAlive,
   multiTabsSetting,
   errorHandle,
-  canEmbedIFramePage,
-  openPageLoading
+  canEmbedIFramePage
+  // openPageLoading
 } = setting;
 
 onMounted(() => {
@@ -80,7 +80,8 @@ const menuStyle = generateCssVars({
 <template>
   <vft-container direction="vertical" class="layout-main" v-if="!route.meta?.isAlonePage">
     <layout-header/>
-    <vft-container ref="layoutContainerRef" v-spin="openPageLoading && tabStore.getPageLoading"
+    <!--v-spin="openPageLoading && tabStore.getPageLoading"-->
+    <vft-container ref="layoutContainerRef"
       :class="['layout-container', overflowClass]" >
       <vft-aside :style="{width: addUnit(sideWidth)}" v-show="showSide">
         <vft-side-menu
@@ -133,6 +134,11 @@ const menuStyle = generateCssVars({
   .vft-aside {
     overflow: initial;
   }
+
+  .layout-container {
+    height: calc(100% - var(--vft-header-layout-height) - var(--vft-footer-layout-height));
+  }
+
 
   .footer-right {
     display: flex;

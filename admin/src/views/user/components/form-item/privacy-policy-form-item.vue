@@ -3,15 +3,8 @@ import { rules } from '@/views/user/config';
 import { openWindow } from '@vft/utils';
 
 import { LINK_AGREEMENT_USER, LINK_AGREEMENT_PRIVACY } from '@/router/constants';
-interface Props {
-  checked?: boolean;
-}
 
-const {
-  checked
-} = defineProps<Props>();
-
-const emit = defineEmits(['update:checked']);
+const checked = defineModel('checked');
 
 const initStyle = {
   '--vft-checkbox-text-color': 'rgba(0,0,0,0.85)'
@@ -21,7 +14,7 @@ const initStyle = {
 <template>
   <vft-form-item :rules="rules.privacy" prop="checked">
     <vft-checkbox :style="initStyle" :model-value="checked"
-      @change="(value) => emit('update:checked', value)">
+      @change="(value) => checked = value">
       已阅读并同意
     </vft-checkbox>
     <vft-link :underline="false" type="primary" @click="openWindow(LINK_AGREEMENT_USER)">

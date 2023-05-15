@@ -4,10 +4,6 @@ import { pageCfg, rules as _rules } from '@/views/user/config';
 
 interface Props {
   propName?: string
-  /** 密码 */
-  password?: string | number
-  /** 重复密码 */
-  rePassword?: string | number
   /** 错误信息 */
   errorMess?: string
   placeholder?: string
@@ -15,19 +11,18 @@ interface Props {
 }
 
 const {
-  password,
-  rePassword,
   errorMess,
   rules = _rules.regForgotPwd,
   placeholder = pageCfg.pwaRegPlaceholder,
   propName = 'password'
 } = defineProps<Props>();
 
-const emit = defineEmits(['update:password', 'update:rePassword']);
+const password = defineModel('password');
+const rePassword = defineModel('rePassword');
 
 function onInput (value) {
-  emit('update:password', value);
-  emit('update:rePassword', value);
+  password.value = value;
+  rePassword.value = value;
 }
 </script>
 

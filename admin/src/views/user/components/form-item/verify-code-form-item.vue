@@ -3,25 +3,24 @@ import type { FormInstance } from 'vft';
 import { pageCfg, rules, checkVerifyCode } from '@/views/user/config';
 
 interface Props {
-  verifyCode: string;
   placeholder?: string;
   formRef?: FormInstance
 }
 
-const { verifyCode, placeholder = pageCfg.codePlaceholder, formRef } = defineProps<Props>();
+const { placeholder = pageCfg.codePlaceholder, formRef } = defineProps<Props>();
 
 const verifyCodeRef = ref();
 
-const emit = defineEmits(['update:verifyCode']);
+const verifyCode = defineModel('verifyCode');
 
 const onInput = (value) => {
-  emit('update:verifyCode', value);
+  verifyCode.value = value;
 };
 
 watch(() => verifyCodeRef.value?.code, () => {
   if (formRef) {
     formRef?.clearValidate();
-    emit('update:verifyCode', '');
+    verifyCode.value = '';
   }
 });
 

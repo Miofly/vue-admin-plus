@@ -10,19 +10,18 @@ interface Props {
   form?: FormInstance;
   /** 手机号 */
   phone: string;
-  /** 验证码 */
-  verifyCode: string;
-  /** 错误信息 */
-  errorMess?: string;
-  errorAccountMess?: string;
   smsType?: SmsType;
   formValidateField?: string[]
   showText?: boolean
 }
 
-const { form, showText, verifyCode, errorMess, phone, smsType = 'register', formValidateField } = defineProps<Props>();
+const { form, showText, phone, smsType = 'register', formValidateField } = defineProps<Props>();
 
-const emit = defineEmits(['update:verifyCode', 'update:errorAccountMess', 'update:errorMess', 'getSms']);
+const emit = defineEmits(['getSms']);
+
+const verifyCode = defineModel('verifyCode');
+const errorAccountMess = defineModel('errorAccountMess');
+const errorMess = defineModel('errorMess');
 
 const { isDisabled, text } = useVerifyCode();
 
@@ -46,9 +45,9 @@ const handleGetSms = async() => {
 
 const sendRequest = async () => {
   if (smsType === 'updatePhone' && getUserPhone.value === trimBlank(phone, 'all')) {
-    emit('update:errorAccountMess', '');
+    errorAccountMess.value = '';
     useTimeoutFn(() => {
-      emit('update:errorAccountMess', '当前手机号与原手机号码一致');
+      errorAccountMess.value = '当前手机号与原手机号码一致';
     }, 0);
     return;
   }
@@ -64,17 +63,17 @@ const sendRequest = async () => {
       useVerifyCode().start(60);
     } else {
       if (isMsgErrCode.includes(res.code)) {
-        emit('update:errorMess', res.msg);
+        errorMess.value = res.msg;
       } {
-        emit('update:errorAccountMess', '');
+        errorAccountMess.value = '';
         setTimeout(() => {
-          emit('update:errorAccountMess', res.msg);
+          errorAccountMess.value = res.msg;
         });
       }
     }
   })
   .catch((err) => {
-    emit('update:errorMess', err.message || err.msg);
+    errorMess.value = err.message || err.msg;
   });
 };
 

@@ -1,22 +1,25 @@
 {
   "scripts": {
     "prepare": "husky install",
+    "dev": "cd admin && vite",
+    "build": "cd admin && vite build",
     "bootstrap": "pnpm install",
+    "reinstall": "rimraf pnpm-lock.yaml && pnpm clean-all && pnpm i",
     "clean": "pnpm /^clean:/",
     "clean:dist": "rimraf dist",
     "clean:node_modules": "rimraf node_modules",
-    "dev": "cd admin && vite",
-    "build": "cd admin && vite build",
-    "log": "conventional-changelog -p angular -i CHANGELOG.md -s"
+    "clean-all": "pnpm /^clean-all:/ && pnpm clean",
+    "clean-all:dist": "pnpm run -r --parallel clean:dist",
+    "clean-all:node_modules": "pnpm run -r --parallel clean:node_modules",
+    "log": "conventional-changelog -p angular -i CHANGELOG.md -s",
+    "ncu": "ncu --deep --timeout 200000 -u"
   },
-	"dependencies": {
-		"unplugin-vue-macros": "^2.0.0"
-	},
   "devDependencies": {
-    "@types/node": "18.8.0",
+    "@types/node": "20.1.4",
     "conventional-changelog-cli": "^2.2.2",
     "husky": "8.0.3",
-    "rimraf": "^4.4.1"
+    "rimraf": "^5.0.0",
+    "vite-plugin-dynamic-import": "^1.4.0"
   },
   "engines": {
     "node": ">=16"

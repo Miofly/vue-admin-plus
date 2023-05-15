@@ -2,14 +2,10 @@ import { useUserStoreWithOut } from '@/store/modules/user';
 import { createAxios, RequestCanceler } from '@vft/request';
 
 /** 默认 Pc header */
-const CLIENT_PARAM = { client: 'PC' };
 
 const { VITE_USE_MOCK, VITE_API_PREFIX, VITE_MOCK_API_PREFIX } = import.meta.env;
 
 export const request = createAxios({
-  headers: {
-    ...CLIENT_PARAM
-  },
   requestOptions: {
     apiUrl: VITE_USE_MOCK === 'true' ? VITE_MOCK_API_PREFIX : VITE_API_PREFIX,
     errorMessageCustom: true,
@@ -17,7 +13,8 @@ export const request = createAxios({
     responseParams: {
       code: 'code',
       message: 'msg',
-      data: 'data'
+      data: 'data',
+      successCode: 200
     },
     getTokenFunction: () => {
       const userStore = useUserStoreWithOut();
