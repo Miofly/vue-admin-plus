@@ -34,7 +34,6 @@ const { saveAccount } = useLoginCommon(computed(() => activeName), formRef, Logi
 
 /** 提交 */
 const handleSubmit = async() => {
-  console.log(formData, '===');
   return await handleClick({
     formEl: formRef.value,
     params: {

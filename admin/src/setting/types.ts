@@ -31,4 +31,5 @@ export interface ProjectConfig {
   contentMinWidth: number;
   sideMenuWidth: number;
   sideMenuCollapseWidth: number;
+  responseParams: { code: string, message: string, data: string, successCode: number }
 }

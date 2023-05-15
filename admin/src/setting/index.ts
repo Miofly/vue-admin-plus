@@ -1,14 +1,13 @@
 import type { ProjectConfig } from '@/setting';
 // Todo
 // import { VriException } from 'vft';
-
 const setting: ProjectConfig = {
   theme: 'light',
   themeColor: '#2196f3',
   themeColorPalette: ['#2196f3', '#3eaf7c', '#fb9b5f', '#f26d6d'],
   name: 'Vft',
   logo: {
-    src: '/assets/logo.png',
+    src: import.meta.env.VITE_PUBLIC_PATH + 'assets/logo.png',
     title: 'Vft'
   },
   errorHandle: {
@@ -20,7 +19,7 @@ const setting: ProjectConfig = {
     show: true,
     canDrag: true
   },
-  openPageLoading: true,
+  openPageLoading: false,
   openNProgress: true,
   openKeepAlive: true,
   canEmbedIFramePage: true,
@@ -32,8 +31,15 @@ const setting: ProjectConfig = {
   contentMinWidth: 1280,
   sideMenuWidth: 260,
   sideMenuCollapseWidth: 55,
-  pageLoadingIcon: 'ico-icomoon-free:spinner2'
+  pageLoadingIcon: 'ico-icomoon-free:spinner2',
+  responseParams: {
+    code: 'code',
+    message: 'msg',
+    data: 'data',
+    successCode: 200
+  }
 };
+
 
 export default setting;
 

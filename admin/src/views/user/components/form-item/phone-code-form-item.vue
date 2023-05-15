@@ -5,6 +5,7 @@ import { isMsgErrCode, pageCfg, rules } from '@/views/user/config';
 import { useVerifyCode } from '@/views/user/use';
 import { trimBlank } from '@vft/utils';
 import type { FormInstance } from 'vft';
+import { msgKeyName } from '@/constants';
 
 interface Props {
   form?: FormInstance;
@@ -63,17 +64,17 @@ const sendRequest = async () => {
       useVerifyCode().start(60);
     } else {
       if (isMsgErrCode.includes(res.code)) {
-        errorMess.value = res.msg;
+        errorMess.value = res[msgKeyName];
       } {
         errorAccountMess.value = '';
         setTimeout(() => {
-          errorAccountMess.value = res.msg;
+          errorAccountMess.value = res[msgKeyName];
         });
       }
     }
   })
   .catch((err) => {
-    errorMess.value = err.message || err.msg;
+    errorMess.value = err.message || err[msgKeyName];
   });
 };
 

@@ -1,5 +1,6 @@
 import { useUserStoreWithOut } from '@/store/modules/user';
 import { createAxios, RequestCanceler } from '@vft/request';
+import setting from '@/setting';
 
 /** 默认 Pc header */
 
@@ -10,12 +11,7 @@ export const request = createAxios({
     apiUrl: VITE_USE_MOCK === 'true' ? VITE_MOCK_API_PREFIX : VITE_API_PREFIX,
     errorMessageCustom: true,
     ignoreCancelToken: false,
-    responseParams: {
-      code: 'code',
-      message: 'msg',
-      data: 'data',
-      successCode: 200
-    },
+    responseParams: setting.responseParams,
     getTokenFunction: () => {
       const userStore = useUserStoreWithOut();
       return userStore.getToken;
