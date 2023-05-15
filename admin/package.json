@@ -12,7 +12,7 @@
   "dependencies": {
     "@iconify/json": "2.2.64",
     "@types/lodash": "^4.14.194",
-    "@vft/pkg": "0.0.43",
+    "@vft/pkg": "0.0.44",
     "@vue/shared": "^3.3.2",
     "@vueuse/core": "^10.1.2",
     "jsencrypt": "^3.3.2",

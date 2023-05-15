@@ -29,8 +29,8 @@ importers:
         specifier: ^4.14.194
         version: 4.14.194
       '@vft/pkg':
-        specifier: 0.0.43
-        version: 0.0.43(@types/node@20.1.4)(@vueuse/core@10.1.2)(esbuild@0.17.19)(lodash@4.17.21)(pinia@2.0.36)(typescript@5.0.4)(vue-router@4.2.0)(vue@3.3.2)(workbox-build@6.5.4)(workbox-window@6.5.4)
+        specifier: 0.0.44
+        version: 0.0.44(@types/node@20.1.4)(@vueuse/core@10.1.2)(esbuild@0.17.19)(lodash@4.17.21)(pinia@2.0.36)(typescript@5.0.4)(vue-router@4.2.0)(vue@3.3.2)(workbox-build@6.5.4)(workbox-window@6.5.4)
       '@vft/router':
         specifier: 0.0.25
         version: 0.0.25(vue-router@4.2.0)(vue@3.3.2)
@@ -2865,8 +2865,8 @@ packages:
       - zenObservable
     dev: false
 
-  /@vft/pkg@0.0.43(@types/node@20.1.4)(@vueuse/core@10.1.2)(esbuild@0.17.19)(lodash@4.17.21)(pinia@2.0.36)(typescript@5.0.4)(vue-router@4.2.0)(vue@3.3.2)(workbox-build@6.5.4)(workbox-window@6.5.4):
-    resolution: {integrity: sha512-rA1IVjhlAfeJK8S4VlfvcgiBd1JcAKS8nOWBuMk4Os+oVLsHbUDXFMK57e7Hy5RRucWUIVbGQIIqyuq53Fm4TQ==}
+  /@vft/pkg@0.0.44(@types/node@20.1.4)(@vueuse/core@10.1.2)(esbuild@0.17.19)(lodash@4.17.21)(pinia@2.0.36)(typescript@5.0.4)(vue-router@4.2.0)(vue@3.3.2)(workbox-build@6.5.4)(workbox-window@6.5.4):
+    resolution: {integrity: sha512-UWZ5nYrx1YJNiAsTruy0Mlmqqz+1J61FrZMxuBi048xIXuHuULVSyd9Fgt4izVDds1T+0OmrLHtjC7zSFfQMRA==}
     dependencies:
       '@vft/constants': 0.0.56
       '@vft/directives': 0.0.21(vue@3.3.2)
@@ -2878,7 +2878,7 @@ packages:
       '@vft/tsconfig': 0.0.9(@types/node@20.1.4)
       '@vft/use': 0.0.28(vue@3.3.2)
       '@vft/utils': 0.0.38(@vft/constants@0.0.56)(lodash@4.17.21)(vue@3.3.2)
-      vite-config-common: 0.0.17(@types/node@20.1.4)(@vueuse/core@10.1.2)(esbuild@0.17.19)(typescript@5.0.4)(vue@3.3.2)(workbox-build@6.5.4)(workbox-window@6.5.4)
+      vite-config-common: 0.0.18(@types/node@20.1.4)(@vueuse/core@10.1.2)(esbuild@0.17.19)(typescript@5.0.4)(vue@3.3.2)(workbox-build@6.5.4)(workbox-window@6.5.4)
       vite-plugin-md-plus: 0.0.19
       vite-plugin-router-pages: 0.0.12(vue@3.3.2)
     transitivePeerDependencies:
@@ -9034,7 +9034,7 @@ packages:
       semver: 7.5.1
       stylelint: 15.0.0
       stylelint-config-html: 1.1.0(postcss-html@1.5.0)(stylelint@15.0.0)
-      stylelint-config-recommended: 9.0.0(stylelint@15.0.0)
+      stylelint-config-recommended: 10.0.1(stylelint@15.0.0)
     dev: false
 
   /stylelint-config-recommended@10.0.1(stylelint@15.0.0):
@@ -9901,8 +9901,8 @@ packages:
       - pinia
     dev: false
 
-  /vite-config-common@0.0.17(@types/node@20.1.4)(@vueuse/core@10.1.2)(esbuild@0.17.19)(typescript@5.0.4)(vue@3.3.2)(workbox-build@6.5.4)(workbox-window@6.5.4):
-    resolution: {integrity: sha512-59Zz5LFF/bi7autdLmWfjJMfe3TJ/qAkXuGxkSGrUK4oDiRXQrn1U99dBdIDuvcHSeDgnj6VIuK4XnouVfcjaw==}
+  /vite-config-common@0.0.18(@types/node@20.1.4)(@vueuse/core@10.1.2)(esbuild@0.17.19)(typescript@5.0.4)(vue@3.3.2)(workbox-build@6.5.4)(workbox-window@6.5.4):
+    resolution: {integrity: sha512-gSCl4p4rQ0VN/MAS9+VRDjERIHGIMnVt1wjoFwoQsMd1IJiEd//Yonu0qFengvyBdFX/hOQt6QINOe9LBgCEWw==}
     requiresBuild: true
     dependencies:
       '@mdit-vue/shared': 0.12.0
