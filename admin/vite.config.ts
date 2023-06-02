@@ -50,7 +50,9 @@ export default createViteConfig({
       'vft/es/components/horizontal-menu/style/index',
       'vft/es/components/date-picker/style/index',
       'vft/es/components/radio-group/style/index',
-      'vft/es/components/radio-button/style/index'
+      'vft/es/components/radio-button/style/index',
+      'vft/es/components/modal/style/index',
+      'vft/es/components/super-form/style/index'
 		],
 		pwaCfg: {
 			manifest: {
