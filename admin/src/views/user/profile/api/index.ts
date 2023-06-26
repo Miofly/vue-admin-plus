@@ -1,5 +1,4 @@
-import { request } from '@/apis';
-import { ContentTypeEnum } from '@vft/request';
+import { request, ContentTypeEnum } from '@/apis';
 
 const Api = {
   userEdit: '/user/user-edit',
@@ -166,5 +165,3 @@ export const getCollection = (params) =>
       url: Api.myCollectionEvents,
       params
     });
-
-;

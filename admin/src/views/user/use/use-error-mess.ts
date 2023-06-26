@@ -1,26 +1,20 @@
-import { isAccountErrCode, isMsgErrCode } from '@/views/user/config';
 import { msgKeyName } from '@/constants';
+import type { LoginOrRegType } from '@/store/modules/user';
+import { isAccountErrCode, isMsgErrCode } from '@/views/user/config';
 
-export function useErrorMess (errMess) {
-  function cleanMess () {
-    errMess.pwd = '';
-    errMess.code = '';
-    errMess.account = '';
-  }
-
-  function handleError (error) {
+export function useErrorMess () {
+  function handleError (error, setFormItemError, type?: LoginOrRegType) {
     if (error.code === 400008) {
-      errMess.pwd = '密码或者账号不正确';
-      return;
+      setFormItemError('password', '密码或者账号不正确');
     }
     if (isMsgErrCode.includes(error.code)) {
-      errMess.code = error[msgKeyName];
+      setFormItemError('verifyCode', error[msgKeyName]);
     } else if (isAccountErrCode.includes(error.code)) {
-      errMess.account = error[msgKeyName];
+      setFormItemError(type === 'loginPhone' ? 'phone' : 'account', error[msgKeyName]);
     } else {
-      errMess.pwd = error[msgKeyName];
+      setFormItemError('password', error[msgKeyName]);
     }
   }
-
-  return { handleError, cleanMess };
+  
+  return { handleError };
 }

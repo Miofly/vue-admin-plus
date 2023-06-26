@@ -41,7 +41,12 @@ export function useSetting () {
     setPrimaryColorCssvars(color);
   }
 
+  const getActiveThemeColor = () => {
+    return getIsDark.value ? 'white' : 'black';
+  };
+
   return {
+    getActiveThemeColor,
     getThemeColor,
     changeThemeColor,
     themeLight,

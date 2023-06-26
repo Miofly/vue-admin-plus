@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { useUserInfo } from '@/use/use-user-info';
 import { addUnit } from '@vft/utils';
+import { useSetting } from '@/use';
 
-interface UserAvatarProps {
+export interface UserAvatarProps {
   color?: string;
   textColor?: string;
   size?: number;
@@ -11,7 +12,7 @@ interface UserAvatarProps {
 }
 
 const {
-  color = 'white',
+  color,
   textColor,
   size = 30,
   maxWidth = 150,
@@ -19,14 +20,16 @@ const {
 } = defineProps<UserAvatarProps>();
 
 const { getUserAvatar, getUserName } = useUserInfo();
+const { getActiveThemeColor } = useSetting();
 
 const _maxWidth = computed(() => addUnit(maxWidth));
+const _color = computed(() => color ? color : getActiveThemeColor());
 </script>
 
 <template>
   <div :class="['user-info', {'cursor-pointer': cursor}]">
     <vft-avatar class="user-info-avatar" :src="getUserAvatar"
-      :icon="{icon: 'ico-carbon:user-avatar-filled', color}"
+      :icon="{icon: 'ico-carbon:user-avatar-filled', color: _color}"
       :size="size"
     />
 

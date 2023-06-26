@@ -1,5 +1,5 @@
 import setting from '@/setting';
-import { useSetMediaStyle } from '@vft/use';
+// import { useSetMediaStyle } from '@vft/use';
 import { addUnit } from '@vft/utils';
 import { computed } from 'vue';
 
@@ -20,14 +20,17 @@ export function useLayout(showSide) {
       showSide.value ? addUnit(collapse.value ? sideCollapseWidth.value : sideWidth.value) : 0;
   });
 
-
-  const mediaWidthText = computed(() => {
-    const textStr = addUnit(route.meta?.contentMinWidth || contentMinWidth);
-      // (route.meta.hideSide ? contentMinWidth :  - sideWidth.value)) + 'px';
-
-    return `@media (max-width: ${textStr}) {.layout-main .layout-container ${defaultScrollDom} {min-width: ${textStr};}}`;
+  const calcSideWidth = computed(() => {
+    return showSide.value ? addUnit(sideWidth.value) : '0px';
   });
-  useSetMediaStyle(mediaWidthText);
+
+  // const mediaWidthText = computed(() => {
+  //   const textStr = addUnit(route.meta?.contentMinWidth || contentMinWidth);
+  //     // (route.meta.hideSide ? contentMinWidth :  - sideWidth.value)) + 'px';
+  //
+  //   return `@media (max-width: ${textStr}) {.layout-main .layout-container ${defaultScrollDom} {min-width: ${textStr};}}`;
+  // });
+  // useSetMediaStyle(mediaWidthText);
 
   return {
     collapse,
@@ -36,6 +39,7 @@ export function useLayout(showSide) {
     contentMinWidth,
     defaultScrollDom,
     overflowClass,
-    layoutSideWidth
+    layoutSideWidth,
+    calcSideWidth
   };
 }

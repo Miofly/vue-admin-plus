@@ -128,10 +128,13 @@ export const useUserStore = defineStore({
       const user_token = cloneDeep(this.token);
       this.token = '';
       await router.push(LINK_LOGIN).finally(() => {
-        Message.success('退出成功');
+        Message.success({
+          message: '退出成功',
+          grouping: true
+        });
         cleanPiniaStorage();
       });
-    
+
       await logout(user_token!);
     }
   }

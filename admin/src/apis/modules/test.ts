@@ -4,7 +4,8 @@ import { objAddPrefix } from '@vft/utils';
 const prefixUrl = '';
 
 const Api = {
-  table: '/table'
+  table: '/table',
+  common: '/common'
 };
 
 interface TableProps {
@@ -14,11 +15,23 @@ interface TableProps {
 
 objAddPrefix(Api, prefixUrl);
 
-/** 获取首页配置 */
-export const getTableData = (params: TableProps) =>
+/** 表格测试 */
+const getTableData = (params: TableProps) =>
   request.get(
     {
       url: Api.table,
       params
     }
   );
+
+const commonTestApi = () =>
+  request.get(
+    {
+      url: Api.common
+    }
+  );
+
+export {
+  commonTestApi,
+  getTableData
+};

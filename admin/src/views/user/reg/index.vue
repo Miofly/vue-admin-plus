@@ -1,50 +1,63 @@
-<script lang="ts" setup>
+<script setup lang="tsx">
 import { LINK_LOGIN } from '@/router/constants';
-import { usePageTitle } from '@/use';
-import { PrivacyPolicyFormItem, PwdFormItem, UserFormItem } from '@/views/user/components';
-import { useSubmit } from '@/views/user/use/use-submit';
-import { trimBlank, encryptByMd5 } from '@vft/utils';
-import type { FormInstance } from 'vft';
+import { type FormSchema, useForm } from 'vft';
+import { encryptByMd5, trimBlank } from '@vft/utils';
 import MainContainer from '../components/main.vue';
-import { PhoneCodeFormItem } from '@/views/user/components';
-import { checkPwdSame, pageCfg, rules } from '../config';
+import { phone_field, privacy_policy_field, pwd_field } from '../constants';
+import { usePhoneVerifyCode } from '../use/use-phone-verify-code';
+import { useSubmit } from '../use/use-submit';
 
-usePageTitle();
+const formRef = ref();
 
-// 表单数据
-const formData = reactive({
-  account: '',
-  password: '',
-  rePassword: '',
-  verifyCode: ''
+const phone = computed(() => getFieldValue('phone'));
+const loading = ref(false);
+
+const { phoneVerifyCodeItem } = usePhoneVerifyCode('register', phone, formRef);
+
+const schemas: FormSchema[] = [
+  phone_field,
+  phoneVerifyCodeItem,
+  pwd_field(false, true),
+  pwd_field(true, true),
+  {
+    field: 'custom',
+    render: () => <div class="flex justify-between">
+      <vft-button type="primary" block loading={loading.value} onClick={() => handleSubmit()}>注册</vft-button>
+      <vft-link class="ml-10px" type="primary" underline={false} route={LINK_LOGIN}>返回登录</vft-link>
+    </div>
+  },
+  privacy_policy_field
+];
+
+const [register, {
+  setFormItemError,
+  validate,
+  getFieldValue
+}] = useForm({
+  schemas: schemas,
+  baseColProps: {
+    span: 24
+  },
+  autoCleanErrorMessage: true,
+  showActionButtonGroup: false
 });
 
-const formRef = ref<FormInstance>();
+const { submit } = useSubmit();
 
-const phoneCodeRef = ref();
-
-const { loading, errMess, handleClick } = useSubmit();
-
-/** 提交 */
 const handleSubmit = async() => {
-  return await handleClick({
-    formEl: formRef.value,
-    params: {
-      password: encryptByMd5(formData.password),
-      phone: trimBlank(formData.account, 'all'),
-      smsVerifyCode: formData.verifyCode
-    },
-    loginType: 'reg',
-    extraValidCallback: () => {
-      if (phoneCodeRef.value.isClickSend) {
-        return true;
-      } else {
-        errMess.code = '';
-        setTimeout(() => {
-          errMess.code = pageCfg.getPhoneCodeTip;
-        });
-      }
-    }
+  await validate().then(async (res)=> {
+    loading.value = true;
+    await submit({
+      params: {
+        verifyCode: res.verifyCode,
+        password: encryptByMd5(res.password),
+        phone: trimBlank(res.phone, 'all')
+      },
+      loginType: 'reg',
+      setFormItemError
+    }).catch(() => {
+      loading.value = false;
+    });
   });
 };
 </script>
@@ -52,28 +65,23 @@ const handleSubmit = async() => {
 <template>
   <main-container>
     <p class="mb-22px text-left">注册</p>
-    <vft-form ref="formRef" :model="formData" @keypress.enter="handleSubmit">
-      <!--account-->
-      <user-form-item v-model:account="formData.account" v-model:errorMess="errMess.account" />
-      <!--code-->
-      <phone-code-form-item ref="phoneCodeRef" :form="formRef"
-        v-model:verifyCode="formData.verifyCode" :phone="formData.account"
-        v-model:errorMess="errMess.code"
-        v-model:errorAccountMess="errMess.account" />
-      <!--pwd-->
-      <pwd-form-item v-model:password="formData.password" />
-      <pwd-form-item v-model:rePassword="formData.rePassword" propName="rePassword"
-        :rules="[...rules.regForgotPwd, checkPwdSame(formData.password)]"
-        :placeholder="pageCfg.rePwaPlaceholder" />
-      <!--submit-->
-      <vft-form-item>
-        <div class="w-full flex justify-between">
-          <vft-button :loading="loading" class="w-[80%]" type="primary" @click="handleSubmit">注册
-          </vft-button>
-          <vft-link type="primary" :route="LINK_LOGIN" :underline="false">返回登录</vft-link>
-        </div>
-      </vft-form-item>
-      <privacy-policy-form-item v-model:checked="formData.checked" />
-    </vft-form>
+    <vft-super-form ref="formRef" class="form-container" @register="register" />
   </main-container>
 </template>
+
+<style lang="scss" scoped>
+.form-container {
+  :deep(.vft-link) {
+    white-space: nowrap;
+    vertical-align: initial;
+  }
+
+  :deep(.vft-form-item) {
+    &.privacy-policy-item {
+      .vft-super-form__content {
+        flex: none;
+      }
+    }
+  }
+}
+</style>

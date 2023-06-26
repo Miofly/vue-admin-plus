@@ -1,25 +1,24 @@
-import { ACCOUNT_MESS } from '@/constants';
 import { ls } from '@/utils';
 
-export function useLoginCommon (activeName, formRef, loginType, isSaveAccount) {
+export function useLoginCommon (activeName, clearValidate, loginType, isSaveAccount) {
   watch(
     () => activeName.value,
-    (val) => {
+    async (val) => {
       if (val === loginType) {
-        formRef.value?.clearValidate();
+        await clearValidate();
       }
     }
   );
   
-  function saveAccount (accountValue) {
+  function saveLoginInfo (accountValue) {
     if (isSaveAccount.value) {
-      ls.set(ACCOUNT_MESS, accountValue);
+      ls.set(activeName.value, accountValue);
     } else {
-      ls.remove(ACCOUNT_MESS);
+      ls.remove(activeName.value);
     }
   }
  
   return {
-    saveAccount
+    saveLoginInfo
   };
 }

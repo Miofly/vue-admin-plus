@@ -3,7 +3,7 @@ import { pageCfg } from '../config';
 </script>
 
 <template>
-  <div class="container login-main">
+  <div class="container user-login-main-container">
     <div class="content">
       <h3 class="title">{{ pageCfg.title }}</h3>
       <div class="form-container">
@@ -18,8 +18,8 @@ import { pageCfg } from '../config';
 </style>
 
 <style lang="scss">
-.login-main {
-  .input {
+.user-login-main-container {
+  .vft-input {
     height: 40px;
   }
 }

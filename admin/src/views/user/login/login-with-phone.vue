@@ -1,12 +1,11 @@
-<script setup lang="ts">
-import { ACCOUNT_MESS } from '@/constants';
-import { ls } from '@/utils';
+<script setup lang="tsx">
 import { useLoginCommon } from '@/views/user/login/use-login-common';
-import { useSubmit } from '@/views/user/use/use-submit';
-import { trimBlank } from '@vft/utils';
-import { LoginTabEnum, pageCfg } from '@/views/user/config';
-import { UserFormItem, PrivacyPolicyFormItem, PhoneCodeFormItem } from '@/views/user/components';
-import type { FormInstance } from 'vft';
+import { type FormSchema, useForm } from 'vft';
+import { pick, trimBlank } from '@vft/utils';
+import { LoginTabEnum } from '../config';
+import { phone_field, privacy_policy_field } from '../constants';
+import { usePhoneVerifyCode } from '../use/use-phone-verify-code';
+import { useSubmit } from '../use/use-submit';
 
 interface Props {
   activeName: string;
@@ -15,62 +14,75 @@ interface Props {
 const { activeName } = defineProps<Props>();
 
 const isSaveAccount = ref(true);
+const formRef = ref();
 
-// 表单数据
-const formData = reactive({
-  account: ls.get(ACCOUNT_MESS) || '',
-  verifyCode: '',
-  checked: true
+const phone = computed(() => getFieldValue('phone'));
+
+const { phoneVerifyCodeItem } = usePhoneVerifyCode('login', phone, formRef);
+
+const schemas: FormSchema[] = [
+  {
+    ...phone_field,
+    defaultValue: ls.get(LoginTabEnum.TAB_PHONE)
+  },
+  phoneVerifyCodeItem,
+  {
+    ...privacy_policy_field,
+    prefix: () => <vft-checkbox v-model={isSaveAccount.value} label="记住账号" />
+  }
+];
+
+const [register, { setFormItemError, validateField,setSubmitLoading, clearValidate, getFieldValue }] = useForm({
+  schemas,
+  baseColProps: {
+    span: 24
+  },
+  autoCleanErrorMessage: true,
+  submitButtonOptions: {
+    block: true,
+    btnText: '登录'
+  },
+  beforeSubmitFunc: async () => {
+    await validateField(['checked']);
+  }
 });
 
-const formRef = ref<FormInstance>();
-const phoneCodeRef = ref();
+const { saveLoginInfo } = useLoginCommon(computed(() => activeName), clearValidate, LoginTabEnum.TAB_PHONE, isSaveAccount);
 
-const { loading, errMess, handleClick } = useSubmit();
+const { submit } = useSubmit();
 
-const { saveAccount } = useLoginCommon(computed(() => activeName), formRef, LoginTabEnum.TAB_PHONE, isSaveAccount);
-
-const handleSubmit = async() => {
-  return await handleClick({
-    formEl: formRef.value,
+const handleSubmit = async(values) => {
+  const _params = pick(values, ['verifyCode']);
+  await submit({
     params: {
-      smsVerifyCode: formData.verifyCode,
-      phone: trimBlank(formData.account, 'all')
+      ..._params,
+      phone: trimBlank(values.phone, 'all')
     },
     loginType: 'loginPhone',
+    setFormItemError,
     successCallback: () => {
-      saveAccount(trimBlank(formData.account, 'all'));
+      saveLoginInfo(values.phone);
     },
-    extraValidCallback: () => {
-    	if (phoneCodeRef.value.isClickSend) {
-    		return true;
-    	} else {
-        errMess.code = '';
-        setTimeout(() => {
-          errMess.code = pageCfg.getPhoneCodeTip;
-        });
-      }
-    }
+    setSubmitLoading
   });
 };
 </script>
 
 <template>
-  <vft-form ref="formRef" :model="formData" @keypress.enter="handleSubmit">
-    <!--account-->
-    <user-form-item v-model:account="formData.account" :placeholder="pageCfg.phonePlaceholder"
-      v-model:errorMess="errMess.account" />
-    <!--code-->
-    <phone-code-form-item
-      ref="phoneCodeRef" :phone="formData.account" :form="formRef" v-model:verifyCode="formData.verifyCode"
-      v-model:errorMess="errMess.code" v-model:errorAccountMess="errMess.account" smsType="login" />
-    <!--submit-->
-    <vft-form-item>
-      <vft-button :loading="loading" block type="primary" @click="handleSubmit">登录</vft-button>
-    </vft-form-item>
-    <div class="flex justify-between">
-      <vft-checkbox v-model="isSaveAccount" label="记住账号" />
-      <privacy-policy-form-item v-model:checked="formData.checked" />
-    </div>
-  </vft-form>
+  <vft-super-form ref="formRef" class="form-container" @register="register" @submit="handleSubmit"/>
 </template>
+
+<style lang="scss" scoped>
+.form-container {
+  :deep(.vft-checkbox) {
+    .vft-checkbox__input:not(.is-checked) {
+      .vft-checkbox__label {
+        color: #434343;
+      }
+    }
+  }
+  :deep(.vft-link) {
+    vertical-align: initial;
+  }
+}
+</style>

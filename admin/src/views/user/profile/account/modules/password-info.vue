@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useUserInfo } from '@/use/use-user-info';
 import { changePw } from '@/views/user/apis';
-import PwdFormItem from '@/views/user/components/form-item/pwd-form-item.vue';
-import { checkPwdSame, pageCfg, rules } from '@/views/user/config';
 import { useErrorMess } from '@/views/user/use';
 import { encryptByMd5, trimBlank } from '@vft/utils';
 import { type FormInstance } from 'vft';
@@ -101,18 +99,18 @@ const close = () => {
     <div class="mb-25px">
       <span>请输入你的新密码</span>
     </div>
-    <vft-form ref="formRef" :model="formData" @keypress.enter="handleSubmit">
-      <pwd-form-item class="pwd-input" v-model:password="formData.password"/>
-      <pwd-form-item class="pwd-input" v-model:rePassword="formData.rePassword"
-                     propName="rePassword"
-                     :rules="[...rules.regForgotPwd, checkPwdSame(formData.password)]"
-                     :placeholder="pageCfg.rePwaPlaceholder"/>
-      <vft-form-item class="fr">
-        <vft-button @click="close">取消</vft-button>
-        <vft-button :loading="loading" type="primary" @click="handleSubmit">
-          确定
-        </vft-button>
-      </vft-form-item>
-    </vft-form>
+    <!--<vft-form ref="formRef" :model="formData" @keypress.enter="handleSubmit">-->
+    <!--  <pwd-form-item class="pwd-input" v-model:password="formData.password"/>-->
+    <!--  <pwd-form-item class="pwd-input" v-model:rePassword="formData.rePassword"-->
+    <!--                 propName="rePassword"-->
+    <!--                 :rules="[...rules.regForgotPwd, checkPwdSame(formData.password)]"-->
+    <!--                 :placeholder="pageCfg.rePwaPlaceholder"/>-->
+    <!--  <vft-form-item class="fr">-->
+    <!--    <vft-button @click="close">取消</vft-button>-->
+    <!--    <vft-button :loading="loading" type="primary" @click="handleSubmit">-->
+    <!--      确定-->
+    <!--    </vft-button>-->
+    <!--  </vft-form-item>-->
+    <!--</vft-form>-->
   </vft-dialog>
 </template>

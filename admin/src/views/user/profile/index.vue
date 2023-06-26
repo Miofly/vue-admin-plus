@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { getRouterKeyPath } from '@vft/router';
 import { useMultipleTabStore, useTabs } from '@vft/store';
+import { usePageActive } from '@vft/use';
 import { computed } from 'vue';
 import { type RouteLocationNormalizedLoaded } from 'vue-router';
 import ProfileSide from './components/profile-side.vue';
@@ -11,35 +12,10 @@ const tabStore = useMultipleTabStore();
 
 const route = useRoute();
 
-// Todo
-function useTabActive (source, callback) {
-  const { pause, resume, isActive } = watchPausable(
-    source,
-    v => {
-      nextTick(() => {
-        if (isActive.value) {
-          callback(v);
-        }
-      });
-    }, {
-      immediate: true
-    }
-  );
-
-  onActivated(() => {
-    callback(source());
-    resume();
-  });
-
-  onDeactivated(() => {
-    console.log('onDeactivated');
-    pause();
-  });
-}
 
 const { setTitle } = useTabs();
 
-useTabActive(() => route.meta?.title,(val) => {
+usePageActive(() => route.meta?.title,(val) => {
   setTitle('我的-' + val);
 });
 

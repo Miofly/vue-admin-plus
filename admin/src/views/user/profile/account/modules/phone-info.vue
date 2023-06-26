@@ -1,20 +1,18 @@
-<script setup lang="ts">
-import { useUserStore } from '@/store/modules/user';
+<script setup lang="tsx">
 import { useUserInfo } from '@/use/use-user-info';
-import PhoneCodeFormItem from '@/views/user/components/form-item/phone-code-form-item.vue';
-import UserFormItem from '@/views/user/components/form-item/user-form-item.vue';
-import { pageCfg } from '@/views/user/config';
-import { useErrorMess } from '@/views/user/use';
-import { formatPhoneHide, trimBlank } from '@vft/utils';
-import { type FormInstance } from 'vft';
+// import PhoneCodeFormItem from '@/views/user/components/form-item/phone-code-form-item.vue';
+// import UserFormItem from '@/views/user/components/form-item/user-form-item.vue';
+import { phone_field } from '@/views/user/constants';
+import { usePhoneVerifyCode } from '@/views/user/use/use-phone-verify-code';
+import { useSubmit } from '@/views/user/use/use-submit';
+import { formatPhoneHide, pick } from '@vft/utils';
+import { FormSchema, useForm } from 'vft';
 import { updatePhone } from '../../api';
 import PhoneVerifyDialog from '../../components/phone-verify-dialog.vue';
 
 const phoneVerifyVisible = ref(false);
 
 const { getUserPhone } = useUserInfo();
-const userStore = useUserStore();
-const smsType = ref('updatePhone');
 const hasPhone = computed(() => !!getUserPhone.value);
 
 function changePhone() {
@@ -25,64 +23,49 @@ function changePhone() {
   }
 }
 
-const formRef = ref<FormInstance>();
 const dialogVisible = ref(false);
-const updatePhoneCodeRef = ref();
-const formData = reactive({
-  account: '',
-  verifyCode: ''
-});
 
-const errMess = reactive({
-  pwd: '',
-  code: '',
-  account: ''
-});
-
-const { cleanMess, handleError } = useErrorMess(errMess);
-
-const { runAsync: handleUpdatePhone, loading: updateLoading } = useRequest(updatePhone, {
+const { runAsync } = useRequest(updatePhone, {
   manual: true
 });
 
-const handleSubmit = async () => {
-  if (!updatePhoneCodeRef.value.isClickSend) {
-    errMess.code = '';
-    setTimeout(() => {
-      errMess.code = pageCfg.getPhoneCodeTip;
-    });
-    return;
+const formRef = ref();
+
+const phone = computed(() => getFieldValue('phone'));
+
+const { phoneVerifyCodeItem } = usePhoneVerifyCode('updatePhone', phone, formRef);
+
+const schemas: FormSchema[] = [
+  phone_field,
+  phoneVerifyCodeItem
+];
+
+const [register, {
+  setFormItemError,
+  validateField,
+  setSubmitLoading,
+  clearValidate,
+  getFieldValue
+}] = useForm({
+  schemas,
+  baseColProps: {
+    span: 24
+  },
+  autoCleanErrorMessage: true,
+  submitButtonOptions: {
+    block: true,
+    btnText: '修改'
   }
-  await formRef.value!.validate(async (valid) => {
-    if (valid) {
-      cleanMess();
-      handleUpdatePhone({
-        smsVerifyCode: formData.verifyCode,
-        phone: trimBlank(formData.account, 'all')
-      }).then((res) => {
-        if (res.code === 200 && res.data) {
-          Message.success('修改成功');
-          userStore.setUserInfo({
-            ...userStore.getUserInfo,
-            phone: trimBlank(formData.account, 'all')
-          });
-          close();
-        } else {
-          handleError(res);
-        }
-      })
-      .catch((error) => {
-        handleError(error);
-      });
-    }
-  });
+});
+
+const { submit } = useSubmit();
+
+const handleSubmit = async(values) => {
+  const _params = pick(values, ['verifyCode']);
 };
 
 const close = () => {
-  formData.account = '';
-  formData.verifyCode = '';
   formRef.value?.clearValidate();
-  cleanMess();
   dialogVisible.value = false;
 };
 </script>
@@ -115,23 +98,7 @@ const close = () => {
     <div class="mb-25px">
       <span>请输入手机号及验证码</span>
     </div>
-    <vft-form ref="formRef" :model="formData"
-              @keypress.enter="handleSubmit">
-      <user-form-item v-model:account="formData.account"
-                      :placeholder="pageCfg.phonePlaceholder"
-                      v-model:errorMess="errMess.account"/>
-      <phone-code-form-item ref="updatePhoneCodeRef"
-                            :phone="formData.account" :form="formRef"
-                            v-model:verifyCode="formData.verifyCode"
-                            v-model:errorMess="errMess.code"
-                            v-model:errorAccountMess="errMess.account" :smsType="smsType"
-                            :formValidateField="['account']"/>
-      <vft-form-item class="fr">
-        <vft-button @click="close">取消</vft-button>
-        <vft-button :loading="updateLoading" type="primary" @click="handleSubmit">
-          确定
-        </vft-button>
-      </vft-form-item>
-    </vft-form>
+    <vft-super-form ref="formRef" class="form-container" @register="register"
+      @submit="handleSubmit" />
   </vft-dialog>
 </template>

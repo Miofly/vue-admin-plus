@@ -24,8 +24,8 @@ const {
   openKeepAlive,
   multiTabsSetting,
   errorHandle,
-  canEmbedIFramePage
-  // openPageLoading
+  canEmbedIFramePage,
+  openPageLoading
 } = setting;
 
 onMounted(() => {
@@ -37,13 +37,17 @@ onMounted(() => {
 // get side list
 const getSideMenuList = computed(() => {
   if (route.meta?.isBlog) {
-    const blogList = permissionStore.getMenuList.filter((item) => {
+    const list = permissionStore.getMenuList.filter((item) => {
       return item.meta.isBlog;
     })?.[0];
 
-    return blogList.children!.filter((item) => {
+    return list.children!.filter((item) => {
       return item.title === route.meta?.category?.[0];
     })?.[0]?.children || [];
+  } else if (route.meta?.isApi) {
+    return permissionStore.getMenuList.filter((item) => {
+      return item.meta.isApi;
+    })?.[0]?.children;
   } else {
     return permissionStore.getMenuList;
   }
@@ -56,7 +60,8 @@ const {
   sideWidth,
   sideCollapseWidth,
   defaultScrollDom,
-  overflowClass
+  overflowClass,
+  calcSideWidth
 } = useLayout(showSide);
 
 const iframePages = computed(() => tabStore.getTabList.filter((item) => item.meta.isIframe || item.meta.frameSrc));
@@ -75,14 +80,15 @@ const menuStyle = generateCssVars({
   'sub-item-height': '30px',
   'hover-bg-color': 'transparent'
 }, 'menu');
+
 </script>
 
 <template>
   <vft-container direction="vertical" class="layout-main" v-if="!route.meta?.isAlonePage">
-    <layout-header/>
-    <!--v-spin="openPageLoading && tabStore.getPageLoading"-->
+    <layout-header />
     <vft-container ref="layoutContainerRef"
-      :class="['layout-container', overflowClass]" >
+      v-spin="openPageLoading && tabStore.getPageLoading"
+      :class="['layout-container', overflowClass, showSide && !collapse ? 'layout-have-side' : 'layout-no-side']">
       <vft-aside :style="{width: addUnit(sideWidth)}" v-show="showSide">
         <vft-side-menu
           :style="menuStyle"
@@ -95,7 +101,7 @@ const menuStyle = generateCssVars({
           :menus="getSideMenuList"
           height="calc(100% - 100px)"
         >
-          <div class="collapse" @click="collapse = !collapse"/>
+          <div class="collapse" @click="collapse = !collapse" />
         </vft-side-menu>
       </vft-aside>
       <vft-main ref="layoutContentRef" :class="['layout-content', overflowClass]">
@@ -109,36 +115,43 @@ const menuStyle = generateCssVars({
           :openKeepAlive="openKeepAlive && multiTabsSetting.show"
         />
         <vft-iframe-layout v-if="canEmbedIFramePage && tabStore.reloadFlag && iframePages?.length"
-          :iframePages="iframePages"/>
+          :iframePages="iframePages" />
       </vft-main>
     </vft-container>
     <vft-footer-layout>
       <template #right>
         <div class="footer-right">
-          <pwa-install/>
-          <vft-full-screen/>
+          <pwa-install />
+          <vft-full-screen />
         </div>
       </template>
     </vft-footer-layout>
   </vft-container>
-  <router-view v-else/>
+  <router-view v-else />
   <vft-backtop
     :scrollTargetKey="route.meta?.isMoreTabPage && route.meta?.scrollDom ? getRouterKeyPath(route) : undefined"
-    class="z-10" :target="route.meta?.scrollDom || defaultScrollDom" :right="30" :bottom="100"/>
+    class="z-10" :target="route.meta?.scrollDom || defaultScrollDom" :right="30" :bottom="100" />
 </template>
 
 <style lang="scss" scoped>
 .layout-main {
   height: 100%;
 
-  .vft-aside {
-    overflow: initial;
-  }
-
   .layout-container {
+    z-index: $layout-container-z-index;
     height: calc(100% - var(--vft-header-layout-height) - var(--vft-footer-layout-height));
+
+    .vft-aside {
+      overflow: initial;
+      z-index: 1;
+    }
   }
 
+  @media (max-width: 1279px) {
+    .layout-content {
+      min-width: calc(1280px - v-bind('calcSideWidth'))
+    }
+  }
 
   .footer-right {
     display: flex;

@@ -33,7 +33,7 @@ interface LoginPhoneProps {
   /** 手机号 */
   phone?: string;
   /** 短信验证码，有效期2分钟 */
-  smsVerifyCode: string;
+  verifyCode: string;
 }
 
 interface RegisterProps extends LoginPhoneProps {

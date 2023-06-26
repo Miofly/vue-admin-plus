@@ -1,7 +1,8 @@
 @forward 'vft/theme-style/src/common/var.scss' with (
   $header-layout: (
     'height': 70px,
-    'color': white
+    'color': white,
+    'z-index': 100
   ),
   $side-menu: (
     "width": 260px,

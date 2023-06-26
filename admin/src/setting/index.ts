@@ -19,7 +19,7 @@ const setting: ProjectConfig = {
     show: true,
     canDrag: true
   },
-  openPageLoading: false,
+  openPageLoading: true,
   openNProgress: true,
   openKeepAlive: true,
   canEmbedIFramePage: true,

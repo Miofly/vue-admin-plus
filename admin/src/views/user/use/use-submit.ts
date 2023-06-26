@@ -1,60 +1,44 @@
 import { type LoginOrRegType, useUserStoreWithOut } from '@/store/modules/user';
 import { useErrorMess } from '@/views/user/use';
-import type { FormInstance } from 'vft';
+import setting from '@/setting';
+import type { FormActionType } from 'vft';
 
 export function useSubmit () {
   const loading = ref(false);
   const userStore = useUserStoreWithOut();
-  // 错误信息存储
-  const errMess = reactive({
-    pwd: '',
-    code: '',
-    account: ''
-  });
-  
-  const { cleanMess, handleError } = useErrorMess(errMess);
-  
-  const handleClick = async({
-    formEl,
+
+  const { handleError } = useErrorMess();
+
+  const submit = async({
     params,
     loginType,
-    extraValidCallback,
     successCallback,
-    errorCallBack
+    errorCallBack,
+    setFormItemError,
+    setSubmitLoading
   }: {
-    formEl: FormInstance
     params: Record<string, any>
     loginType?: LoginOrRegType,
-    extraValidCallback?: Function,
     successCallback?: Function,
     errorCallBack?: Function,
+    setFormItemError?: FormActionType['setFormItemError'],
+    setSubmitLoading?: FormActionType['setSubmitLoading'],
   }) => {
-    if (!formEl) return;
-    await formEl.validate(async(valid) => {
-      if (valid) {
-        if (!extraValidCallback || extraValidCallback?.()) {
-          cleanMess();
-          loading.value = true;
-  
-          await userStore.loginOrReg(params, loginType)
-          .then((res) => {
-            successCallback?.(res);
-          })
-          .catch((error) => {
-            handleError(error);
-            errorCallBack?.();
-          })
-          .finally(() => {
-            loading.value = false;
-          });
-        }
-      }
+    setSubmitLoading && await setSubmitLoading();
+    await userStore.loginOrReg(params, loginType)
+    .then((res) => {
+      useTitle(setting.name);
+      successCallback?.(res);
+    })
+    .catch((error) => {
+      setSubmitLoading && setSubmitLoading(false);
+      handleError(error, setFormItemError, loginType);
+      errorCallBack?.();
     });
   };
-  
+
   return {
     loading,
-    errMess,
-    handleClick
+    submit
   };
 }

@@ -15,12 +15,11 @@
     "ncu": "ncu --deep --timeout 200000 -u"
   },
   "devDependencies": {
-    "@types/node": "20.1.4",
-    "conventional-changelog-cli": "^2.2.2",
+    "@types/node": "20.3.1",
+    "conventional-changelog-cli": "^3.0.0",
     "husky": "8.0.3",
-    "rimraf": "^5.0.0",
-    "tailwindcss": "^3.3.2",
-    "vite-plugin-dynamic-import": "^1.4.0"
+    "rimraf": "^5.0.1",
+    "tailwindcss": "^3.3.2"
   },
   "engines": {
     "node": ">=16"

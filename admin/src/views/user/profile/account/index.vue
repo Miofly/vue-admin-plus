@@ -2,13 +2,15 @@
 import UsernameInfo from './modules/username-info.vue';
 import PhoneInfo from './modules/phone-info.vue';
 import PasswordInfo from './modules/password-info.vue';
+import AuthInfo from './modules/auth-info.vue';
 </script>
 
 <template>
   <div class="profile-account-container">
-    <username-info/>
-    <phone-info/>
-    <password-info/>
+    <username-info />
+    <phone-info />
+    <password-info />
+    <auth-info/>
   </div>
 </template>
 

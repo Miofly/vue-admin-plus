@@ -1,4 +1,4 @@
-import { mobile, password, checkCodeFour, emailRegExp } from '@vft/constants';
+import { emailRegExp } from '@vft/constants';
 
 export const tabStyle = {
   'item-bg-color': 'transparent',
@@ -34,87 +34,19 @@ export const pageCfg = {
 
 export enum LoginTabEnum {
   /** account login */
-  TAB_USER = 'user',
+  TAB_USER = 'account',
   /** phone login */
   TAB_PHONE = 'phone'
 }
-
-/** 密码比对 */
-export const checkPwdSame = (pwd) => {
-  return {
-    validator: (rule, value, callback) => {
-      if (value && value !== pwd) {
-        callback(new Error('两次输入的密码不一样'));
-      } else {
-        callback();
-      }
-    },
-    trigger: 'blur'
-  };
-};
-
-/** 密码比对 */
-export const checkVerifyCode = (code) => {
-  return {
-    validator: (rule, value, callback) => {
-      if (value && value !== code) {
-        callback(new Error('验证码输入错误'));
-      } else {
-        callback();
-      }
-    },
-    trigger: 'blur'
-  };
-};
 
 export const noEmpty = (text = '账户') => {
   return { required: true, message: `${text}不能为空`, trigger: 'blur' };
 };
 
 export const rules = {
-  loginPwd: [noEmpty('密码'), { min: 6, message: '密码长度不足', trigger: 'blur' }, { max: 20, message: '密码最多为20位', trigger: 'blur' }],
-  regForgotPwd: [
-    noEmpty('密码'),
-    { min: 6, message: '密码至少为6位', trigger: 'blur' },
-    { max: 20, message: '密码最多为20位', trigger: 'blur' },
-    {
-      pattern: password,
-      message: '需包含数字和大小写字母',
-      trigger: 'blur'
-    }
-  ],
-  phone: [
-    noEmpty('手机号'),
-    {
-      validator: (rule, value, callback) => {
-        if (value && !mobile.test(value.replace(/\s/g, ''))) {
-          callback(new Error('手机号码格式不正确'));
-        } else {
-          callback();
-        }
-      },
-      trigger: 'blur'
-    }
-  ],
   emailRegExp: [
     noEmpty('邮箱'),
     { pattern: emailRegExp, message: '邮箱格式不正确', trigger: 'blur' }
-  ],
-  phoneCode: [
-    { required: true, message: '您还没有填写短信验证码', trigger: 'blur' },
-    { pattern: checkCodeFour, message: '短信验证码格式不正确', trigger: 'blur' }
-  ],
-  verifyCode: [
-    { required: true, message: '您还没有填写验证码', trigger: 'blur' },
-    { pattern: checkCodeFour, message: '验证码格式不正确', trigger: 'blur' }
-  ],
-  privacy: [
-    {
-      validator: (_, value, callback) => {
-        return value ? callback() : callback(new Error('需要勾选用户协议'));
-      },
-      trigger: 'blur'
-    }
   ]
 };
 

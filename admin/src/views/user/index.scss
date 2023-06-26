@@ -1,17 +1,14 @@
 .container {
-  display: flex;
-  justify-content: center;
   height: 100%;
   background-color: #eef0f3;
-  padding-top: 80px;
   min-width: 1280px;
   background-image: url("@/assets/bg.png");
   background-size: cover;
   background-repeat: no-repeat;
+  padding-top: 15vh;
 
   .content {
     text-align: center;
-
     .title {
       font-style: normal;
       font-weight: 400;
