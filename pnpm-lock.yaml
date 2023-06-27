@@ -59,8 +59,8 @@ importers:
         specifier: ^0.53.3
         version: 0.53.3
       vft:
-        specifier: 0.0.129
-        version: 0.0.129(pinia@2.1.4)(vue-router@4.2.2)(vue@3.3.4)
+        specifier: 0.0.132
+        version: 0.0.132(pinia@2.1.4)(vue-router@4.2.2)(vue@3.3.4)
       vue:
         specifier: 3.3.4
         version: 3.3.4
@@ -9782,8 +9782,8 @@ packages:
       mutation-observer: 1.0.3
     dev: false
 
-  /vft@0.0.129(pinia@2.1.4)(vue-router@4.2.2)(vue@3.3.4):
-    resolution: {integrity: sha512-EkSgEJNhAMpTLiMN2Kff0TPCYaKW8a3AxcOa9ERSHMwQEVTN2yF/AXb88+0XuOSkoehan8p9aRfEse1LQ/5Vkw==}
+  /vft@0.0.132(pinia@2.1.4)(vue-router@4.2.2)(vue@3.3.4):
+    resolution: {integrity: sha512-531oQ/rxz60crl5iwuqPfS7fVc6DncJ4ksttQmu8dqHC7OZ4Od6bCJFskpDeH+MD/yaxL7EZcvI6wiwRR64wfg==}
     peerDependencies:
       vue: '>=3.2.0'
       vue-router: '>=4.0.16'
