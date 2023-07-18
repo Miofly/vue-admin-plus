@@ -5,7 +5,7 @@ import {
   SEQ_FIELD,
   CREATE_TIME_FIELD,
   DATE_FIELD, NAME_FIELD
-} from '@vft-ui/components';
+} from 'vft';
 
 const PAGE_SIZE = 10;
 
