@@ -1,0 +1,20 @@
+<template>
+  <div class="common-layout">
+    <vft-container>
+      <vft-header>Header</vft-header>
+      <vft-container>
+        <vft-aside width="200px">Aside</vft-aside>
+        <vft-container>
+          <vft-main>Main</vft-main>
+          <vft-footer>Footer</vft-footer>
+        </vft-container>
+      </vft-container>
+    </vft-container>
+  </div>
+</template>
+
+<script setup lang="ts">
+</script>
+<style lang="scss" scoped>
+@import "./common-layout";
+</style>

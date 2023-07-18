@@ -1,6 +1,5 @@
-import { FormCompEnum } from 'vft';
+import { FormCompEnum , VftButton } from 'vft';
 import { trimBlank } from '@vft/utils';
-import { VftButton } from 'vft';
 import { sendSms, type SmsType } from '../apis';
 import { pageCfg } from '../config';
 import { useVerifyCode } from '../use';
@@ -52,7 +51,7 @@ export function usePhoneVerifyCode (smsType: SmsType, phone, formRef, isUpdate?)
   const phoneVerifyCodeItem = {
     field: 'verifyCode',
     label: '验证码',
-    component: FormCompEnum.INPUT_NUMBER,
+    type: FormCompEnum.INPUT_NUMBER,
     rules: [
       {
         validator (rule, value) {

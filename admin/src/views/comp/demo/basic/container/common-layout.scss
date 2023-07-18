@@ -1,0 +1,31 @@
+.common-layout {
+  .vft-header,
+  .vft-footer,
+  .vft-main,
+  .vft-aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .vft-header,
+  .vft-footer {
+    background-color: var(--vft-primary-color-light-7);
+    color: var(--vft-text-primary-color);
+    text-align: center;
+  }
+
+  .vft-aside {
+    background-color: var(--vft-primary-color-light-8);
+    color: var(--vft-text-primary-color);
+    text-align: center;
+  }
+
+  .vft-main {
+    background-color: var(--vft-primary-color-light-9);
+    color: var(--vft-text-primary-color);
+    text-align: center;
+
+    height: 150px;
+  }
+}

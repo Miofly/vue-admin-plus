@@ -4,7 +4,7 @@ import { FormCompEnum, FormSchema, useForm, useModalInner } from 'vft';
 const schemas: FormSchema[] = [
   {
     field: 'name',
-    component: FormCompEnum.INPUT,
+    type: FormCompEnum.INPUT,
     label: '昵称'
   }
 ];

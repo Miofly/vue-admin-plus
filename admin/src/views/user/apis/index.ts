@@ -1,5 +1,6 @@
-import { request } from '@/apis';
 import { objAddPrefix } from '@vft/utils';
+
+import { request } from '@/apis';
 
 const prefixUrl = '/user';
 

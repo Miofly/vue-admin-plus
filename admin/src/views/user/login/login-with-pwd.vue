@@ -20,7 +20,7 @@ const schemas: FormSchema[] = [
   {
     field: 'account',
     label: '用户名',
-    component: FormCompEnum.INPUT,
+    type: FormCompEnum.INPUT,
     required: true,
     showLabel: false,
     componentProps: {
@@ -36,7 +36,7 @@ const schemas: FormSchema[] = [
   {
     field: 'verifyCode',
     label: '验证码',
-    component: FormCompEnum.INPUT_NUMBER,
+    type: FormCompEnum.INPUT_NUMBER,
     rules: [{ len: 4, message: '验证码格式不对' }, {
       validator: (rule, value) => {
         if (value && value !== verifyCodeRef.value?.code) {

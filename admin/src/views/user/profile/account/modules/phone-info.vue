@@ -25,7 +25,7 @@ function changePhone() {
 
 const dialogVisible = ref(false);
 
-const { runAsync } = useRequest(updatePhone, {
+useRequest(updatePhone, {
   manual: true
 });
 
@@ -41,10 +41,6 @@ const schemas: FormSchema[] = [
 ];
 
 const [register, {
-  setFormItemError,
-  validateField,
-  setSubmitLoading,
-  clearValidate,
   getFieldValue
 }] = useForm({
   schemas,
@@ -58,7 +54,7 @@ const [register, {
   }
 });
 
-const { submit } = useSubmit();
+useSubmit();
 
 const handleSubmit = async(values) => {
   const _params = pick(values, ['verifyCode']);

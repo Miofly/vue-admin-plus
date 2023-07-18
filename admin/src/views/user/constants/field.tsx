@@ -6,7 +6,7 @@ import { LINK_AGREEMENT_PRIVACY, LINK_AGREEMENT_USER } from '@/router/constants'
 const phone_field: FormSchema = {
   field: 'phone',
   label: '手机号',
-  component: FormCompEnum.INPUT,
+  type: FormCompEnum.INPUT,
   rules: [{
     validator: (rule, value) => {
       if (value && !mobileRegExp.test(value.replace(/\s/g, ''))) {
@@ -35,7 +35,7 @@ const pwd_field = (isRepeat = false, isReg = false) => {
   const field = {
     field: isRepeat ? 'rePassword' : 'password',
     label: '密码',
-    component: FormCompEnum.PASSWORD,
+    type: FormCompEnum.PASSWORD,
     required: true,
     showLabel: false,
     componentProps: {
@@ -92,7 +92,7 @@ const pwd_field = (isRepeat = false, isReg = false) => {
 
 const privacy_policy_field: FormSchema = {
   field: 'checked',
-  component: FormCompEnum.CHECKBOX_SINGLE,
+  type: FormCompEnum.CHECKBOX_SINGLE,
   prefixParentStyle: { display: 'flex', 'justify-content': 'space-between' },
   suffix: () => <>
     <VftLink underline={false} type="primary"

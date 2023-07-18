@@ -1,6 +1,8 @@
 <script lang="ts" setup>
-import { usePageTitle } from '@/use';
 import { generateCssVars } from 'vft';
+
+import { usePageTitle } from '@/use';
+
 import MainContainer from '../components/main.vue';
 import { LoginTabEnum, pageCfg, tabStyle } from '../config';
 import LoginWithPhone from './login-with-phone.vue';
