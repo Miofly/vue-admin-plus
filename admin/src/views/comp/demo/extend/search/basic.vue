@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SearchContent from '@/components/search/search-content.vue';
+// import SearchContent from '@/components/search/search-content.vue';
 import { primaryColor } from 'vft';
 
 const searchValue = ref('');
@@ -14,8 +14,8 @@ const _primaryColor = primaryColor();
     :width="200"
     placeholder="请输入关键字"
   >
-    <search-content ref="searchContentRef" v-model:visible="visible"
-                    :search-value="searchValue"/>
+<!--    <search-content ref="searchContentRef" v-model:visible="visible"-->
+<!--                    :search-value="searchValue"/>-->
   </vft-search>
   <br/>
   <br/>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import SearchContent from '@/components/search/search-content.vue';
 import { primaryColor } from 'vft';
 import { generateCssVars } from 'vft';
 
@@ -36,8 +35,8 @@ const style = generateCssVars({
       :activeWidth="70 + (searchRef?.isHover ? placeholder.length : placeholderText.length) * 14"
       :placeholder="placeholderText"
     >
-      <search-content ref="searchContentRef" v-model:visible="visible"
-                      :search-value="searchValue"/>
+<!--      <search-content ref="searchContentRef" v-model:visible="visible"-->
+<!--                      :search-value="searchValue"/>-->
     </vft-search>
   </div>
 </template>
